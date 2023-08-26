@@ -1,0 +1,10 @@
+class Sentences
+{
+	class STR_JP_voices_team_briefing	{ text = ""; speech[] = { "\JP\voices\team\STR_JP_voices_team_briefing.ogg" };	class Arguments {}; };
+};
+
+// Needed parameters.
+class Arguments {};
+class Special {};
+startWithVocal[] = { hour };
+startWithConsonant[] = { europe, university };
