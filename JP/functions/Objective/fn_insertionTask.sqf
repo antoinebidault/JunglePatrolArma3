@@ -19,17 +19,16 @@ INSERTION_DONE = false;
 _units = units GROUP_PLAYERS;
 waitUntil { {vehicle _x == _chopper} count _units == count _units };
 
-
 {
  ["JP_primary_insertion","SUCCEEDED",true] remoteExec ["BIS_fnc_taskSetState",GROUP_PLAYERS,true]; 
 } foreach ([] call JP_fnc_allPlayers);
 
-sleep 1;
+
+sleep 2;
 
 [_pilot, localize "STR_JP_voices_pilot_1"] spawn JP_fnc_talk;
 
-
-[] call JP_fnc_intro;
+[] spawn JP_fnc_intro;
 
 JP_fnc_addActionSkipTravel = {
 	_lzPos = _this select 0;
@@ -49,13 +48,29 @@ JP_fnc_addActionSkipTravel = {
 {  if (_x find "lz_" == 0 ) then { LZ pushback _x }; }foreach allMapMarkers; 
 
 _lz =  (LZ call BIS_fnc_selectRandom);
+CURRENT_LZ = getMarkerPos _lz;
 _lzPos = getMarkerPos _lz;
 _helipad_obj = "Land_HelipadEmpty_F" createVehicle  _lzPos;
 _grp = group _pilot;
 private _wp0 = _grp addwaypoint [ _lzPos, 10];
 _wp0 setWaypointBehaviour "CARELESS";
 _wp0 setWaypointType "MOVE";
+_wp0 setWaypointStatements["true", "[CURRENT_LZ] spawn JP_fnc_insertionTrackerTask;"];
 _chopper flyInHeight 60;
+
+[] spawn {
+	sleep 10;
+	
+	_mg = missionNamespace getVariable ["mg", objNull];
+	_doc = missionNamespace getVariable ["doc", objNull];
+
+	sleep 1;
+
+	[player, localize "STR_JP_voices_player_helo"] spawn JP_fnc_talk;
+	[_doc, localize "STR_JP_voices_doc_helo"] spawn JP_fnc_talk;
+	[_mg, localize "STR_JP_voices_mg_helo"] spawn JP_fnc_talk;
+};
+
 
 {
  ["JP_primary_insertion2",_x, ["Insert to the LZ","Insert to the LZ","Insert to the LZ"], _lzPos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",GROUP_PLAYERS, true];
@@ -67,7 +82,7 @@ private _wp1 = _grp addwaypoint [_lzPos, 1];
 _wp1 setWaypointBehaviour "CARELESS";
 _wp1 setWaypointSpeed "FULL";
 _wp1 setWaypointType "TR UNLOAD";
-_wp1 setWaypointStatements ["{vehicle _x == vehicle this} count units GROUP_PLAYERS == 0;","INSERTION_DONE = true;[getPos this] spawn JP_fnc_insertionTrackerTask;(vehicle this) land ""GET IN""; GROUP_PLAYERS  leaveVehicle (vehicle this);[""JP_primary_insertion2"",""SUCCEEDED"",true] remoteExec [""BIS_fnc_taskSetState"",GROUP_PLAYERS,true]; [] spawn JP_fnc_reconTask;"];
+_wp1 setWaypointStatements ["{vehicle _x == vehicle this} count units GROUP_PLAYERS == 0;","INSERTION_DONE = true;(vehicle this) land ""GET IN""; GROUP_PLAYERS  leaveVehicle (vehicle this);[""JP_primary_insertion2"",""SUCCEEDED"",true] remoteExec [""BIS_fnc_taskSetState"",GROUP_PLAYERS,true]; [] spawn JP_fnc_reconTask;"];
 
 
 private _wp2 = _grp addwaypoint [_start, 1];

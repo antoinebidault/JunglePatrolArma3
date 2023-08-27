@@ -94,7 +94,7 @@ _supportScore = 0;
 			_respawnId = [SIDE_FRIENDLY, _pos, _nameLocation] call BIS_fnc_addRespawnPosition
 		}else{
 			if (_forEachIndex >= (100-PERCENTAGE_OF_ENEMY_COMPOUND)/100*count _clusters) then {
-				_supportScore = floor (random 25);
+				_supportScore = 50;
 				_compoundState = "bastion";
 				_m setMarkerColor "ColorRed";
 				_icon setMarkerColor "ColorRed";

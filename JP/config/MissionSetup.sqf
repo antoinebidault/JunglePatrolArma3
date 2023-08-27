@@ -48,7 +48,7 @@ CIV_LIST_UNITS = [FACTION_CIV,["Man"],[]] call JP_fnc_factiongetunits;
 CIV_LIST_CARS = [FACTION_CIV,["Car"],[]] call JP_fnc_factiongetunits;
 
 ENEMY_LIST_UNITS = [ENEMY_LIST_UNITS,[FACTION_ENEMY,["Man"],[]] call JP_fnc_factiongetunits] call JP_fnc_fillSupportParam;
-ENEMY_LIST_CARS = [ENEMY_LIST_CARS,[FACTION_ENEMY,["Car"],[]] call JP_fnc_factiongetunits] call JP_fnc_fillSupportParam;
+// ENEMY_LIST_CARS = [ENEMY_LIST_CARS,[FACTION_ENEMY,["Car"],[]] call JP_fnc_factiongetunits] call JP_fnc_fillSupportParam;
 
 // Filter the cars classes without turrets
 _removedClasses = [];
@@ -65,7 +65,7 @@ ENEMY_SNIPER_UNITS =  [ENEMY_SNIPER_UNITS,[FACTION_ENEMY,["Man"], ["sniper"]] ca
 ENEMY_CONVOY_CAR_CLASS = ENEMY_LIST_CARS select 0;
 ENEMY_CONVOY_TRUCK_CLASS = [ENEMY_CONVOY_TRUCK_CLASS,[FACTION_ENEMY,["Truck_F"],[]] call JP_fnc_factiongetunits] call JP_fnc_fillSupportParam;
 ENEMY_COMMANDER_CLASS = ENEMY_LIST_UNITS select 0; 
-ENEMY_OFFICER_LIST_CARS = ENEMY_CONVOY_TRUCK_CLASS; 
+// ENEMY_OFFICER_LIST_CARS = ENEMY_CONVOY_TRUCK_CLASS; 
 
 _mortars = [FACTION_ENEMY,["StaticMortar"],[]] call JP_fnc_factiongetunits;
 if (count _mortars > 0) then {

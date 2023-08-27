@@ -106,7 +106,18 @@ NUMBER_CRASHSITES = getMissionConfigValue ["JP_number_crashsites",2];
 NUMBER_TANKS = getMissionConfigValue ["JP_number_tanks",2]; //Number of tanks
 ENEMY_LIST_UNITS = ["O_Soldier_SL_F","O_Soldier_AR_F","O_Soldier_GL_F","O_soldier_M_F","O_Soldier_AT_F","O_Soldier_AAT_F","O_Soldier_A_F","O_medic_F"];
 ENEMY_SNIPER_UNITS = ["O_ghillie_ard_F"];
-ENEMY_LIST_CARS = ["O_MRAP_02_gmg_F","O_MRAP_02_hmg_F","O_LSV_02_armed_F","O_LSV_02_AT_F","O_Truck_03_ammo_F","O_Truck_03_transport_F","O_Truck_02_covered_F"];
+ENEMY_LIST_CARS = ["vn_o_car_03_01",
+"vn_o_wheeled_z157_02_vcmf",
+"vn_o_wheeled_z157_01_vcmf",
+"vn_o_wheeled_btr40_mg_02_vcmf",
+"vn_o_wheeled_btr40_01_vcmf",
+"vn_o_car_04_01",
+"vn_o_car_03_01",
+"vn_o_wheeled_z157_03_vcmf",
+"vn_o_wheeled_z157_mg_01_vcmf",
+"vn_o_wheeled_z157_repair_vcmf",
+"vn_o_wheeled_z157_mg_02_vcmf"];
+
 ENEMY_CHOPPERS = ["O_Heli_Attack_02_dynamicLoadout_F"];
 ENEMY_ATTACHEDLIGHT_CLASS = "acc_flashlight"; // "rhs_acc_2dpZenit"; 
 ENEMY_MORTAR_CLASS = "vn_b_sf_static_mortar_m2"; //Mortar class
@@ -114,7 +125,12 @@ ENEMY_LIST_TANKS = ["O_MBT_04_cannon_F","O_MBT_02_cannon_F"]; //Tanks
 ENEMY_COMMANDER_CLASS = "O_Soldier_SL_F"; //commander
 ENEMY_CONVOY_CAR_CLASS = "O_MRAP_02_hmg_F"; //commander
 ENEMY_CONVOY_TRUCK_CLASS = ["O_Truck_03_transport_F"]; //commander
-ENEMY_OFFICER_LIST_CARS = ["O_APC_Wheeled_02_rcws_v2_F"];  //car list used by officer
+ENEMY_OFFICER_LIST_CARS =  ["vn_o_car_03_01",
+"vn_o_wheeled_z157_02_vcmf",
+"vn_o_wheeled_z157_01_vcmf",
+"vn_o_wheeled_btr40_mg_02_vcmf",
+"vn_o_wheeled_btr40_01_vcmf",
+"vn_o_car_04_01"];  //car list used by officer
 
 // List of items 
 BUILD_ITEMS = [

@@ -54,12 +54,13 @@ publicVariable "CURRENT_OBJECTIVE";
 
 [] call JP_fnc_updateMarker;
 
-_obj = (CURRENT_OBJECTIVE select 3);
-waitUntil {sleep 3; _obj != "" && ((_obj call BIS_fnc_taskState) == "SUCCEEDED") };
+_taskId = (CURRENT_OBJECTIVE select 3);
+waitUntil {sleep 3; _taskId != "" && ((_taskId call BIS_fnc_taskState) == "SUCCEEDED") };
 
 ["JP_primary_recon","SUCCEEDED"] remoteExec ["BIS_fnc_taskSetState",leader GROUP_PLAYERS, false];
 
 REMAINING_OBJECTIVES = REMAINING_OBJECTIVES - 1;
+publicVariable "REMAINING_OBJECTIVES";
 
 if (REMAINING_OBJECTIVES == 0) then {
 	[] spawn JP_fnc_extractionTask;

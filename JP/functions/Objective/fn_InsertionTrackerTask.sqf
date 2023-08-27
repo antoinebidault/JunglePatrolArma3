@@ -1,4 +1,3 @@
-hint "test";
 
 // Lz position
 [leader GROUP_PLAYERS, "Look ! There is a small group of watchers spotting at us ! It smells not good... If they reach their position, they will call reinforcements ! I've recently hear they have created some special units for tracking !"] spawn JP_fnc_talk;
@@ -6,7 +5,7 @@ _lzPos = _this select 0;
 _lzPos set [2, 0];
 _nbGuards = 1 + round(random 2);
 _grp = createGroup SIDE_ENEMY;
-_pos = [_lzPos, 60, 150, 4, 0, 2, 0] call BIS_fnc_findSafePos;
+_pos = [_lzPos, 120, 150, 1, 0, 2, 0] call BIS_fnc_findSafePos;
 _units = [];
 
 {
@@ -20,7 +19,7 @@ for "_i" from 1 to _nbGuards do {
 	_enemy setUnitPos (if (random 1 > 0.5) then {"MIDDLE";} else {"DOWN";});
 };
 
-_nextPos = [_lzPos, 60, 150, 4, 0, 2, 0] call BIS_fnc_findSafePos;
+_nextPos = [_lzPos, 120, 150, 1, 0, 2, 0] call BIS_fnc_findSafePos;
 
 _wp0 = _grp addWaypoint [_nextPos,4];
 _wp0 setWaypointType "MOVE";
@@ -45,4 +44,6 @@ waitUntil { ({ alive _x || captive _x } count units _grp == 0 && !("JP_primary_i
 [leader GROUP_PLAYERS, "Good job ! The watchers have been neutralized !"] spawn JP_fnc_talk;
 if (!("JP_primary_insertion3" call BIS_fnc_taskCompleted)) then {
 	["JP_primary_insertion3","SUCCEEDED",true] remoteExec ["BIS_fnc_taskSetState",GROUP_PLAYERS,true];
+} else{
+	["JP_primary_insertion3","FAILED",true] remoteExec ["BIS_fnc_taskSetState",GROUP_PLAYERS,true];
 };

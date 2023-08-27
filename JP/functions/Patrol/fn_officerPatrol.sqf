@@ -64,7 +64,7 @@ while {sleep 5;  alive _unit && alive _truck && alive _driver}do{
     _convoyWP  setWaypointBehaviour "SAFE";
     _convoyWP  setWaypointCompletionRadius 1;
     _convoyWP  setWaypointFormation "COLUMN";
-*/
+    */
     _timer = time;
     waitUntil { sleep 5; !alive(_unit)  || _truck distance2D _newPos < 14 || time > _timer + 800 };
     if (!alive _unit) exitWith{false};

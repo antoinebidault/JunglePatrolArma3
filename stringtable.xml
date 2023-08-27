@@ -1280,6 +1280,21 @@
     </Package>
     <Package name="Voices">
         <Container name="insertionTask">
+            <Key ID="STR_JP_voices_player_helo">
+                <Original>Okay guys, ready for insertion? It's going to be hot out there. I don't quite understand the Colonel's attitude... Something seems to have happened with the Charlie-3 team. He totally avoided the subject.</Original>
+                <English>Okay guys, ready for insertion? It's going to be hot out there. I don't quite understand the Colonel's attitude... Something seems to have happened with the Charlie-3 team. He totally avoided the subject.</English>
+                <French>Ok les gars, prêts pour l'insertion, ça va être très chaud là bas. Je ne comprends pas bien l'attitude du Colonel pendant le briefing... Il a l'air de s'être passé un truc avec l'équipe Charlie-3. Il a totalement esquivé ce sujet.</French>
+            </Key>
+           <Key ID="STR_JP_voices_doc_helo">
+                <Original>This doesn't look good at all !</Original>
+                <English>This doesn't look good at all !</English>
+                <French>Ca ne sent pas bon du tout ça !</French>
+            </Key>
+            <Key ID="STR_JP_voices_mg_helo">
+                <Original>Don't worry, we'll stay on their channel and see if we can contact them there. Hopefully, they're still alive.</Original>
+                <English>Don't worry, we'll stay on their channel and see if we can contact them there. Hopefully, they're still alive.</English>
+                <French>T'inquiète pas, on reste sur leur canal, on verra si on arrive à les contacter sur place. Avec un peu de chance, ils sont encore en vie.</French>
+            </Key>
             <Key ID="STR_JP_voices_pilot_1">
                 <Original>Ok, everyone in, let's move to the LZ</Original>
                 <English>Ok, everyone in, let's move to the LZ</English>

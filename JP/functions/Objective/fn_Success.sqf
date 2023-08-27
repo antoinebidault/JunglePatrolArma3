@@ -44,8 +44,7 @@ if (_task == "") then {
     params["_task","_taskName","_objWithTask"];
     [_task, "SUCCEEDED", true] call BIS_fnc_taskSetState;
     [(leader GROUP_PLAYERS), format["Task done : %1",_taskName],true] call JP_fnc_talk;
-     sleep 20;
-    [_task,true] call BIS_fnc_deleteTask;
+    // [_task,true] call BIS_fnc_deleteTask;
 }] remoteExec ["spawn", GROUP_PLAYERS,false];
 
 //Custom callback

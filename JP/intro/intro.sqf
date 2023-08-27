@@ -13,23 +13,31 @@ sleep 1;
 titleCut ["", "BLACK IN",10];
 
 */
-[] spawn {
-	playMusic "vn_blues_for_suzy";
+	sleep 12;
+	playMusic "vn_dont_cry_baby";
 	sleep 4;
 	nul = [localize "STR_JP_intro_authorPresent",.3,.7,8] spawn BIS_fnc_dynamicText;
 	sleep 14;
 	nul = [localize "STR_JP_intro_scenario",.5,.2,8] spawn BIS_fnc_dynamicText;
 	sleep 14;
-	nul = ["<t color='#cd8700' size = '2.4'>DYNAMIC CIVIL WAR</t>",-1,-1,10,1,0] spawn BIS_fnc_dynamicText; //maybe splash?
-	sleep 14;
-	nul = [localize "STR_JP_intro_oriIdea",.2,.3,5] spawn BIS_fnc_dynamicText;
+	    _pic = "images\jungle-patrol.paa"; 
+        [ 
+          '<img align=''left'' size=''7.1'' shadow=''0'' image='+(str(_pic))+' />', 
+          safeZoneX+.7, 
+          safeZoneY+safeZoneH-1.2, 
+          6, 
+          0, 
+          0, 
+          12345
+        ] spawn bis_fnc_dynamicText;
+	sleep 8;
+	// nul = [localize "STR_JP_intro_oriIdea",.2,.3,5] spawn BIS_fnc_dynamicText;
 	sleep 8;
 	nul = [localize "STR_JP_intro_trad",.3,.2,5] spawn BIS_fnc_dynamicText;
-	sleep 8;
-	nul = [localize "STR_JP_intro_music",.3,.7,5] spawn BIS_fnc_dynamicText;
+	/*sleep 8;
+	nul = [localize "STR_JP_intro_music",.3,.7,5] spawn BIS_fnc_dynamicText;*/
 	sleep 5;
 	nul = [localize "STR_JP_intro_speThanksNovakat77",.3,.5,5] spawn BIS_fnc_dynamicText;
-};
 /*
 _camPos =  [getPos _chopper, 400,[getPos _chopper,_dest] call BIS_fnc_dirTo] call BIS_fnc_relPos;
 _camPos set[2,30];

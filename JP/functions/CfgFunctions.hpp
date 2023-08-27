@@ -150,6 +150,8 @@ class CfgFunctions
 			class insertionTrackerTask {};
 			class mainObjectiveIntel {};
 			class compoundSecured {};
+			class helpFriends {};
+			class helpFriendsRadio {};
 		};
 
 	    class Handler

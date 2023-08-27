@@ -27,7 +27,7 @@ if (!isNull player) then {
     _cam camSetTarget (_chopper modelToWorld [-1,-0.2,3]);
     _cam camSetFov 1.0;
     _cam camCommit 0;
-    playMusic "vn_dont_cry_baby";
+    playMusic "vn_blues_for_suzy";
     if (daytime > 8 && daytime < 20) then {
       ["Mediterranean",0,false] call bis_fnc_setppeffecttemplate;
     };
@@ -114,7 +114,7 @@ compos_medical =  call (compileFinal preprocessFileLineNumbers "JP\composition\c
 
 
 // Mission introduction function
-// JP_fnc_intro = compileFinal preprocessFileLineNumbers "JP\intro\intro.sqf";
+JP_fnc_intro  = compileFinal preprocessFileLineNumbers "JP\intro\intro.sqf";
 
 // ACE detection
 ACE_ENABLED = if (isClass(configFile >> "CfgPatches" >> "ace_main")) then { true; } else { false; };
