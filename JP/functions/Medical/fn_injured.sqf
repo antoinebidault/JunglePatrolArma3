@@ -6,8 +6,8 @@ if (vehicle _unit != _unit) then {
 
 _unit setUnconscious true; 
 _unit setCaptive true;
-_unit setVariable ["JP_unit_injured", true, true];
 _unit setHit ["legs", 1];  
+_unit setVariable ["JP_unit_injured", true, true];
 
 sleep 6;
 
@@ -38,7 +38,6 @@ if (isPlayer _unit && _unit == player) then {
 				_foundCloseUnit = _x;
 				_dist = _x distance _unit;
 			};
-
 		}foreach units GROUP_PLAYERS; 
 
 		// Check the status
