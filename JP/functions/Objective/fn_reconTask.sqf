@@ -65,7 +65,15 @@ publicVariable "REMAINING_OBJECTIVES";
 if (REMAINING_OBJECTIVES == 0) then {
 	[] spawn JP_fnc_extractionTask;
 } else {
-	[] spawn JP_fnc_sleepTask;
+	if (REMAINING_OBJECTIVES == 1) then {
+		[] spawn JP_fnc_helpFriends;
+	} else {
+		if (REMAINING_OBJECTIVES == 2) then {
+			[] spawn JP_fnc_helpFriendsRadio;
+		};
+
+		[] spawn JP_fnc_sleepTask;
+	};
 };
 
 true;

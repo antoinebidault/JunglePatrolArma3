@@ -61,13 +61,14 @@ while {!isNull _leader && alive _leader && !isNull _unitChased && !(_leader getV
     };
 
     // Random shoot in the air
-    if (_leader knowsAbout _unitChased < .1) then {
+    /*if (_leader knowsAbout _unitChased < .1) then {
       _anyUnit = (units _grp) call BIS_fnc_selectRandom;
       [_anyUnit,_unitChased] spawn { 
         _unit = _this select 0;
         _unitChased = _this select 1;
         _unit doWatch (_unitChased modelToWorld [50-round(random 25),50-round(random 25),200]); 
         sleep 0.5; 
+        /*
         while { alive _unit} do { 
           sleep .1; 
           _unit action ["useweapon",vehicle _unit,_unit,0]; 
@@ -77,7 +78,7 @@ while {!isNull _leader && alive _leader && !isNull _unitChased && !(_leader getV
           _unit action ["useweapon",vehicle _unit,_unit,0]; 
         };
       };
-    };
+    };*/
 
     if (DEBUG) then {
         _marker setMarkerPos _lastKnownPosition;

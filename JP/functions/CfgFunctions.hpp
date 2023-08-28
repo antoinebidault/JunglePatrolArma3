@@ -151,6 +151,7 @@ class CfgFunctions
 			class mainObjectiveIntel {};
 			class compoundSecured {};
 			class helpFriends {};
+			class helpFriendsInit {};
 			class helpFriendsRadio {};
 		};
 

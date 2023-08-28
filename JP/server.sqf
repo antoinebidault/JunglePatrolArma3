@@ -23,6 +23,8 @@ setDate [1969, 6, 25, TIME_OF_DAYS, 0];
 0 setWaves WEATHER;
 forceWeatherChange;
 
+[] call JP_fnc_helpFriendsInit;
+
 sleep 1;
 
 

@@ -33,7 +33,7 @@ comment "Add items";
 _this linkItem "vn_o_item_map";
 _this linkItem "vn_b_item_compass";
 _this linkItem "vn_b_item_watch";
-_this linkItem "vn_o_item_radio_m252";
+_this linkItem "vn_o_item_rescue_m252";
 
 comment "Set identity";
 [_this,"vn_vietnamese_02_01_face","vie"] call BIS_fnc_setIdentity;

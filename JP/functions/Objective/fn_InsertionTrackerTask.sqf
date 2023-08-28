@@ -9,7 +9,7 @@ _pos = [_lzPos, 120, 150, 1, 0, 2, 0] call BIS_fnc_findSafePos;
 _units = [];
 
 {
- ["JP_primary_insertion3",_x, ["Kill the watchers","Kill the watchers","Kill the watchers before they call reinforcements"], _pos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",GROUP_PLAYERS, true];
+ ["JP_primary_insertion3",_x, ["Kill the watchers","Kill the watchers","Kill a small group of watchers before they call reinforcements"], _pos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",GROUP_PLAYERS, true];
 } foreach ([] call JP_fnc_allPlayers);
 
 for "_i" from 1 to _nbGuards do {

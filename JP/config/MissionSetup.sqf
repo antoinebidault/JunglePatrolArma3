@@ -75,7 +75,7 @@ if (count _mortars > 0) then {
 SUPPORT_ARTILLERY_CLASS = [SUPPORT_ARTILLERY_CLASS,[FACTION_PLAYER, ["StaticWeapon"], "Artillery"] call JP_fnc_factionGetSupportUnits] call JP_fnc_fillSupportParam;
 SUPPORT_TRANSPORT_CHOPPER_CLASS = FRIENDLY_CHOPPER_CLASS;
 SUPPORT_DROP_AIRCRAFT_CLASS = [SUPPORT_DROP_AIRCRAFT_CLASS,[FACTION_PLAYER, ["Air"], "Drop"] call JP_fnc_factionGetSupportUnits] call JP_fnc_fillSupportParam;
-SUPPORT_MEDEVAC_CHOPPER_CLASS = FRIENDLY_CHOPPER_CLASS;
+// SUPPORT_MEDEVAC_CHOPPER_CLASS = FRIENDLY_CHOPPER_CLASS;
 SUPPORT_BOMBING_AIRCRAFT_CLASS = [SUPPORT_BOMBING_AIRCRAFT_CLASS,[FACTION_PLAYER, ["Plane"], "CAS_Bombing"] call JP_fnc_factionGetSupportUnits] call JP_fnc_fillSupportParam;
 SUPPORT_CAS_HELI_CLASS = [SUPPORT_CAS_HELI_CLASS,[FACTION_PLAYER, ["Helicopter"], "CAS_Heli"] call JP_fnc_factionGetSupportUnits] call JP_fnc_fillSupportParam;
 _choppers = [SUPPORT_HEAVY_TRANSPORT_CLASS,[FACTION_PLAYER, ["Helicopter"], "Drop"] call JP_fnc_factionGetSupportUnits] call JP_fnc_fillSupportParam;
@@ -90,7 +90,7 @@ if (count _tmpChoppers > 0) then {
 };
 
 SUPPORT_DRONE_CLASS = if (SIDE_FRIENDLY == WEST) then {"B_UAV_02_dynamicLoadout_F"} else {"O_UAV_02_dynamicLoadout_F"};
-SUPPORT_MEDEVAC_CREW_CLASS = ALLIED_LIST_UNITS call BIS_fnc_selectrandom;
+// SUPPORT_MEDEVAC_CREW_CLASS = ALLIED_LIST_UNITS call BIS_fnc_selectrandom;
 _cars = [FACTION_PLAYER,["Car"],"slingload"] call JP_fnc_factionGetSupportUnits;
 if (count _cars > 0) then {
 	SUPPORT_CAR_PARADROP_CLASS = _cars;

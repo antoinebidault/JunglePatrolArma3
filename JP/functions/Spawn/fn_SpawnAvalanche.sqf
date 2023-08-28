@@ -28,17 +28,15 @@ if (DEBUG) then {
 };
 
 while { ENABLE_AVALANCHE } do {
-    if (count AVALANCHE_TROOPS < _max) then {
+    if ({alive _x && !captive _x}count AVALANCHE_TROOPS < _max) then {
       _dir =  360 - (_unitChased getDir _destination) ;
       _flankDir = 0;
-
-      hint str _dir;
-
+      
       _flankDir = if (random 1 > 0.33) then { 0 } else { 60 };
       _pos = [getPos _unitChased, 280, _dir] call BIS_fnc_relPos; 
       private _nbUnit = 3 + round(random 3);
       private _grp = createGroup SIDE_ENEMY;
-      private _posSelected = [_pos, 0, 70, .5, 0, 20, 0] call BIS_fnc_findSafePos;
+      private _posSelected = [_pos, 0, 70, 1, 0, 20, 0] call BIS_fnc_findSafePos;
 
       for "_xc" from 1 to _nbUnit do {
           _enemy = [_grp,_posSelected, false] call JP_fnc_spawnEnemy;
@@ -60,7 +58,8 @@ if (DEBUG) then {
   hint "Avalanche stopped";
 };
 
+/*
 {	
   _x call JP_fnc_deleteMarker; 
   deleteVehicle _x; 
-} forEach AVALANCHE_TROOPS;
+} forEach AVALANCHE_TROOPS;*/

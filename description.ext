@@ -1,5 +1,5 @@
 JP_NO_INTRO = 1;
-// JP_debug = 1;
+JP_debug = 1;
 JP_FACTION_ENEMY = "O_VC";
 JP_FACTION_CIV = "C_VIET";
 JP_FACTION_FRIENDLY ="I_ARVN";

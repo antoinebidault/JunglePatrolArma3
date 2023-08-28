@@ -127,6 +127,7 @@ if (ACE_ENABLED) then {
 // Wait until everything is ready
 waitUntil {count ([] call JP_fnc_allPlayers) > 0 && time > 0 };
 
+
 // Public variables
 call (compileFinal preprocessFileLineNumbers "JP\variables.sqf"); 
 

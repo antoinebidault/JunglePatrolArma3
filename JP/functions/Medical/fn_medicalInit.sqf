@@ -97,7 +97,7 @@ while {true} do {
 			_posChopper = position _transportHelo;
 
 			// Startup the chopper path
-			[group _transportHelo,getMarkerPos "medevac_marker",_transportHelo,_group] spawn JP_fnc_chopperPath;
+			[getMarkerPos "medevac_marker",_transportHelo,_group] spawn JP_fnc_chopperPath;
 		};
 	};
 

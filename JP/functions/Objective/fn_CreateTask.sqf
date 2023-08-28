@@ -41,16 +41,16 @@ switch (_type) do {
         _title = "disarm the IED";
         _message = "I know something about an IED planted on this road. I can mark it on your map.";
         _messageSuccess = "This IED will no more cause trouble.";
-        _bonus = 50;
+        _bonus = 30;
         _reputation = 6;
      };
      case "wreck": { 
-        _taskId = "WreckInvestigation";
+        _taskId = "wreck";
+        _title = "Chopper crash site";
         _desc = "Investigate the crashsite and neutralize the wreck with an explosive charge. This will give you extra credits";
-        _title = "Chopper crash site (optional)";
         _message = "There is a chopper crash site in this sector.";
         _messageSuccess = "HQ, we cleaned up the crash site.";
-        _bonus = 50;
+        _bonus = 30;
         _reputation = 0;
      };
     case "hostage": {   
@@ -59,7 +59,7 @@ switch (_type) do {
         _title = "Free the hostage";
         _message = "I know something about a hostage detained in this compound";
         _messageSuccess = "We've liberated a hostage located in this compound.";
-        _bonus = 50;
+        _bonus = 30;
         _reputation = 15;
      };
      case "outpost": {   
@@ -68,16 +68,16 @@ switch (_type) do {
         _title = "Clear the outpost";
         _message = "I've located an outpost with a few insurgents here.";
         _messageSuccess = "Outpost clear ! Good job !";
-        _bonus = 50;
+        _bonus = 30;
         _reputation = 2;
      };
      case "cache": {   
         _taskId = "cache";
-        _desc = "Find and destroy the insurgent's cache hidden in the building";
+        _desc = "Find and destroy the insurgent's cache hidden in a building";
         _title = "Destroy the cache";
         _message = "I've located a weapon cache in this building.";
         _messageSuccess = "We have successfully destroyed the cache";
-        _bonus = 50;
+        _bonus = 30;
         _reputation = 7;
      };
      case "sniper": {   
@@ -86,34 +86,34 @@ switch (_type) do {
         _title = "Kill the snipers";
         _message = "I've located a sniper team in this sector.";
         _messageSuccess = "The sniper team has been eliminated.";
-        _bonus = 50;
+        _bonus = 30;
         _reputation = 5;
      };
      case "tank": {   
         _taskId = "tank";
-        _desc = "Destroy the tank";
+        _desc = "Destroy a tank using satchel charge or missile launcher";
         _title = "Destroy the tank";
         _message = "There is a heavy armor in this sector.";
         _messageSuccess = "Good job ! The tank has been destroyed.";
-        _bonus = 50;
+        _bonus = 30;
         _reputation = 0;
      };
       case "mortar": { 
         _taskId = "Mortar";
-        _desc = "Destroy the mortar.";
+        _desc = "Destroy the mortar in the red arrow direction";
         _title = "Destroy the mortar";
         _message = "There is a mortar position over here !";
         _messageSuccess = "This mortar won't cause any trouble.";
-        _bonus = 50;
+        _bonus = 30;
         _reputation = 5;
      };
        case "officer": { 
         _taskId = "officer";
-        _desc = "Kill the officer";
+        _desc = "Kill the Vietcong officer moving randomly in a vehicle between compound";
         _title = "Kill the officer";
         _message = "An enemy officer is present here";
         _messageSuccess = "Good job ! The officer has benen eliminated !";
-        _bonus = 50;
+        _bonus = 30;
         _reputation = 5;
      };
     default { };

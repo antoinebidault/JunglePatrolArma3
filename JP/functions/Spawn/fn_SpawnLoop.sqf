@@ -253,12 +253,16 @@ while { true } do {
 				(
 					_unit getVariable["JP_Type",""] == "patrol" || 
 					_unit getVariable["JP_Type",""] == "chaser" || 
+					_unit getVariable["JP_Type",""] == "avalanche" || 
 					_unit getVariable["JP_Type",""] == "civpatrol"
 				)
 			)then{
 				
 				if ({_unit distance _x > SPAWN_DISTANCE + 200} count _players == count _players)then {
 					UNITS_SPAWNED_CLOSE = UNITS_SPAWNED_CLOSE - [_unit];
+					if (_unit getVariable["JP_Type",""] == "avalanche") then {
+						AVALANCHE_TROOPS = AVALANCHE_TROOPS - [_unit];
+					};
 						// If it's a vehicle
 					if (vehicle _unit != _unit) then {
 						{ _x call JP_fnc_deletemarker; deletevehicle _x; } foreach crew _unit;
