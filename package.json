@@ -34,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Bidass/DynamicCivilWar.git"
+    "url": "git+https://github.com/antoinebidault/JunglePatrolArma3.git"
   },
   "keywords": [
     "arma",
@@ -51,7 +51,7 @@
   "author": "Bidass",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Bidass/DynamicCivilWar/issues"
+    "url": "https://github.com/antoinebidault/JunglePatrolArma3/issues"
   },
-  "homepage": "https://github.com/Bidass/DynamicCivilWar#readme"
+  "homepage": "https://github.com/antoinebidault/JunglePatrolArma3#readme"
 }

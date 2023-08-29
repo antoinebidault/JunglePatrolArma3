@@ -27,7 +27,7 @@ gulp.task('default', function () {
             .on('added', function (data) { log('File added - copying ' + data); })
             .pipe(replace('{VERSION}', version))
             .pipe(replace('{WORLD_NAME}', getDirectory(directories[i])))
-            .pipe(gulp.dest('./' + directories[i]));
+            .pipe(gulp.dest('./' + directories[i] + '/JP'));
 
         gulp.src('./stringtable.xml')
             .pipe(watch('./stringtable.xml'))
@@ -46,7 +46,7 @@ gulp.task('copy', function () {
         gulp.src('JP/**/*')
             .pipe(replace('{VERSION}', version))
             .pipe(replace('{WORLD_NAME}', getDirectory(directories[i])))
-            .pipe(gulp.dest('./' + directories[i]));
+            .pipe(gulp.dest('./' + directories[i] + '/JP'));
 
         gulp.src('./stringtable.xml')
             .pipe(replace('{VERSION}', version))
