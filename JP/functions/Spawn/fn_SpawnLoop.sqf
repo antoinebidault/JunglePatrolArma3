@@ -131,7 +131,7 @@ while { true } do {
 
 							if (_compoundState == "bastion" ) then {
 								//Outposts
-								_units = _units + ([_marker,(_peopleToSpawn select 8)] call JP_fnc_spawnOutpost);
+								// _units = _units + ([_marker,(_peopleToSpawn select 8)] call JP_fnc_spawnOutpost);
 							} else {
 								_notSpawnedArray set [8,_peopleToSpawn select 8] ;
 							};

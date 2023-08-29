@@ -1,0 +1,57 @@
+{
+  "name": "dynamic.civil.war",
+  "version": "0.9.5",
+  "description": "A dynamic singleplayer scenario for Arma III",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "glob": "^7.1.4"
+  },
+  "overrides": {
+    "graceful-fs": "^4.2.11"
+  },
+  "devDependencies": {
+    "fancy-log": "^1.3.3",
+    "gulp": "^3.9.1",
+    "gulp-armapbo": "^2.0.2",
+    "gulp-cached": "^1.1.1",
+    "gulp-clean": "^0.4.0",
+    "gulp-clone": "^2.0.1",
+    "gulp-foreach": "^0.1.0",
+    "gulp-header-comment": "^0.6.1",
+    "gulp-merge": "^0.1.1",
+    "gulp-remember": "^1.0.1",
+    "gulp-replace": "^1.0.0",
+    "gulp-rimraf": "^0.2.2",
+    "gulp-watch": "^5.0.1",
+    "moment": "^2.19.3",
+    "path": "^0.12.7"
+  },
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp mission",
+    "clean": "gulp clean",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bidass/DynamicCivilWar.git"
+  },
+  "keywords": [
+    "arma",
+    "mission",
+    "scenario",
+    "sqf",
+    "scripting",
+    "game"
+  ],
+  "engines": {
+    "node": "10.15.3",
+    "npm": "6.9.0"
+  },
+  "author": "Bidass",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bidass/DynamicCivilWar/issues"
+  },
+  "homepage": "https://github.com/Bidass/DynamicCivilWar#readme"
+}

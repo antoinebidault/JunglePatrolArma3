@@ -51,7 +51,7 @@ waitUntil {MEDEVAC_State == "aborted" || TRANSPORTHELO distance2D _landPos < 200
 if (MEDEVAC_State == "aborted") exitWith { false };
 
 [HQ,localize "STR_JP_voices_HQ_smoke" ,true] remoteExec ["JP_fnc_talk"];
-hint localize "STR_JP_chopperPath_hintRTB";
+// hint localize "STR_JP_chopperPath_hintRTB";
 
 // Silently add a red smoke to group leader
 {
@@ -108,11 +108,14 @@ if (!HASLANDED) exitWith { MEDEVAC_State = "aborted"; };
 sleep 1;
 
 TRANSPORTHELO land "GET IN";
+
+sleep 10;
+
 // replacementGroup leavevehicle TRANSPORTHELO;
 interventionGroup leavevehicle TRANSPORTHELO; 
-interventionGroup move TRANSPORTHELO modelToWorld [5, 0 ,0];
+interventionGroup move (TRANSPORTHELO modelToWorld [5, 0 ,0]);
 
-waitUntil{sleep 2; { MEDEVAC_state == "aborted" ||  _x in TRANSPORTHELO} count units  interventionGroup == 0 /*&& {_x in TRANSPORTHELO} count units  interventionGroup == 0  */ };
+waitUntil{sleep 2; { MEDEVAC_state == "aborted" ||  _x in TRANSPORTHELO} count units  interventionGroup == 0  };
 if (MEDEVAC_state == "aborted") exitWith{false};
 
 /*
@@ -132,19 +135,22 @@ replacementGroup move position (leader _groupToHelp);
 
 // [interventionGroup,_soldiersDead,TRANSPORTHELO] spawn JP_fnc_save;
 
-_groupToHelp addWaypoint [getPos TRANSPORTHELO,12];
- _wp setWaypointType "GETIN"; 
- _wp setWaypointBehaviour "CARELESS"; 
- _wp setWaypointSpeed "FULL"; 
+_wp1 = _groupToHelp addWaypoint [getPos TRANSPORTHELO,12];
+ _wp1 setWaypointType "GETIN"; 
+ _wp1 setWaypointBehaviour "CARELESS"; 
+ _wp1 setWaypointSpeed "FULL"; 
+_wp1 setWaypointStatements ["true","{_x assignAsCargo TRANSPORTHELO;}  forEach units (group this);  units (group this) orderGetIn true;"];  
 
-waitUntil{sleep 2; MEDEVAC_state == "aborted" || (({_x in TRANSPORTHELO} count (units  interventionGroup) == count (units  interventionGroup)) && ({_x in TRANSPORTHELO} count (units  _groupToHelp) == count (units  _groupToHelp)))};
+waitUntil{sleep 2; MEDEVAC_state == "aborted" || ({_x in TRANSPORTHELO} count (units  _groupToHelp) == count (units  _groupToHelp))};
 if (MEDEVAC_state == "aborted") exitWith { false };
 
-interventionGroup addWaypoint [getPos TRANSPORTHELO,12];
-_wp setWaypointType "GETIN"; 
-_wp setWaypointBehaviour "CARELESS"; 
-_wp setWaypointSpeed "FULL"; 
-_wp setWaypointStatements["true", "TRANSPORTHELO move "+str _startPos+";"];
+_wp2 = interventionGroup addWaypoint [getPos TRANSPORTHELO,12];
+_wp2 setWaypointType "GETIN"; 
+_wp2 setWaypointBehaviour "CARELESS"; 
+_wp2 setWaypointSpeed "FULL"; 
+_wp2 setWaypointStatements ["true","{_x assignAsCargo TRANSPORTHELO;}  forEach units group this; units (group this) orderGetIn true;"];  
+
+waitUntil {sleep2; MEDEVAC_state == "aborted" || ({_x in TRANSPORTHELO} count (units  interventionGroup) == count (units  interventionGroup))};
 
 // Go back home
 TRANSPORTHELO move _startPos;

@@ -77,6 +77,8 @@ _ehId = (findDisplay 46) displayAddEventHandler ["KeyDown", {
 
 // Show subtitle
 // <br/><t size='.3' align = 'center' shadow = '1' color='#cd8700' opacity='.4'>%4</t>
+_name = name _talker;
+
 _text = parseText format ["<t font='PuristaSemiBold' align = 'center' shadow = '2' size = '.8'><t color = '%1'>%2</t></t><br /><t align = 'center'  shadow = '1' size = '.63'><t color = '#E0E0E0'>%3</t></t>",_color,name _talker,_say,localize "STR_JP_talk_spaceToSkip"];
 _ctrl ctrlSetStructuredText _text;
 MESS_HEIGHT = ctrlTextHeight _ctrl;

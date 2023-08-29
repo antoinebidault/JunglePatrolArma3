@@ -3,7 +3,7 @@
     Bidass
 
   Version:
-    {VERSION}
+    0.9.5
 
   Description:
     Main components preloading and initialization

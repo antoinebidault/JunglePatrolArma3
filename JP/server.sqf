@@ -166,7 +166,7 @@ CIVILIAN_KILLED = {
 //On enemy killed => 2 points
 ENEMY_KILLED = {
 	params["_type","_unit"]; 
-	[GROUP_PLAYERS, 5,true] remoteExec ["JP_fnc_updateScore",2];
+	[GROUP_PLAYERS, 2,true] remoteExec ["JP_fnc_updateScore",2];
  };
 
 
