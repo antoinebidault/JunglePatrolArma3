@@ -1,7 +1,6 @@
-﻿*.ogg
-node_modules/
+﻿node_modules/
 .vscode/
-DCW.Module/functions/
-DCW.*/DCW
+JunglePatrol.Module/functions/
+JunglePatrol.*/JP
 Build/
-~DCW.*/
+~JunglePatrol.*/
