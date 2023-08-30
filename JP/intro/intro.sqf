@@ -13,12 +13,12 @@ sleep 1;
 titleCut ["", "BLACK IN",10];
 
 */
-	sleep 12;
-	playMusic "vn_dont_cry_baby";
-	sleep 4;
 	nul = [localize "STR_JP_intro_authorPresent",.3,.7,8] spawn BIS_fnc_dynamicText;
+	1 fadeMusic 1;
+	playMusic "vn_dont_cry_baby";
 	sleep 14;
 	nul = [localize "STR_JP_intro_scenario",.5,.2,8] spawn BIS_fnc_dynamicText;
+	/*
 	sleep 14;
 	    _pic = "images\jungle-patrol.paa"; 
         [ 
@@ -29,7 +29,7 @@ titleCut ["", "BLACK IN",10];
           0, 
           0, 
           12345
-        ] spawn bis_fnc_dynamicText;
+        ] spawn bis_fnc_dynamicText;*/
 	sleep 8;
 	// nul = [localize "STR_JP_intro_oriIdea",.2,.3,5] spawn BIS_fnc_dynamicText;
 	sleep 8;

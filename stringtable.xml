@@ -2231,12 +2231,9 @@
     <Package name="sleepTask">
         <Container name="sleepTask">
             <Key ID="STR_JP_sleepTask_action">
-                <Original>Sleep</Original>
-                <English>Sleep</English>
+                <Original>Have a sleep</Original>
+                <English>Have a sleep</English>
                 <French>Dormir</French>
-                <German>Sleep</German>
-                <Spanish>Sleep</Spanish>
-                <Italian>Sleep</Italian>
             </key>
         </Container>
     </Package>

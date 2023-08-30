@@ -18,7 +18,6 @@
 
 params["_unit"];
 
-playMusic "BackgroundTrack02_F";
 
 if (getMarkerColor "JP_commander_dir" != "") then {
 	deleteMarker "JP_commander_dir";

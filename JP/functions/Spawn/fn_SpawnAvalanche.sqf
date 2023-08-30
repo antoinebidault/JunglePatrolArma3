@@ -50,7 +50,7 @@ while { ENABLE_AVALANCHE } do {
       //Trigger chase
       [_grp,"JP_fnc_chase", [ _grp, _unitChased, true]] call JP_fnc_patrolDistributeToHC;
 
-      sleep (30 * _i) max 5 * 60;
+      sleep (30 * _i) min 5 * 60;
       _i = _i + 1;
     };
     sleep 10; 

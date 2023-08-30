@@ -54,10 +54,11 @@ publicVariable "CURRENT_OBJECTIVE";
 
 [] call JP_fnc_updateMarker;
 
-_taskId = (CURRENT_OBJECTIVE select 3);
-waitUntil {sleep 3; _taskId != "" && ((_taskId call BIS_fnc_taskState) == "SUCCEEDED") };
+waitUntil { sleep 3; (CURRENT_OBJECTIVE select 3) != "" && (((CURRENT_OBJECTIVE select 3) call BIS_fnc_taskState) == "SUCCEEDED") };
 
-["JP_primary_recon","SUCCEEDED"] remoteExec ["BIS_fnc_taskSetState",leader GROUP_PLAYERS, false];
+{
+["JP_primary_recon","SUCCEEDED", true] remoteExec ["BIS_fnc_taskSetState",_x, true];
+} foreach ([] call JP_fnc_allPlayers);
 
 REMAINING_OBJECTIVES = REMAINING_OBJECTIVES - 1;
 publicVariable "REMAINING_OBJECTIVES";

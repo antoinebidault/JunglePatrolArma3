@@ -28,7 +28,6 @@ sleep 2;
 
 [_pilot, localize "STR_JP_voices_pilot_1"] spawn JP_fnc_talk;
 
-[] spawn JP_fnc_intro;
 
 JP_fnc_addActionSkipTravel = {
 	_lzPos = _this select 0;
@@ -58,7 +57,10 @@ _wp0 setWaypointType "MOVE";
 _wp0 setWaypointStatements["true", "[CURRENT_LZ] spawn JP_fnc_insertionTrackerTask;"];
 _chopper flyInHeight 60;
 
+
 [] spawn {
+	5 fadeMusic 0;
+
 	sleep 10;
 	
 	_mg = missionNamespace getVariable ["mg", objNull];
@@ -66,9 +68,13 @@ _chopper flyInHeight 60;
 
 	sleep 1;
 
-	[player, localize "STR_JP_voices_player_helo"] spawn JP_fnc_talk;
-	[_doc, localize "STR_JP_voices_doc_helo"] spawn JP_fnc_talk;
-	[_mg, localize "STR_JP_voices_mg_helo"] spawn JP_fnc_talk;
+	[player, localize "STR_JP_voices_player_helo"] call JP_fnc_talk;
+	[_doc, localize "STR_JP_voices_doc_helo"] call JP_fnc_talk;
+	[_mg, localize "STR_JP_voices_mg_helo"] call JP_fnc_talk;
+
+	sleep 5; 
+
+	[] spawn JP_fnc_intro;
 };
 
 

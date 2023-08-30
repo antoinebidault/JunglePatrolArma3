@@ -112,6 +112,7 @@ SKIP_TIME = false;
 waitUntil {sleep 1; SKIP_TIME};
 
 if (NIGHT_EVENT != "none") then {
+     5 fadeMusic 0;
      [player,"Something is approaching be careful ! "] remoteExec ["JP_fnc_talk"];
 
      OBJECTIVE_DONE = false;

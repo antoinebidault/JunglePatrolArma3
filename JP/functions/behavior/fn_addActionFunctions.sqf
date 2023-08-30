@@ -278,7 +278,7 @@ JP_fnc_addActionLookInventory = {
         _unit remoteExec ["JP_fnc_addActionDidYouSee"];
         _unit remoteExec ["JP_fnc_addActionFeeling"];
         _unit remoteExec ["JP_fnc_addActionGetIntel"];
-       // _unit remoteExec ["JP_fnc_addActionRally"];
+        _unit remoteExec ["JP_fnc_addActionRally"];
        // _unit remoteExec ["JP_fnc_addActionSupportUs"];
         if ( _unit getVariable["JP_Chief",objNull] != objNull && alive (_unit getVariable["JP_Chief",objNull])) then {
            // [_unit,_unit getVariable["JP_Chief",objNull]] remoteExec ["JP_fnc_addActionFindChief"];
@@ -497,10 +497,10 @@ JP_fnc_addActionGetIntel = {
 
 JP_fnc_addActionRally = {
     //Try to make him a friendly
-    _this addaction["<t color='#cd8700'>Try to rally (30 minutes/5 points)</t>",{
+    _this addaction["<t color='#cd8700'>Try to rally (5 minutes/5 points)</t>",{
        params["_unit","_talker","_action"];
         if (!(_this call JP_fnc_startTalking)) exitWith {};
-       //  if (!([GROUP_PLAYERS,5] call JP_fnc_afford)) exitWith {_this call JP_fnc_endTalking;[_unit,"You need more money !"] call JP_fnc_talk;false;};
+        if (!([GROUP_PLAYERS,5] call JP_fnc_afford)) exitWith {_this call JP_fnc_endTalking;[_unit,"You need more points !"] call JP_fnc_talk;false;};
 
         _unit removeAction _action;
         showCinemaBorder true;

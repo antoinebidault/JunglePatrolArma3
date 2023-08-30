@@ -11,6 +11,9 @@
   Returns:
     units
 */
+
+"rescue_lz" setMarkerAlpha 0;
+
 Medevac_state = "initial";
 _teamLeader = missionNamespace getVariable ["danger_team_leader", objNull];
 _teamLeader setCaptive true;

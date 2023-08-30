@@ -10,7 +10,7 @@ _start = getPos _chopper;
 LZ = [];
 EXTRACTION_DONE = false;
 
-_lz = "lz_extraction";
+_lz = "rescue_lz";
 _lz setMarkerAlpha 1;
 _lzPos = getMarkerPos _lz;
 [leader GROUP_PLAYERS, _lzPos ,16] spawn JP_fnc_spawnAvalanche;

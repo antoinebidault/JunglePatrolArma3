@@ -28,7 +28,7 @@ _pos = getPos _teamLeader;
 	[_rto, localize "STR_JP_voices_helpFriends_rto_1"] call JP_fnc_talk;
   
 {
- ["JP_charlie_rescue_coyote", _x, ["Rescue Hotel-6 team","Reach the team in danger","Reach the team in danger and rescue them"],_pos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",_x, true];
+ ["JP_charlie_rescue_coyote", _x, ["Rescue COYOTE-01 team","Reach the team in danger","Reach the team in danger and rescue them"],_pos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",_x, true];
 } foreach ([] call JP_fnc_allPlayers);
 
 	[leader GROUP_PLAYERS, localize "STR_JP_voices_helpFriends_leader_1"] call JP_fnc_talk;

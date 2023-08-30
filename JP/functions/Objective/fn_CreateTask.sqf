@@ -41,7 +41,7 @@ switch (_type) do {
         _title = "disarm the IED";
         _message = "I know something about an IED planted on this road. I can mark it on your map.";
         _messageSuccess = "This IED will no more cause trouble.";
-        _bonus = 30;
+        _bonus = 1;
         _reputation = 6;
      };
      case "wreck": { 
@@ -96,7 +96,7 @@ switch (_type) do {
         _message = "There is a heavy armor in this sector.";
         _messageSuccess = "Good job ! The tank has been destroyed.";
         _bonus = 30;
-        _reputation = 0;
+        _reputation = 7;
      };
       case "mortar": { 
         _taskId = "Mortar";

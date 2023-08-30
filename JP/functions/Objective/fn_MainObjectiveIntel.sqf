@@ -71,6 +71,5 @@ if (!isMultiplayer) then{
 	saveGame;
 };
 
-playMusic "LeadTrack04a_F";
 
 true;

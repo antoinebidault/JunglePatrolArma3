@@ -71,8 +71,8 @@ MEDEVAC_SmokeShell = objNull;
 } foreach (units GROUP_PLAYERS);
 
 _startTime = time;
-waitUntil {!isNull MEDEVAC_SmokeShell || time > (_startTime + 500 ) };
-if (time > (_startTime + 500)) exitWith { MEDEVAC_State = "aborted"; "EveryoneLost" call BIS_fnc_endMissionServer; };
+waitUntil {!isNull MEDEVAC_SmokeShell  };// || time > (_startTime + 500 )
+// if (time > (_startTime + 500)) exitWith { MEDEVAC_State = "aborted"; "EveryoneLost" call BIS_fnc_endMissionServer; };
 
 sleep 5;
 
@@ -142,7 +142,6 @@ _wp1 = _groupToHelp addWaypoint [getPos TRANSPORTHELO,12];
 _wp1 setWaypointStatements ["true","{_x assignAsCargo TRANSPORTHELO;}  forEach units (group this);  units (group this) orderGetIn true;"];  
 
 waitUntil{sleep 2; MEDEVAC_state == "aborted" || ({_x in TRANSPORTHELO} count (units  _groupToHelp) == count (units  _groupToHelp))};
-if (MEDEVAC_state == "aborted") exitWith { false };
 
 _wp2 = interventionGroup addWaypoint [getPos TRANSPORTHELO,12];
 _wp2 setWaypointType "GETIN"; 
