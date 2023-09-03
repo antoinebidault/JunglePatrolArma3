@@ -57,7 +57,10 @@ if (!isNull player) then {
     enableRadio false;
     
     sleep 2;
-    sleep 7;
+    sleep 3;
+    titleCut ["", "BLACK OUT", 3];
+    sleep 4;
+    titleCut ["", "BLACK IN", 1];
     camDestroy _cam;
     _cam cameraeffect ["terminate", "back"];
     "dynamicBlur" ppEffectEnable true;  

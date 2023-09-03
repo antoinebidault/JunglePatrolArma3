@@ -9,3 +9,6 @@ _mkr setMarkerBrush  "FDiagonal";
 _mkr setMarkerAlpha (if (_radius <= 100) then {1} else {0.5});
 _mkr setMarkerSize [2 * _radius, 2 * _radius];
 _mkr setMarkerPos _setPos;
+
+_mkr2 = "recon_zone_text";
+_mkr2 setMarkerPos _setPos;

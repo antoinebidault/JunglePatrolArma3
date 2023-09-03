@@ -22,10 +22,10 @@ MEDEVAC_ENABLED = true; // Reviving
 SHOW_SECTOR = false;
 NUMBER_RESPAWN = 0;
 ENABLE_FILTER = true;
-TIME_OF_DAYS = 18;
+TIME_OF_DAYS = 17;
 WEATHER = .2;
 ENABLE_DIALOG = false;
-POPULATION_INTENSITY = .3;
+POPULATION_INTENSITY = .4;
 PERCENTAGE_OF_ENEMY_COMPOUND = 100; 
 NUMBER_OFFICERS = 3;
 
@@ -74,6 +74,8 @@ WRECK_LIST= [
   "vn_air_uh1d_med_wreck",
   "vn_air_uh1d_01_wreck"
 ];
+
+RADIO_BACKPACK_CLASS = "vn_b_pack_trp_04";
 
 //CIVILIAN
 SIDE_CIV = CIVILIAN; // Side civilian

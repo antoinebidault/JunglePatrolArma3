@@ -36,6 +36,11 @@ if (!_excludedFromSpawnedUnit)then{
     UNITS_SPAWNED_CLOSE pushback _unit;
 };
 
+// Remove map
+if (random 100 > 15) then {
+ _unit removeItem "vn_o_item_map";
+};
+
 _unit
 
 

@@ -517,10 +517,10 @@ JP_fnc_addActionRally = {
         sleep 1;
         _unit disableAI "MOVE";
         titleCut ["", "BLACK OUT", 1];
-        [parseText format ["<t font='PuristaBold' size='1.6'>30 minutes later...</t><br/>%1", daytime call BIS_fnc_timeToString], true, nil, 12, 0.7, 0] spawn BIS_fnc_textTiles;
+        [parseText format ["<t font='PuristaBold' size='1.6'>5 minutes later...</t><br/>%1", daytime call BIS_fnc_timeToString], true, nil, 12, 0.7, 0] spawn BIS_fnc_textTiles;
 
         sleep 1;
-        skipTime .50;
+        skipTime .12;
         sleep 2;
         titleCut ["", "BLACK IN", 4];
         sleep 3;

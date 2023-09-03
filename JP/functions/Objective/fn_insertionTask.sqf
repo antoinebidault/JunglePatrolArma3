@@ -13,7 +13,7 @@ LZ = [];
 INSERTION_DONE = false;
 
 {
- ["JP_primary_insertion",_x, ["Board the chopper","Board the chopper","Board the chopper"],getPos _chopper,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",leader GROUP_PLAYERS, true];
+ ["JP_primary_insertion",_x, ["Board the chopper","Board the chopper","Board the chopper"],getPos _chopper,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, true];
 } foreach ([] call JP_fnc_allPlayers);
 
 _units = units GROUP_PLAYERS;
@@ -79,7 +79,7 @@ _chopper flyInHeight 60;
 
 
 {
- ["JP_primary_insertion2",_x, ["Insert to the LZ","Insert to the LZ","Insert to the LZ"], _lzPos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",GROUP_PLAYERS, true];
+ ["JP_primary_insertion2",_x, ["Insert to the LZ","Insert to the LZ","Insert to the LZ"], _lzPos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, true];
 } foreach ([] call JP_fnc_allPlayers);
 
 _chopper flyInHeight 40;

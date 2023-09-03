@@ -1,8 +1,9 @@
 
+params["_chopper","_lz"];
+
 playMusic "vn_hell_on_earth";
 
 
-_chopper = missionNamespace getVariable ["chopper_insertion", objNull];
 _chopper setFuel 1;
 _pilot = driver _chopper;
 _pilot setCaptive true;
@@ -10,14 +11,13 @@ _start = getPos _chopper;
 LZ = [];
 EXTRACTION_DONE = false;
 
-_lz = "rescue_lz";
 _lz setMarkerAlpha 1;
 _lzPos = getMarkerPos _lz;
 [leader GROUP_PLAYERS, _lzPos ,16] spawn JP_fnc_spawnAvalanche;
 _helipad_obj = "Land_HelipadEmpty_F" createVehicle getMarkerPos _lz;
 
 {
- ["JP_primary_extraction",_x, ["Extraction","Extraction","Extraction"],_lzPos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",leader GROUP_PLAYERS, true];
+ ["JP_primary_extraction",_x, ["Extraction","Extraction","Extraction"],_lzPos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, true];
 } foreach ([] call JP_fnc_allPlayers);
 
 waitUntil {sleep 3; (leader GROUP_PLAYERS) distance2D _lzPos < 100};
@@ -39,9 +39,9 @@ ENABLE_AVALANCHE = false;
 
 sleep 1;
 
-[_pilot, localize "STR_JP_voices_pilot_1"] spawn JP_fnc_talk;
+//[_pilot, localize "STR_JP_voices_pilot_1"] spawn JP_fnc_talk;
 
-private _wp1 = _grp addwaypoint [_start, 1];
+private _wp1 = (group _pilot) addwaypoint [_start, 1];
 _wp1 setWaypointBehaviour "CARELESS";
 _wp1 setWaypointType "MOVE";
 _wp1 setWaypointStatements ["true", "(vehicle this) land ""GET IN""; GROUP_PLAYERS  leaveVehicle (vehicle this); EXTRACTION_DONE = true;"];
@@ -50,7 +50,7 @@ _chopper setFuel 1;
 
 waitUntil {sleep 3; EXTRACTION_DONE};
 {
- ["JP_primary_extraction",_x, ["Grab a beer","Grab a beer","Grab a beer"],_lzPos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",leader GROUP_PLAYERS, true];
+ ["JP_primary_extraction",_x, ["Grab a beer","Grab a beer","Grab a beer"],_lzPos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, true];
 } foreach ([] call JP_fnc_allPlayers);
 
 private _wp2 = GROUP_PLAYERS addwaypoint [getMarkerPos "endmission", 2];

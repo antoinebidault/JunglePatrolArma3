@@ -9,7 +9,7 @@ _pos = [_lzPos, 120, 150, 1, 0, 2, 0] call BIS_fnc_findSafePos;
 _units = [];
 
 {
- ["JP_primary_insertion3",_x, ["Kill the watchers","Kill the watchers","Kill a small group of watchers before they call reinforcements"], _pos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",GROUP_PLAYERS, true];
+ ["JP_primary_insertion3",_x, ["Kill the watchers","Kill the watchers","Kill a small group of watchers before they call reinforcements"], _pos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, true];
 } foreach ([] call JP_fnc_allPlayers);
 
 for "_i" from 1 to _nbGuards do {
@@ -35,7 +35,7 @@ _nextPos = [_lzPos, 500, 550, 4, 0, 2, 0] call BIS_fnc_findSafePos;
 _wp1 = _grp addWaypoint [_nextPos, 4];
 _wp1 setWaypointType "MOVE";
 _wp1 setWaypointBehaviour "AWARE";
-_wp1 setWaypointStatements ["true", "[leader GROUP_PLAYERS] spawn JP_fnc_spawnChaser;CHASER_TRIGGERED = true; [""JP_primary_insertion3"",""FAILED"",true] remoteExec [""BIS_fnc_taskSetState"",GROUP_PLAYERS,true];"];
+_wp1 setWaypointStatements ["true", "[leader GROUP_PLAYERS,true] spawn JP_fnc_spawnChaser;CHASER_TRIGGERED = true; [""JP_primary_insertion3"",""FAILED"",true] remoteExec [""BIS_fnc_taskSetState"",GROUP_PLAYERS,true];"];
 
 
 waitUntil { ({ alive _x || captive _x } count units _grp == 0 && !("JP_primary_insertion3" call BIS_fnc_taskCompleted)) ||  ("JP_primary_insertion3" call BIS_fnc_taskCompleted)};

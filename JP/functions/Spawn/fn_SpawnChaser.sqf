@@ -14,7 +14,7 @@
   Returns:
     BOOL - true 
 */
-params["_unitChased"];
+params["_unitChased","_notify"];
 private ["_enemy","_unitName"];
 private _units = [];
 
@@ -26,12 +26,26 @@ private _posSelected = [position _unitChased, SPAWN_DISTANCE,SPAWN_DISTANCE + 10
 
  for "_xc" from 1 to _nbUnit do {
     _enemy = [_grp,_posSelected, false] call JP_fnc_spawnEnemy;
+
+    _enemy setSkill .9;
+    _enemy setskill ["aimingAccuracy", .7];
+    _enemy setskill ["aimingShake", 1];
+    _enemy setskill ["aimingSpeed", 1];
+    _enemy setskill ["spotDistance", 1];
+    _enemy setskill ["spotTime", 1];
+    _enemy setskill ["commanding", 1];
+    _enemy setskill ["courage", .7];
+    _enemy setskill ["general", 1];
+    _enemy setskill ["reloadSpeed", 1];
+
     _enemy setVariable["JP_Type","chaser"];
     _enemy setDir random 360;
     _units pushback _enemy;
  };
 
-[HQ, format["Too late, there will be probably a unit moving straight to your position, and there are other reinforcements incoming !",_nbUnit], true] remoteExec["JP_fnc_talk", GROUP_PLAYERS, false];
+if (_notify) then {
+  [leader GROUP_PLAYERS, "Dawn, hey've called in reinforcements, elite units are on their way! Let's find a good hideout!", true] remoteExec["JP_fnc_talk", GROUP_PLAYERS, false];
+};
 
  //Trigger chase
  // [leader _grp, _unitChased] spawn JP_fnc_chase;

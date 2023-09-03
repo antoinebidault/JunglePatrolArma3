@@ -16,17 +16,23 @@ _animal setBehaviour "CARELESS";
 [leader GROUP_PLAYERS,"I've heard something, stay quiet..."] call JP_fnc_talk;
 
 {
-	["JP_investigate", _x, ["Investigate","Investigate","You've heard some noise coming from bushes..."],_pos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",_x, false];
+	["JP_investigate", _x, ["Investigate","Investigate","You've heard some noise coming from bushes..."],_pos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, false];
 } foreach units GROUP_PLAYERS;  
 
+_timer = time;
+waitUntil { sleep 1; (_animal distance _pos < 3) || ((leader GROUP_PLAYERS) distance (getPos _animal) <= 2) || time > _timer + 5*60 };
 
-waitUntil { sleep 1; (_animal distance _pos < 3) || ((leader GROUP_PLAYERS) distance (getPos _animal) <= 2) };
-
-[leader GROUP_PLAYERS,"Holly shit ! That's just a fucking animal ! Have a sleep now !"] call JP_fnc_talk;
-
-{
-	["JP_investigate", "SUCCEEDED",true] remoteExec ["BIS_fnc_taskSetState",_x, false];
-} foreach units GROUP_PLAYERS;  
+if (time > _timer + 5*60 ) then {
+	[leader GROUP_PLAYERS,"Nothing found... Let's get back to the camp"] call JP_fnc_talk;
+	{
+		["JP_investigate", "FAILED",true] remoteExec ["BIS_fnc_taskSetState",_x, false];
+	} foreach units GROUP_PLAYERS;  
+}else{
+	[leader GROUP_PLAYERS,"Holly shit ! That's just a fucking animal ! Have a sleep now !"] call JP_fnc_talk;
+	{
+		["JP_investigate", "SUCCEEDED",true] remoteExec ["BIS_fnc_taskSetState",_x, false];
+	} foreach units GROUP_PLAYERS;  
+};
 
 OBJECTIVE_DONE = true;
 

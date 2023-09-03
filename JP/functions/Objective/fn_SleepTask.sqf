@@ -66,11 +66,11 @@ _nearestSleepingPosition = getPos _nearestSleeping;
 
 
 {
-    ["JP_primary_sleep",_x, ["Sleep","Go to the sleeping area","Go to the sleeping area"], _nearestSleepingPosition,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",leader GROUP_PLAYERS, true];
+    ["JP_primary_sleep",_x, ["Sleep","Go to the sleeping area","Go to the sleeping area"], _nearestSleepingPosition,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, true];
     [player,"Ok guy, it is time to take a Rest, let's find a safe place to have a sleep."] remoteExec ["JP_fnc_talk"];
 } foreach ([] call JP_fnc_allPlayers);
 
-waitUntil {(leader GROUP_PLAYERS) distance _nearestSleepingPosition < 20 && !CHASER_TRIGGERED; };
+waitUntil {(leader GROUP_PLAYERS) distance _nearestSleepingPosition < 20; };
 
 _mkr = createMarker [format["sleep_bl_%1",random 999], _nearestSleepingPosition];
 _mkr setMarkerShape "ELLIPSE";
@@ -78,6 +78,9 @@ _mkr setMarkerSize [100,100];
 _mkr setMarkerAlpha 0.2;
 _mkr setMarkerColor "ColorOrange";
 MARKER_WHITE_LIST pushback _mkr;
+
+CHASER_VIEWED = false;
+publicVariable "CHASER_VIEWED";
 
 CHASER_TRIGGERED = false;
 publicVariable "CHASER_TRIGGERED";
@@ -88,11 +91,13 @@ publicVariable "CHASER_TRIGGERED";
      deleteVehicle _x;
 } forEach UNITS_SPAWNED_CLOSE;
 
-[player,"Prepare the camp, plants some claymore around the base and please eat just some bloody white rice ! "] remoteExec ["JP_fnc_talk"];
+[leader GROUP_PLAYERS,"Prepare the camp"] remoteExec ["JP_fnc_talk"];
 
 sleep 5;
 
 _camp = [_nearestSleepingPosition] call JP_fnc_createCamp;
+
+[leader GROUP_PLAYERS,"Plants some claymore around the base and take care of your smells. The viet trackers are all around."] remoteExec ["JP_fnc_talk"];
 
 SKIP_TIME = false;
 
@@ -132,6 +137,7 @@ if (NIGHT_EVENT != "none") then {
 
      waitUntil {sleep 5; OBJECTIVE_DONE};
      [player,"Good job ! Now let's have a sleep !"] remoteExec ["JP_fnc_talk"];
+     sleep 20;
 };
 
 [7] call JP_fnc_skipTime;

@@ -11,6 +11,13 @@ _cam camSetTarget player;
 _cam camSetFov 1.05;
 _cam camCommit 30;
 
+// Move IA to position
+{
+	if (!isPlayer _x) then{
+		_x setPos player modelToWorld [1,1,0];
+	}
+} forEach units GROUP_PLAYERS;
+
 _date = date;
 if (_date select 3 > _hours) then {
 _date set [2, (_date select 2) + 1];

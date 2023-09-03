@@ -2,7 +2,7 @@
 _ammoGuard = missionNamespace getVariable ["ammo_guard",objNull];
 _ammobox = missionNamespace getVariable ["ammo_base",objNull];
 {
-    ["JP_primary_ammo",_x, ["Get ammo","Get ammunitions","Go to the S4 logistic center and get ammo from the box"],getPos _ammobox,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",leader GROUP_PLAYERS, true];
+    ["JP_primary_ammo",_x, ["Get ammo","Get ammunitions","Go to the S4 logistic center and get ammo from the box"],getPos _ammobox,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, true];
 } foreach ([] call JP_fnc_allPlayers);
 
 _trig = createTrigger["EmptyDetector",getPosATL _ammobox];

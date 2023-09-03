@@ -12,7 +12,7 @@
 if (!isServer) exitWith{};
 
 // TIME
-setDate [1969, 6, 25, TIME_OF_DAYS, 0]; 
+setDate [1969,6,18, TIME_OF_DAYS, 0]; 
 
 // OVERCAST
 0 setOvercast WEATHER;
@@ -188,7 +188,7 @@ CIVIL_HEALED = {
 //On enemy search.
 ENEMY_SEARCHED = {
 	params["_unit","_player"];
-	[GROUP_PLAYERS, 2 + ceil (random 5),false,_player] remoteExec ["JP_fnc_updateScore",2];
+	[GROUP_PLAYERS, 2,false,_player] remoteExec ["JP_fnc_updateScore",2];
 };
 
 // Consuming work => getAllClusters executed in background

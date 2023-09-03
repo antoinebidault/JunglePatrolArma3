@@ -23,10 +23,17 @@ private _minRange = 600;
 private _maxRange = SPAWN_DISTANCE;
 private _side = SIDE_ENEMY;
 private _unit = objNull;
+_isInFlyingVehicle = false;
 
 while{true}do {
+	_player = leader GROUP_PLAYERS;
+	_isInFlyingVehicle = false;
+	if( (vehicle _player) != _player && ((vehicle _player) isKindOf "Air" && (position _player select 2) > 4))then{
+		_isInFlyingVehicle = true;
+	};
+	
 	_nbUnitSpawned = { _x getVariable["JP_type",""] == "patrol" && alive _x } count UNITS_SPAWNED_CLOSE;
-	if (_nbUnitSpawned < MAX_RANDOM_PATROL)then{
+	if (_nbUnitSpawned < MAX_RANDOM_PATROL && !_isInFlyingVehicle)then{
 		_nbFriendlies = { _x getVariable["JP_type",""] == "patrol" && side _x == SIDE_FRIENDLY} count UNITS_SPAWNED_CLOSE;
 		//Get random pos
 		_side = SIDE_ENEMY;

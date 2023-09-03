@@ -17,7 +17,7 @@ sleep 8;
 [player,localize "STR_JP_voices_team_briefing","STR_JP_voices_team_briefing","team"] remoteExec ["JP_fnc_talk"];
 
 {
-    ["JP_primary_briefing",_x, ["Briefing","Briefing","Talk to colonel Russel for the briefing in the operation room"],getPos _colonel,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",leader GROUP_PLAYERS, true];
+    ["JP_primary_briefing",_x, ["Briefing","Briefing","Talk to colonel Russel for the briefing in the operation room"],getPos _colonel,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, true];
 } foreach ([] call JP_fnc_allPlayers);
 
 

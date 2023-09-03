@@ -192,7 +192,6 @@ while { true } do {
 
 		} foreach _players;
 
-
 		// foreach UNITS_SPAWNED_CLOSE
 		{
 			_unit = _x;
@@ -215,7 +214,7 @@ while { true } do {
 						// [] remoteExec ["JP_fnc_displayScore",_player, false];
 						// || _unit knowsAbout player > 2
 						//if ( alive _unit && !CHASER_TRIGGERED &&  ([_unit,_player] call JP_fnc_getVisibility > 20) ) then {
-						if ( alive _unit && !CHASER_TRIGGERED &&  _unit knowsAbout _player > 2.5 ) then {
+						if ( alive _unit && !CHASER_TRIGGERED && _unit knowsAbout _player > 2.5 ) then {
 							if (DEBUG) then  {
 								hint "Alarm !";
 							};
@@ -226,8 +225,9 @@ while { true } do {
 							CHASER_TIMEOUT = time + 5 * 60;
 							publicVariable "CHASER_TRIGGERED";
 
-							UNITS_SPAWNED_CLOSE = UNITS_SPAWNED_CLOSE + ([_player] call JP_fnc_spawnChaser);
-						};
+							[_player,true] call JP_fnc_spawnChaser;
+							
+						} ;
 					};
 				} else {
 					// Each time the user see the player, it makes the timeout longer
@@ -235,14 +235,6 @@ while { true } do {
 						CHASER_TIMEOUT = time + 5 * 60;
 						if (DEBUG) then  {
 							hint "Viewed again !";
-						};
-					};
-
-					if (CHASER_TRIGGERED && time > CHASER_TIMEOUT) then {
-						CHASER_TRIGGERED = false;
-						publicVariable "CHASER_TRIGGERED";
-						if (DEBUG) then  {
-							hint "Alarm off!";
 						};
 					};
 				};
@@ -273,6 +265,20 @@ while { true } do {
 			};
 		} foreach UNITS_SPAWNED_CLOSE;
 		
+		if (CHASER_TRIGGERED && time > CHASER_TIMEOUT) then {
+			CHASER_TRIGGERED = false;
+			publicVariable "CHASER_TRIGGERED";
+			if (DEBUG) then  {
+				hint "Alarm off!";
+			};
+		};
+
+		if (CHASER_TRIGGERED && {_x getVariable["JP_Type", ""] == "chaser" && alive _x} count UNITS_SPAWNED_CLOSE <= 2) then {
+			if (DEBUG) then  {
+				hint "Spawn new group of chaser !";
+			};
+			[leader GROUP_PLAYERS, false] call JP_fnc_spawnChaser;
+		};
 
 	} catch {
 		diag_log format["[SpawnLoop] Error in server.sqf loop :  %1",_exception];

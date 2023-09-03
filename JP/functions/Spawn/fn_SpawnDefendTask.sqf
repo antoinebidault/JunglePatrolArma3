@@ -18,13 +18,13 @@
 params["_pos", "_radius"];
 
 _units = [];
-_nbGroups = 1 max ceil(random 3);
+_nbGroups = 2 max ceil(random 3);
 
 _taskId = format["JP_defend_%1",str (random 999)];
 
 [HQ,format[localize "STR_JP_voices_HQ_enemyGroups",_nbGroups]] remoteExec ["JP_fnc_talk"];
 {
-	[_taskId, _x, [localize "STR_JP_spawnDefendTask_taskDesc",localize "STR_JP_spawnDefendTask_taskName",localize "STR_JP_spawnDefendTask_taskName"],_pos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",_x, false];
+	[_taskId, _x, [localize "STR_JP_spawnDefendTask_taskDesc",localize "STR_JP_spawnDefendTask_taskName",localize "STR_JP_spawnDefendTask_taskName"],_pos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, false];
 } foreach units GROUP_PLAYERS;     
 // STAT_INTEL_FOUND = STAT_INTEL_FOUND + 1;
 
@@ -42,7 +42,7 @@ for "_j" from 1 to _nbGroups do {
 
 	_grp = createGroup SIDE_ENEMY;
 	_spawnPos = [_pos, 250,350, 1, 0, .3, 0] call BIS_fnc_findSafePos;
-	_nbUnits =  4 + floor(random 6); 
+	_nbUnits =  4 + floor(random 4); 
 
 	for "_xc" from 1 to _nbUnits  do {
 		_unit =[_grp,_spawnPos,true] call JP_fnc_spawnEnemy;
@@ -73,7 +73,7 @@ for "_j" from 1 to _nbGroups do {
 	_wp setWaypointBehaviour "AWARE";
 	_wp setWaypointFormation "LINE";
 	_wp setWaypointCompletionRadius 30;
-
+	sleep 30;
 };
 
 _sectorToDefend = createMarker ["defenseZone",_pos];

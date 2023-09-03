@@ -31,7 +31,7 @@ private _tempList = [];
 _posToSpawn = [_pos, 250 min (2*_radius) , (550 min 2.5*_radius), 3, 0, 2, 0, _tempList] call BIS_fnc_findSafePos;
 
 {
-	["JP_mortar", _x, ["Destroy the mortar","Destroy the mortar","Destroy the mortar"],_pos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",_x, false];
+	["JP_mortar", _x, ["Destroy the mortar","Destroy the mortar","Destroy the mortar"],_pos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, false];
 } foreach units GROUP_PLAYERS;  
 
 for "_j" from 1 to _nb do {

@@ -38,10 +38,10 @@ _tank setVariable ["JP_TaskNotCompleted",true,true];
 
 _tank addMPEventHandler ["MPKilled",{
       params["_tank","_killer"];
-      if (isPlayer _killer || _killer in units GROUP_PLAYERS) then {
+      // if (isPlayer _killer || _killer in units GROUP_PLAYERS) then {
         //Task success
         _tank remoteExec ["JP_fnc_success",2,false];
-      };
+     // };
 }];
 
 [_tank];

@@ -8,10 +8,17 @@ OBJECTIVES = OBJECTIVES - [_objective];
 
 _mkr = createMarker ["recon_zone",[0,0,0]];
 _mkr setMarkerShape "Ellipse";
+_mkr setMarkerText "Recon area";
 _mkr setMarkerSize [1500,1500];
 
+_mkr2 = createMarker ["recon_zone_text",[0,0,0]];
+_mkr2 setMarkerShape "ICON";
+_mkr2 setMarkerType "mil_dot";
+_mkr2 setMarkerColor "ColorRed";
+_mkr2 setMarkerText "Recon area";
+
 {
-    ["JP_primary_recon",_x, ["Recon","Recon","Perform a reconnaissance in enemy territory (red marker)."],nil,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",leader GROUP_PLAYERS, true];
+    ["JP_primary_recon",_x, ["Recon","Recon","Perform a reconnaissance in enemy territory (red marker)."],nil,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, true];
 } foreach ([] call JP_fnc_allPlayers);
 // _mkr setMarkerBrush "SolidBorder";
 
@@ -60,11 +67,16 @@ waitUntil { sleep 3; (CURRENT_OBJECTIVE select 3) != "" && (((CURRENT_OBJECTIVE 
 ["JP_primary_recon","SUCCEEDED", true] remoteExec ["BIS_fnc_taskSetState",_x, true];
 } foreach ([] call JP_fnc_allPlayers);
 
+deleteMarker "recon_zone";
+deleteMarker "recon_zone_text";
+
 REMAINING_OBJECTIVES = REMAINING_OBJECTIVES - 1;
 publicVariable "REMAINING_OBJECTIVES";
 
 if (REMAINING_OBJECTIVES == 0) then {
-	[] spawn JP_fnc_extractionTask;
+	_chopper = missionNamespace getVariable ["chopper_insertion", objNull];
+	_lz = "rescue_lz";
+	[_chopper,_lz] spawn JP_fnc_extractionTask;
 } else {
 	if (REMAINING_OBJECTIVES == 1) then {
 		[] spawn JP_fnc_helpFriends;

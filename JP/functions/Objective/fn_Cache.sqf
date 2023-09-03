@@ -38,6 +38,9 @@ for "_j" from 1 to _nb do {
     _posBuildings = _posBuildings - [_posToSpawn];
     _unitName = _boxeClasses call BIS_fnc_selectRandom;
     _unit = createVehicle [_unitName,_posToSpawn,[],0,"CAN_COLLIDE"]; 
+    clearmagazinecargo _unit; 
+    clearweaponcargo _unit;
+
     _unit setDir (random 359);
     [_unit,"ColorBrown"] call JP_fnc_addMarker;
     _unit setVariable["JP_Type","cache", true];

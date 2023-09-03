@@ -141,6 +141,7 @@ class CfgFunctions
 			class failed {};
 			class createtask {};
 			class skipTime {};
+			class capturedTask {};
 			class reconTask {};
 			class sleepTask {};
 			class extractionTask {};

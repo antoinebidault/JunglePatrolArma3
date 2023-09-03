@@ -15,9 +15,12 @@ params["_initPos"];
 _road = [_initPos,3000, MARKER_WHITE_LIST] call BIS_fnc_nearestRoad;
 _roadPos = getPos _road;
 _roadConnectedTo = roadsConnectedTo _road;
-if (count _roadConnectedTo == 0) exitWith { hint "restart"; [] call JP_fnc_spawnOfficer; };
+//if (count _roadConnectedTo == 0) exitWith { hint "restart"; [_initPos] call JP_fnc_spawnOfficer; };
+_roadDirection = random 360;
+if (count _roadConnectedTo > 0) then {
 _connectedRoad = _roadConnectedTo select 0;
 _roadDirection = [_road, _connectedRoad] call BIS_fnc_DirTo;
+};
 
 _grp = createGroup SIDE_ENEMY;
 _officer = _grp createUnit [ENEMY_COMMANDER_CLASS, _initPos,[],AI_SKILLS,"NONE"];
