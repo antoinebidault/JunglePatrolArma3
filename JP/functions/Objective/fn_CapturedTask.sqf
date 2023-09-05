@@ -1,5 +1,4 @@
 
-params["_chopper"];
 
 playMusic "vn_death_scene";
 _player = leader GROUP_PLAYERS;
@@ -14,6 +13,8 @@ _box addBackpackCargo [RADIO_BACKPACK_CLASS,1];
 // RPG RPG
 [_player,localize "STR_JP_voices_captured_leader_1"] remoteExec ["JP_fnc_talk"];
 sleep 3;
+
+[_player,localize "STR_JP_voices_captured_leader_2"] remoteExec ["JP_fnc_talk"];
 
 titleCut ["", "BLACK OUT", 3];
 sleep 3;
@@ -38,8 +39,6 @@ titleCut ["", "BLACK IN", 3];
 	};
 } foreach (units GROUP_PLAYERS);
 
-[_player,localize "STR_JP_voices_captured_leader_2"] remoteExec ["JP_fnc_talk"];
-
 _grp = createGroup SIDE_ENEMY;
 _nbUnits = 20;
 _unit = 360/_nbUnits;
@@ -55,9 +54,6 @@ for "_i" from 0 to _nbUnits do {
 
 sleep 20;
 
-if (!isNil '_chopper') then {
-	_chopper setDamage 1;
-};
 titleCut ["", "BLACK OUT", 5];
 sleep 5;
 titleCut ["", "BLACK FADED", 9999];
@@ -114,7 +110,7 @@ waitUntil { sleep 1; {_x distance2D _prisonPos > 5} count ([] call JP_fnc_allPla
 	_x setCaptive false;
 } forEach ([] call JP_fnc_allPlayers);
 
-[_player,localize "STR_JP_voices_captured_leader_2"] remoteExec ["JP_fnc_talk"];
+[_player,localize "STR_JP_voices_captured_leader_3"] remoteExec ["JP_fnc_talk"];
 
 _lz = getMarkerPos "rescue_lz";
 sleep 5;
@@ -123,17 +119,12 @@ sleep 5;
 } foreach ([] call JP_fnc_allPlayers);
 
 waitUntil {sleep 1;(backpack (_player)) == RADIO_BACKPACK_CLASS};
+[_player,localize "STR_JP_voices_captured_leader_4"] call JP_fnc_talk;
+[HQ,localize "STR_JP_voices_captured_hq_1"] call JP_fnc_talk;
+[_player,localize "STR_JP_voices_captured_leader_5"] call JP_fnc_talk;
 
-[_player,localize "STR_JP_voices_captured_leader_3"] remoteExec ["JP_fnc_talk"];
-[HQ,localize "STR_JP_voices_captured_hq_1"] remoteExec ["JP_fnc_talk"];
+[] call vn_fnc_artillery_actions;
 
-
-/*
-{
- ["JP_primary_scape",_x, ["Escape from the area","Escape from the area","Escape from the area"], _lz,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, true];
-} foreach ([] call JP_fnc_allPlayers);
-*/
-[_player,localize "STR_JP_voices_captured_leader_4"] remoteExec ["JP_fnc_talk"];
 
 _lz = getMarkerPos "rescue_lz";
 

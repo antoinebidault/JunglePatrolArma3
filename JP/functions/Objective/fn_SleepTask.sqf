@@ -66,7 +66,7 @@ _nearestSleepingPosition = getPos _nearestSleeping;
 
 
 {
-    ["JP_primary_sleep",_x, ["Sleep","Go to the sleeping area","Go to the sleeping area"], _nearestSleepingPosition,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, true];
+    ["JP_primary_sleep",_x, ["Remain overnight","Remain overnight","Remain overnight"], _nearestSleepingPosition,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, true];
     [player,"Ok guy, it is time to take a Rest, let's find a safe place to have a sleep."] remoteExec ["JP_fnc_talk"];
 } foreach ([] call JP_fnc_allPlayers);
 

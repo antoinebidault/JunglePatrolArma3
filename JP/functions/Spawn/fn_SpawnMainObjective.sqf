@@ -109,7 +109,7 @@ ENEMY_COMMANDER addMPEventHandler ["MPKilled",{
             hint "mission successful ! Good job soldier !";
             sleep 60;
             activateKey "key1";
-            "EveryoneWon" call BIS_fnc_endMissionServer;
+            "EveryoneWon" call BIS_fnc_endMission;
         }] remoteExec["spawn",0];
     }else{
         //Start over

@@ -34,7 +34,7 @@ while { true } do {
 		[player] call JP_fnc_shout;
 		_timer = time;
 		if (_actionId == -1) then {
-			//playMusic "axe";
+			playMusic "vn_death_scene";
 			_actionId = player addAction [localize "STR_JP_captured_surrender",{
 				params ["_target", "_caller", "_actionId", "_arguments"];
 				_caller removeAction _actionId;

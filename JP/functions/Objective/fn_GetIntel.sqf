@@ -38,7 +38,7 @@ _intel = CURRENT_OBJECTIVE select 4;
 
 [_asker, "I've found some informations on a potential target !",true] remoteExec ["JP_fnc_talk",owner _asker];
 
-CURRENT_OBJECTIVE set [2, (CURRENT_OBJECTIVE select 2) - 25];
+CURRENT_OBJECTIVE set [2, (CURRENT_OBJECTIVE select 2) - 40];
 publicVariable "CURRENT_OBJECTIVE";
 
 if (!(_intel getVariable["JP_IsIntelRevealed",false])) then {

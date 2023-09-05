@@ -20,6 +20,11 @@ _helipad_obj = "Land_HelipadEmpty_F" createVehicle getMarkerPos _lz;
  ["JP_primary_extraction",_x, ["Extraction","Extraction","Extraction"],_lzPos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, true];
 } foreach ([] call JP_fnc_allPlayers);
 
+if (_lz == "rescue_lz") then {
+	waitUntil {sleep 3; (leader GROUP_PLAYERS) distance2D _lzPos < 300};
+	[] spawn JP_fnc_capturedTask;
+};
+
 waitUntil {sleep 3; (leader GROUP_PLAYERS) distance2D _lzPos < 100};
 
 _wp0 = (group _pilot) addWaypoint[getMarkerPos _lz,2];
@@ -63,5 +68,5 @@ _txtCnd = format["<t font='tt2020style_e_vn_bold' color='#FFF'>%1</t>", "Good jo
 
 sleep 20;
 
-"EveryoneWon" call BIS_fnc_endMissionServer;
+"EveryoneWon" call BIS_fnc_endMission;
 true;

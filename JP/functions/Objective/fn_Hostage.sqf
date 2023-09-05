@@ -71,7 +71,7 @@ for "_j" from 1 to _nb do {
         [_this select 0, (_this select 0) getVariable["JP_Act",0]]call BIS_fnc_holdActionRemove;
         [_this select 1,"HQ, we have an hostage down here...", true] spawn JP_fnc_talk;
         // (_this select 0)  remoteExec ["JP_fnc_failed", 2, false];
-	      "EveryoneLost" call BIS_fnc_endMissionServer;
+	      "LOSER" call BIS_fnc_endMission;
     }];
 
     [ _hostage,"Secure Prisoner","\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_unbind_ca.paa","\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_unbind_ca.paa","_this distance _target < 2","true",{

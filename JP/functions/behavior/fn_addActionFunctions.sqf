@@ -543,7 +543,7 @@ JP_fnc_addActionRally = {
             _unit setVariable["JP_disable_cache", true, true];
             _unit remoteExec ["JP_fnc_addActionLeaveGroup"];
             [_unit,3] remoteExec ["JP_fnc_updateRep",2];
-            [[_unit],GROUP_PLAYERS] remoteExec["join", 2];
+            [_unit] join GROUP_PLAYERS;
         }else{
             if (_isSuspect)then{
                 [_unit,"No thanks"] remoteExec ["JP_fnc_talk",_talker];

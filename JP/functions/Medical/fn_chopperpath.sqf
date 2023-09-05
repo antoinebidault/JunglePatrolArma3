@@ -72,7 +72,7 @@ MEDEVAC_SmokeShell = objNull;
 
 _startTime = time;
 waitUntil {!isNull MEDEVAC_SmokeShell  };// || time > (_startTime + 500 )
-// if (time > (_startTime + 500)) exitWith { MEDEVAC_State = "aborted"; "EveryoneLost" call BIS_fnc_endMissionServer; };
+// if (time > (_startTime + 500)) exitWith { MEDEVAC_State = "aborted"; "EveryoneLost" call BIS_fnc_endMission; };
 
 sleep 5;
 

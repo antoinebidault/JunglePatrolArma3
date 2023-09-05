@@ -112,7 +112,7 @@ if ({(alive _x) && !(captive _x)} count _units <= 2) then {
 		[_taskId,"FAILED",true] remoteExec ["BIS_fnc_taskSetState",_x,false];
 	} foreach ([] call JP_fnc_allPlayers);       
 
-	"EveryoneLost" call BIS_fnc_endMissionServer;
+	"LOSER" call BIS_fnc_endMission;
 };
 
 

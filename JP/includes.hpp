@@ -5,7 +5,7 @@ class Header
 	maxPlayers = 10;	// maximum number of players the mission supports
 };  
 
-disabledAI= 1;
+// disabledAI= 1;
 enableDebugConsole[] = {"76561197974435552"}; 
 allowFunctionsLog = 1;
 author = "Bidass"; 
@@ -14,8 +14,8 @@ briefingName = "Jungle Patrol Khe Sanh";
 onLoadMission = $STR_JP_description_onLoadMission;
 loadScreen = "images\loadscreen.paa";  
 overviewPicture = "images\loadscreen.paa";  
-overviewText = "Listen to the sounds of the jungle !";
-overviewTextLocked = "Listen to the sounds of the jungle !";
+overviewText = $STR_JP_description_onLoadMission;
+overviewTextLocked = $STR_JP_description_onLoadMission;
 wreckManagerMode = 2; 
 wreckRemovalMinTime = 12;   
 wreckRemovalMaxTime = 13;  
@@ -32,9 +32,9 @@ ReviveDelay = 10;                        //time needed to revive someone (in sec
 ReviveMedicSpeedMultiplier = 2;         //speed multiplier for revive performed by medic
 ReviveForceRespawnDelay = 3;            //time needed to perform force respawn (in secs)
 ReviveBleedOutDelay = 120;              //unconscious state duration (in secs)
-keys[] = {"key1"};
-keysLimit = 1; 
-taskManagement_propagate = 1;
+// keys[] = {"key1"};
+// keysLimit = 1; 
+// taskManagement_propagate = 1;
   
 //--------------------------------------------------------------
 //---------------------    MUSICS    ---------------------------

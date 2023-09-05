@@ -1,6 +1,8 @@
 
 sleep 2;
 
+ 10 fadeMusic 0;
+
 _objective = OBJECTIVES call BIS_fnc_selectRandom;
 OBJECTIVES = OBJECTIVES - [_objective];
 

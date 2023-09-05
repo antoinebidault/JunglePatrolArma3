@@ -102,7 +102,9 @@ _officer addEventHandler ["HandleDamage", {
         };	
 
         _damage = .9;
-
+        
+        // Create task if not exists
+		[_unit,true] call JP_fnc_createtask;
 
         [ _unit,"Interrogate","\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_search_ca.paa","\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_search_ca.paa","true","true",{
                 [(_this select 1), "medicStart"] remoteExec ["playActionNow"];

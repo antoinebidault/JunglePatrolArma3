@@ -38,7 +38,7 @@ addMissionEventHandler ["HandleDisconnect", {
 	params ["_unit", "_id", "_uid", "_name"];
     deleteVehicle _unit;
 	/*if (count ([] call JP_fnc_allPlayers) == 0) then {
-	   "EveryoneLost" call BIS_fnc_endMissionServer;
+	   "EveryoneLost" call BIS_fnc_endMission;
 	};*/
 	true;
 }];

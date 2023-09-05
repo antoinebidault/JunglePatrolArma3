@@ -1269,9 +1269,9 @@
     <Package name="Description">
         <Container name="Description">
             <Key ID="STR_JP_description_onLoadMission">
-                <Original>Your objective is to perform a reconnaissance mission across the vietnam territory for a few days.</Original>
-                <English>Your objective is to perform a reconnaissance mission across the vietnam territory for a few days.</English>
-                <French>Votre objectif est de stopper l'insurrection dans la région, puis de localiser et éliminer le commandant ennemi.</French>
+                <Original>Your objective is to perform a reconnaissance mission across the vietnam territory for a few days. Get ready for an extremely intense long mission with varied objectives and unexpected events!</Original>
+                <English>Your objective is to perform a reconnaissance mission across the vietnam territory for a few days. Get ready for an extremely intense long mission with varied objectives and unexpected events!</English>
+                <French>Votre objectif est d'effectuer une mission de reconnaissance à travers le territoire vietnamien pendant quelques jours. Préparez vous pour une mission longue extrêmement intense avec des objectifs variés et des évènements inattendus ! </French>
                 <German>Ihr Ziel ist es, die Aufstandsausbreitung zu stoppen und den feindlichen Befehlshaber ausfindig zu machen.</German>
                 <Spanish>Su objetivo es detener la propagación de la insurgencia y localizar al comandante enemigo.</Spanish>
                 <Italian>Il vostro obiettivo è quello di fermare la propagazione insurrezione e localizzare il comandante nemico.</Italian>
@@ -1827,6 +1827,38 @@
                 <Original>Ok buddy, let's see Colonel Russel for the briefing !</Original>
                 <English>Ok buddy, let's see Colonel Russel for the briefing !</English>
                 <French>Ok les gars, allons voir le Colonel Russel pour le briefing !</French>
+            </Key>
+        </Container>
+        <Container name="captured">
+            <Key ID="STR_JP_voices_captured_leader_1">
+                <Original>They're everywhere ! Take cover !</Original>
+                <English>They're everywhere ! Take cover !</English>
+                <French>Ils sont partout ! Mettez vous à couvert ! On y est presque</French>
+            </Key>
+            <Key ID="STR_JP_voices_captured_leader_2">
+                <Original>God ! We're encircled !</Original>
+                <English>God ! We're encircled !</English>
+                <French>Mon dieu ! Ils nous encerclent ! Lachez les armes !</French>
+            </Key>
+            <Key ID="STR_JP_voices_captured_leader_3">
+                <Original>I need to find a way to reach the base !</Original>
+                <English>I need to find a way to reach the base !</English>
+                <French>Je dois trouver un moyen de contacter le QG !</French>
+            </Key>
+            <Key ID="STR_JP_voices_captured_leader_4">
+                <Original>HQ, this is Hotel-6, I'm fucking lost in a vietcong village ! Please send me a chopper ! Do you read me ?</Original>
+                <English>HQ, this is Hotel-6, I'm fucking lost in a vietcong village ! Please send me a chopper ! Do you read me ?</English>
+                <French>HQ, ici Hotel-6, je suis perdu au milieu de nul part ! Envoyez moi un hélico et de l'appui aérien, vous m'entendez !?</French>
+            </Key>
+            <Key ID="STR_JP_voices_captured_hq_1">
+                <Original>Hotel-6 ? I can't believe you are still alive ! We are sending you a Spartan-01 to recover you close to your position. Run as fast as you can ! We can provide you aerial support if necessary !</Original>
+                <English>Hotel-6 ? I can't believe you are still alive ! We are sending you Spartan-01 to recover you close to your position. Run as fast as you can ! We can provide you aerial support if necessary !</English>
+                <French>Hotel-6 ? C'est vous les gars ? Vous êtes encore en vie ? On vous envoie tout de suite Spartan-01 dans une zone proche de votre position ! Dépéchez vous ! Vous pouvez également appeler tout le soutien aérien dont vous avez besoin !</French>
+            </Key>
+            <Key ID="STR_JP_voices_captured_leader_5">
+                <Original>Thanks god, now I need to run as fast as possible and get hidden in that forest before reinforcements arrive !</Original>
+                <English>Thanks god, now I need to run as fast as possible and get hidden in that forest before reinforcements arrive !</English>
+                <French>Merci mon Dieu, maintenant je dois courir le plus vite possible et me cacher dans cette forêt avant que les renforts viets débarquent !</French>
             </Key>
         </Container>
         <Container name="addActionFunctions">

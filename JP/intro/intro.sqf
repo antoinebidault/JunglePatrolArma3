@@ -31,12 +31,10 @@ titleCut ["", "BLACK IN",10];
           12345
         ] spawn bis_fnc_dynamicText;*/
 	sleep 8;
-	// nul = [localize "STR_JP_intro_oriIdea",.2,.3,5] spawn BIS_fnc_dynamicText;
-	sleep 8;
 	nul = [localize "STR_JP_intro_trad",.3,.2,5] spawn BIS_fnc_dynamicText;
 	/*sleep 8;
 	nul = [localize "STR_JP_intro_music",.3,.7,5] spawn BIS_fnc_dynamicText;*/
-	sleep 5;
+	sleep 8;
 	nul = [localize "STR_JP_intro_speThanksNovakat77",.3,.5,5] spawn BIS_fnc_dynamicText;
 /*
 _camPos =  [getPos _chopper, 400,[getPos _chopper,_dest] call BIS_fnc_dirTo] call BIS_fnc_relPos;

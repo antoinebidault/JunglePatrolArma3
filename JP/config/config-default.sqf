@@ -41,8 +41,8 @@ CONFIG_VEHICLES = [] call JP_fnc_getConfigVehicles;
 //SPAWNING CONFIG
 SIZE_BLOCK =  getMissionConfigValue ["JP_size_block",400]; // Size of blocks
 MAX_CLUSTER_SIZE =  getMissionConfigValue ["JP_max_cluster_size",200];
-SPAWN_DISTANCE = getMissionConfigValue ["JP_spawn_distance",400]; //Distance units in compounds spawned
-MIN_SPAWN_DISTANCE =  350; //Units can't spawn before this distance
+SPAWN_DISTANCE = getMissionConfigValue ["JP_spawn_distance",450]; //Distance units in compounds spawned
+MIN_SPAWN_DISTANCE =  400; //Units can't spawn before this distance
 
 // SUPPORT CLASSES
 SUPPORT_ARTILLERY_CLASS = ["B_MBT_01_arty_F"];
@@ -94,14 +94,14 @@ PERCENTAGE_CIVILIAN = 50; //Percentage civilian in a block
 PERCENTAGE_ENEMIES = 50; //Percentage enemies in occupied compound
 PERCENTAGE_INSURGENTS = 50; //Percentage of potential insurgents in the civilians. If the civilian are attacked they might join the east or west wether the shot are coming from (And with probabilities rules...)
 PERCENTAGE_FRIENDLY_INSURGENTS = 50; //Percentage of potential insurgents joining the west.
-PERCENTAGE_SUSPECT = 38;
+PERCENTAGE_SUSPECT = 33;
 
 //ENEMIES
 SIDE_ENEMY = EAST; //Enemy side 
 PATROL_SIZE = [1,2]; //Size of patrol => [minimum,random additionnals units]
 MAX_SPAWNED_UNITS = getMissionConfigValue ["JP_max_spawned_units",60] ; //Max units to spawn
 MAX_CHASERS = 8; //Max hunters who are looking for you !
-MAX_RANDOM_PATROL = getMissionConfigValue ["JP_max_random_patrol",30]; //Number of units patroling around the player at the same time
+MAX_RANDOM_PATROL = getMissionConfigValue ["JP_max_random_patrol",25]; //Number of units patroling around the player at the same time
 MAX_RANDOM_CAR = getMissionConfigValue ["JP_max_random_car",1]; //Max car spawned.
 NUMBER_CHOPPERS = getMissionConfigValue ["JP_number_choppers",0]; // Number of choppers
 MAX_NUMBER_AIRCRAFT = getMissionConfigValue ["JP_max_number_aircrafts",5]; // Number of choppers
