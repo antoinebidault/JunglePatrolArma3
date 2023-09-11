@@ -52,7 +52,7 @@ while {!isNull _leader && alive _leader &&  !isNil '_unitChased' && !isNull _uni
         if (_forceChase || CHASER_TRIGGERED)then{
             _leader setBehaviour "AWARE";
             _leader setSpeedMode "FULL";
-            _lastKnownPosition = [position _unitChased , 0, 30, 1, 0, 20, 0] call BIS_fnc_findSafePos;
+            _lastKnownPosition = [position _unitChased , 0, 60, 1, 0, 20, 0] call BIS_fnc_findSafePos;
         }else{
             _leader setBehaviour "SAFE";
             _leader setSpeedMode "LIMITED";
@@ -86,7 +86,7 @@ while {!isNull _leader && alive _leader &&  !isNil '_unitChased' && !isNull _uni
 
     _wp0 setWaypointPosition [_lastKnownPosition,5];
     
-    sleep 30;
+    sleep 20;
 };
 
 _leader;

@@ -1401,8 +1401,8 @@
                 <French>Ca ne sent pas bon du tout ça !</French>
             </Key>
             <Key ID="STR_JP_voices_mg_helo">
-                <Original>Don't worry, we'll stay on their channel and see if we can contact them there. Hopefully, they're still alive.</Original>
-                <English>Don't worry, we'll stay on their channel and see if we can contact them there. Hopefully, they're still alive.</English>
+                <Original>Don't worry, we'll stay on their channel and see if we can contact them there. I hope they're still alive.</Original>
+                <English>Don't worry, we'll stay on their channel and see if we can contact them there. I hope they're still alive.</English>
                 <French>T'inquiète pas, on reste sur leur canal, on verra si on arrive à les contacter sur place. Avec un peu de chance, ils sont encore en vie.</French>
             </Key>
             <Key ID="STR_JP_voices_pilot_1">

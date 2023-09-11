@@ -470,7 +470,7 @@ JP_fnc_addActionGetIntel = {
         if (_isSuspect)then{
            [_unit,["Not your business !","I must leave...","Leave me alone please...","I'm a dead man if I talk to you..."] call BIS_fnc_selectRandom] call JP_fnc_talk;
         }else{
-           [_unit,_talker,27] remoteExec ["JP_fnc_getIntel",2];
+           [_unit,_talker,50] remoteExec ["JP_fnc_getIntel",2];
            [_unit,3] remoteExec ["JP_fnc_updateRep",2];
         };
 
@@ -529,20 +529,21 @@ JP_fnc_addActionRally = {
         camDestroy _cam;
 
         //Suspect
-        _isSuspect = _unit getVariable ["JP_Suspect",false];
+        // _isSuspect = _unit getVariable ["JP_Suspect",false];
         
         _this call JP_fnc_endTalking;
        
-       if(random 100 < PERCENTAGE_FRIENDLY_INSURGENTS && !_isSuspect) then {
+       if(random 100 < PERCENTAGE_FRIENDLY_INSURGENTS) then {
             [_unit,false] remoteExec["stop",owner _unit];
             [_unit,"ALL"] remoteExec["enableAI",owner _unit];
             [_unit,"Ok, I'm in !"] remoteExec ["JP_fnc_talk",_talker];
             [_unit,SIDE_FRIENDLY] remoteExec ["JP_fnc_badGuyLoadOut",owner _unit];
-            _unit remoteExec ["RemoveAllActions"];
+            _unit remoteExec ["RemoveAllActions", 0];
             _unit setVariable["JP_recruit",true,true];
             _unit setVariable["JP_disable_cache", true, true];
-            _unit remoteExec ["JP_fnc_addActionLeaveGroup"];
+            _unit remoteExec ["JP_fnc_addActionLeaveGroup", 0];
             [_unit,3] remoteExec ["JP_fnc_updateRep",2];
+            sleep 1;
             [_unit] join GROUP_PLAYERS;
         }else{
             if (_isSuspect)then{

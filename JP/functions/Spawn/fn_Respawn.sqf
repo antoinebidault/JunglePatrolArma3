@@ -84,7 +84,7 @@ JP_fnc_handleRespawnSingleplayer =
 	
 	//count the remaining lives after death
 	REMAINING_RESPAWN = REMAINING_RESPAWN - 1;
-	if (REMAINING_RESPAWN == -1) exitWith { endMission "LOSER"; };
+	if (REMAINING_RESPAWN == -1) exitWith {  "LOSER" call BIS_fnc_endMission; };
 
 	// Initial score display
 	[] call JP_fnc_displayscore;
@@ -191,7 +191,7 @@ if (RESPAWN_ENABLED) then{
 			[_unit, [missionNamespace, "inventory_var"]] call BIS_fnc_saveInventory;
 			[] remoteExec ["PLAYER_KIA",2];
 			// Delete the marker with a little delay
-			if (REMAINING_RESPAWN == 0)exitWith{  endMission "LOSER";  };
+			if (REMAINING_RESPAWN == 0)exitWith{  "LOSER" call BIS_fnc_endMission;  };
 			[_unit] spawn {
 				params["_unit"];
 				sleep 10;
