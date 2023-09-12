@@ -66,10 +66,10 @@ switch (floor(random 3)) do
 _unit addItem "FirstAidkit";
 
 _unit setskill ["Endurance",1];
-_unit setskill ["aimingSpeed",1];
-_unit setskill ["aimingAccuracy",1];
+_unit setskill ["aimingSpeed",0.7];
+_unit setskill ["aimingAccuracy",0.8];
 _unit setskill ["Endurance",1];
-_unit setskill ["general",1];
+_unit setskill ["general",0.5];
 
 _unit stop false;
 

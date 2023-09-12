@@ -47,7 +47,7 @@ if (!(_intel getVariable["JP_IsIntelRevealed",false])) then {
 
 if (CURRENT_OBJECTIVE select 2 <= 100 && !(_intel getVariable["JP_IsIntelRevealed",false])) then {
   _intel setVariable["JP_IsIntelRevealed",true, true];
-  _marker = createMarker [format["s%1",random 13100],getPos _intel];
+  _marker = createMarker [format["obj-s%1",random 13100],getPos _intel];
   _marker setMarkerShape "ICON";
   _marker setMarkerColor "ColorRed";
   _marker setMarkerType "hd_objective";
@@ -56,7 +56,7 @@ if (CURRENT_OBJECTIVE select 2 <= 100 && !(_intel getVariable["JP_IsIntelReveale
 } else {
   if (_intel getVariable["JP_IsIntelRevealed",false]) then {
     _taskId = _intel getVariable["JP_Task",""];
-    [_taskId,getPos _intel] call BIS_fnc_taskSetDescription;
+    [_taskId,getPos _intel] call BIS_fnc_taskSetDestination;
   };
 };
 

@@ -75,6 +75,8 @@ deleteMarker "recon_zone_text";
 REMAINING_OBJECTIVES = REMAINING_OBJECTIVES - 1;
 publicVariable "REMAINING_OBJECTIVES";
 
+sleep 10;
+
 if (REMAINING_OBJECTIVES == 0) then {
 	_chopper = missionNamespace getVariable ["chopper_insertion", objNull];
 	_lz = "rescue_lz";

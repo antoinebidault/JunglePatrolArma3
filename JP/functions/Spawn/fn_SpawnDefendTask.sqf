@@ -18,7 +18,7 @@
 params["_pos", "_radius"];
 
 _units = [];
-_nbGroups = 2 max ceil(random 3);
+_nbGroups = ceil(random 2);
 
 _taskId = format["JP_defend_%1",str (random 999)];
 

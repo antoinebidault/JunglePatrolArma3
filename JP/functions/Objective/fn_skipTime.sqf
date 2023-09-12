@@ -28,6 +28,7 @@ sleep 3;
 
 [0, "BLACK", 25, 1] spawn BIS_fnc_fadeEffect;
 
+3 fadeMusic 1;
 playMusic "vn_another_life";
 setAccTime 1000;
 while {_date select 3 != date select 3 || _date select 2 != date select 2} do {
@@ -49,5 +50,7 @@ _cam cameraeffect ["terminate", "back"];
 camDestroy _cam;
 
 sleep 3;
+
+[0] call JP_fnc_setWeather;
 
 savegame;

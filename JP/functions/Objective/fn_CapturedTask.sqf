@@ -1,6 +1,8 @@
 
-
+3 fadeMusic 1;
 playMusic "vn_death_scene";
+CHASER_TRIGGERED = false;
+CHASER_VIEWED = false;
 _player = leader GROUP_PLAYERS;
 _prisonPos = getPos(missionNamespace getVariable["prison", ""]);
 _backpackPos = getPosATL(missionNamespace getVariable["backpack_pos", ""]);
@@ -122,6 +124,10 @@ waitUntil {sleep 1;(backpack (_player)) == RADIO_BACKPACK_CLASS};
 [_player,localize "STR_JP_voices_captured_leader_4"] call JP_fnc_talk;
 [HQ,localize "STR_JP_voices_captured_hq_1"] call JP_fnc_talk;
 [_player,localize "STR_JP_voices_captured_leader_5"] call JP_fnc_talk;
+
+{
+  ["JP_primary_scape","SUCCEEDED"] remoteExec ["BIS_fnc_taskSetState",owner _x, true];
+} foreach ([] call JP_fnc_allPlayers);
 
 [] call vn_fnc_artillery_actions;
 

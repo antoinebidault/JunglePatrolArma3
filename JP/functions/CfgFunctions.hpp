@@ -49,6 +49,7 @@ class CfgFunctions
 			class addMarker {};
 			class deleteMarker {};
 			class findNearestMarker {};
+			class setWeather {};
 			class cachePut {};
 			class showIndicator {};
 			class talk {};
@@ -89,6 +90,7 @@ class CfgFunctions
 			class spawnCars {};
 			class spawnMainObjective {};
 			class spawnSecondaryObjective {};
+			class spawnTrackerPatrol {};
 			class spawnAnimal {};
 			class spawnConvoy {};
 			class spawnPosition {};

@@ -428,8 +428,6 @@ JP_fnc_addActionGetIntel = {
        params["_unit","_talker","_action"];
         if (!(_this call JP_fnc_startTalking)) exitWith {};
 
-        //Suspect
-        _isSuspect=_unit getVariable ["JP_Suspect",false];
 
          /*if (_unit getVariable["JP_Friendliness",50] < 35 ) exitWith {
             if (side _unit == SIDE_CIV) then {
@@ -467,7 +465,12 @@ JP_fnc_addActionGetIntel = {
         if (!isMultiplayer) then {
             skipTime .25;
         };
-        if (_isSuspect)then{
+
+
+        //Suspect
+        _isSuspect= _unit getVariable ["JP_Suspect",false];
+
+        if (_isSuspect == true) then {
            [_unit,["Not your business !","I must leave...","Leave me alone please...","I'm a dead man if I talk to you..."] call BIS_fnc_selectRandom] call JP_fnc_talk;
         }else{
            [_unit,_talker,50] remoteExec ["JP_fnc_getIntel",2];

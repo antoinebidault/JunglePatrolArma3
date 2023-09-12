@@ -1,5 +1,5 @@
 
-_pos = CURRENT_OBJECTIVE select 1;
+_pos = getPos (CURRENT_OBJECTIVE select 4);
 _radius = CURRENT_OBJECTIVE select 2;
 
 _setPos =  [[[_pos, _radius]], MARKER_WHITE_LIST] call BIS_fnc_randomPos; // [_pos, 0, (_radius - 100) min 50, 0, 0, 0, 0, MARKER_WHITE_LIST] call BIS_fnc_findSafePos;

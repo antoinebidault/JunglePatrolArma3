@@ -21,6 +21,7 @@ AVALANCHE_TROOPS = [];
 ENABLE_AVALANCHE = true;
 publicVariable "ENABLE_AVALANCHE";
 
+3 fadeMusic 1;
 playMusic "vn_contact";
 
 if (DEBUG) then {

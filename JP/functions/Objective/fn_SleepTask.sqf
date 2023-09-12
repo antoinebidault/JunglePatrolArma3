@@ -101,7 +101,7 @@ _camp = [_nearestSleepingPosition] call JP_fnc_createCamp;
 
 SKIP_TIME = false;
 
-[leader GROUP_PLAYERS,localize "STR_JP_sleepTask_action","\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\holdAction_sleep2_ca.paa","\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\holdAction_sleep2_ca.paa","_this distance _target < 3","true",
+[leader GROUP_PLAYERS,"Remain overnight","\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\holdAction_sleep2_ca.paa","\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\holdAction_sleep2_ca.paa","_this distance _target < 3","true",
      {},
      {},
      {
@@ -131,6 +131,10 @@ if (NIGHT_EVENT != "none") then {
           } else {
                if (NIGHT_EVENT == 'animal')then {
                [_nearestSleepingPosition, 100, 1, 5] call JP_fnc_spawnAnimal;
+               }  else {
+                    if (NIGHT_EVENT == 'patrol')then {
+                    [_nearestSleepingPosition, 100] call JP_fnc_spawnTrackerPatrol;
+                    };
                };
           };
      };
@@ -140,7 +144,9 @@ if (NIGHT_EVENT != "none") then {
      sleep 20;
 };
 
+
 [7] call JP_fnc_skipTime;
+[WEATHER] call JP_fnc_setWeather;
 
 {
   ["JP_primary_sleep","SUCCEEDED",true] remoteExec ["BIS_fnc_taskSetState",GROUP_PLAYERS,true];

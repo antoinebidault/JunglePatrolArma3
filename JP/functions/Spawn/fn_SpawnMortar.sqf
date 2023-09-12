@@ -43,7 +43,7 @@ for "_j" from 1 to _nb do {
     _mortar addMPEventHandler ["MPKilled",{ 
         params["_mortar","_killer"];
         {
-          ["Destroy the mortar","SUCCEEDED",true] remoteExec ["BIS_fnc_taskSetState",_x, false];
+          ["JP_mortar","SUCCEEDED",true] remoteExec ["BIS_fnc_taskSetState",_x, false];
         } foreach units GROUP_PLAYERS;  
         OBJECTIVE_DONE = true;
        publicVariable "OBJECTIVE_DONE";

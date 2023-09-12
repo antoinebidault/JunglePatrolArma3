@@ -65,22 +65,21 @@ private _tempMarkers = MARKER_WHITE_LIST;
     
      //Search intel;
      [_chopper,"Secure and put the charge on...","\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\destroy_ca.paa","\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\destroy_ca.paa","_this distance _target < 6","true",
-     {
-         // [(_this select 1), "medic"] remoteExec ["playActionNow"];
-     },
+     {},
      {},
      {
-          _chopper = (_this select 0);
-          [[_this select 0, _this select 1], {
+          [_this select 0, _this select 1] spawn {
                params["_chopper","_player"];
-
+              
                [_player,"30 seconds before detonation"] spawn JP_fnc_talk;
                sleep 24;
                [_player,"5..."] call JP_fnc_talk;
                [_player,"...4..."] call JP_fnc_talk;
                [_player,"...3..."] call JP_fnc_talk;
-               [_player,"...2...", false]  call JP_fnc_talk;
-               [_player,"...1", false]  call JP_fnc_talk;
+               [_player,"...2..."]  call JP_fnc_talk;
+               [_player,"...1"]  call JP_fnc_talk;
+
+               _chopper remoteExec ["JP_fnc_success",2, false];
 
                _bomb = "HelicopterExploBig";
                _boom = _bomb createVehicle getPos _chopper;
@@ -88,11 +87,9 @@ private _tempMarkers = MARKER_WHITE_LIST;
                CRASHSITES = CRASHSITES - [_chopper];
                publicVariable "CRASHSITES";
 
-               _chopper remoteExec ["JP_fnc_success",2, false];
                sleep 1;
                deleteVehicle _chopper;
-
-          }] remoteExec ["spawn",0];
+          };
 
      },{},[],8,nil,true,false] remoteExec ["BIS_fnc_holdActionAdd"];
 

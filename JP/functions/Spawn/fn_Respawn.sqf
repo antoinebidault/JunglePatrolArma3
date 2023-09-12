@@ -240,6 +240,7 @@ if (RESPAWN_ENABLED) then{
 		[_player] call JP_fnc_handleRespawnBase;
 
 		// Prevent ACE to do bullshit
+		/*
 		_player removeAllEventHandlers "HandleDamage";
 		_player addEventHandler["HandleDamage",{
 			params [
@@ -269,7 +270,7 @@ if (RESPAWN_ENABLED) then{
 			};
 			
 			_damage;
-		}];
+		}];*/
 	};
 }else{
 	// If nothing activated, just use the vanilla system

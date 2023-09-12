@@ -2,15 +2,18 @@
 // Wait until the players > 0 and they disembark
 waitUntil {count ([] call JP_fnc_allPlayers) > 0 && !IN_INTRO_CUTSCENE};
 
-// Display the score to each player
-// [] remoteExec ["JP_fnc_displayScore"];
-
 // Initial timer for the hunters
 _timerChaser = time - 360;
 _tmpRep = 50;
 _currentMarker = [];
 
+SPAWN_LOOP_LAST_EXECUTION = date;
+publicVariable "SPAWN_LOOP_LAST_EXECUTION";
+
 while { true } do {
+	SPAWN_LOOP_LAST_EXECUTION = date;
+	publicVariable "SPAWN_LOOP_LAST_EXECUTION";
+
 	try 
 	{ 
 		_players = [] call JP_fnc_allPlayers;
@@ -192,6 +195,9 @@ while { true } do {
 
 		} foreach _players;
 
+		// Empty null units
+		UNITS_SPAWNED_CLOSE = UNITS_SPAWNED_CLOSE - [objNull]; 
+
 		// foreach UNITS_SPAWNED_CLOSE
 		{
 			_unit = _x;
@@ -268,6 +274,7 @@ while { true } do {
 		if (CHASER_TRIGGERED && time > CHASER_TIMEOUT) then {
 			CHASER_TRIGGERED = false;
 			publicVariable "CHASER_TRIGGERED";
+			[leader GROUP_PLAYERS,"I think they're no longer after us"] remoteExec["JP_fnc_talk", GROUP_PLAYERS];
 			if (DEBUG) then  {
 				hint "Alarm off!";
 			};

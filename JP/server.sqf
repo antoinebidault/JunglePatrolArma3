@@ -14,14 +14,7 @@ if (!isServer) exitWith{};
 // TIME
 setDate [1969,6,18, TIME_OF_DAYS, 0]; 
 
-// OVERCAST
-0 setOvercast WEATHER;
-0 setRain (if (WEATHER > .7) then {random 1}else{0});
-// setWind [10*WEATHER, 10*WEATHER, true];
-0 setFog [if (WEATHER > .8) then {.15}else{0},if (WEATHER > .8) then {.04}else{0}, 60];
-0 setGusts (WEATHER - .3);
-0 setWaves WEATHER;
-forceWeatherChange;
+[WEATHER] call JP_fnc_setWeather;
 
 [] call JP_fnc_helpFriendsInit;
 
@@ -47,6 +40,7 @@ addMissionEventHandler ["HandleDisconnect", {
 addMissionEventHandler ["Loaded",{ 
     [] spawn {
 		hint "mission loaded";
+
 		// player call JP_fnc_resetState;
 		// player setPos START_POSITION;
 		sleep 4;

@@ -1,6 +1,7 @@
 
 params["_chopper","_lz"];
 
+3 fadeMusic 1;
 playMusic "vn_hell_on_earth";
 
 
@@ -58,6 +59,7 @@ waitUntil {sleep 3; EXTRACTION_DONE};
  ["JP_primary_extraction",_x, ["Grab a beer","Grab a beer","Grab a beer"],_lzPos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, true];
 } foreach ([] call JP_fnc_allPlayers);
 
+END_MISSION = false;
 private _wp2 = GROUP_PLAYERS addwaypoint [getMarkerPos "endmission", 2];
 _wp2 setWaypointStatements ["true", " END_MISSION = true;"];
 waitUntil {END_MISSION};

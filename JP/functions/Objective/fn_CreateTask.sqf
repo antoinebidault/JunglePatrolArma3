@@ -109,8 +109,8 @@ switch (_type) do {
      };
        case "officer": { 
         _taskId = "officer";
-        _desc = "Kill the Vietcong officer moving randomly in a vehicle between compound";
-        _title = "Kill the officer";
+        _desc = "Interrogate the Vietcong officer moving randomly in a vehicle between compound";
+        _title = "Interrogate the officer";
         _message = "An enemy officer is present here";
         _messageSuccess = "Good job ! The officer has benen eliminated !";
         _bonus = 30;

@@ -105,7 +105,7 @@ publicVariable "MAX_OBJECTIVES";
 REMAINING_OBJECTIVES = MAX_OBJECTIVES;
 publicVariable "REMAINING_OBJECTIVES";
 
-NIGHT_EVENTS_POOL = ["defend","mortar", "animal"];
+NIGHT_EVENTS_POOL = ["patrol","defend","mortar", "animal"];
 
 START_POSITION = getMarkerPos "marker_base";
 publicVariable "START_POSITION";
