@@ -41,10 +41,8 @@ if (_task == "") then {
 
 // Spawn task successful on each client
 [[_task,_taskName,_objWIthTask],{
-    params["_task","_taskName","_objWithTask"];
-    [_task, "SUCCEEDED", true] call BIS_fnc_taskSetState;
-    [(leader GROUP_PLAYERS), format["Task done : %1",_taskName],true] call JP_fnc_talk;
-    // [_task,true] call BIS_fnc_deleteTask;
+  params["_task","_taskName","_objWithTask"];
+  [_task, "SUCCEEDED", true] call BIS_fnc_taskSetState;
 }] remoteExec ["spawn", GROUP_PLAYERS,false];
 
 //Custom callback

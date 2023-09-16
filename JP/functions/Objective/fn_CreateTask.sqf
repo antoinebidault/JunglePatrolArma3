@@ -35,6 +35,15 @@ private _withNotif = if (count _this >1)then{_this select 1}else{true};
  _reputation = 0;
 
 switch (_type) do {
+    case "convoy": { 
+        _taskId = "convoy";
+        _desc = "Destroy the enemy convoy on the road";
+        _title = "Destroy the convoy";
+        _message = "I have informations about a convoy that will go through the jungle";
+        _messageSuccess = "Good job ! The convoy is distroyed";
+        _bonus = 1;
+        _reputation = 6;
+     };
     case "ied": { 
         _taskId = "IEDdisabling";
         _desc = "disarm the IED on the road. You need to be equiped with a toolkit, a mine detector and engineer abilities.";

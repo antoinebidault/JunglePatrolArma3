@@ -15,10 +15,10 @@ class RscStatusBar
                 class statusBarText
                 {
                         idc = 55554;
-                        x = "safezoneX + safezoneW - 1.90";
+                        x =  "0.411858 * safezoneW + safezoneX";
                         y = "safezoneY + safezoneH - 0.063";
-                        w = 1.38;
-                        h = 0.06;
+                        w = "0.105257 * safezoneW";
+                        h = "0.025 * safezoneH";
                         shadow = 2;
                         size = 0.030;
                         type = 13;

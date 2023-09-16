@@ -79,7 +79,13 @@ _ehId = (findDisplay 46) displayAddEventHandler ["KeyDown", {
 // <br/><t size='.3' align = 'center' shadow = '1' color='#cd8700' opacity='.4'>%4</t>
 _name = name _talker;
 
-_text = parseText format ["<t font='PuristaSemiBold' align = 'center' shadow = '2' size = '.8'><t color = '%1'>%2</t></t><br /><t align = 'center'  shadow = '1' size = '.63'><t color = '#E0E0E0'>%3</t></t>",_color,name _talker,_say,localize "STR_JP_talk_spaceToSkip"];
+_img="";
+_imgName=  _talker getVariable["JP_avatar",""];
+if (_imgName != "") then{
+	_pic = format['images\%1.paa',_imgName] ; 
+	_img = format["<img align='center' size='2' shadow='0' image='%1' />", _pic]; 
+};
+_text = parseText format ["<t font='PuristaSemiBold' align = 'center' shadow = '2' size = '.8'>%1<br /><t color = '%2'>%3</t></t><br /><t align = 'center'  shadow = '1' size = '.63'><t color = '#E0E0E0'>%4</t></t>",_img,_color,name _talker,_say,localize "STR_JP_talk_spaceToSkip"];
 _ctrl ctrlSetStructuredText _text;
 MESS_HEIGHT = ctrlTextHeight _ctrl;
 MESS_SHOWN = true;

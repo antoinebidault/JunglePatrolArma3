@@ -40,7 +40,7 @@ for "_j" from 1 to _nb do {
     _posToSpawn = _posBuildings call BIS_fnc_selectRandom;
     _posBuildings = _posBuildings -[_posToSpawn];
     _grp = createGroup SIDE_CIV;
-    _unitName = CIV_LIST_UNITS call BIS_fnc_selectRandom;
+    _unitName = FRIENDLY_LIST_UNITS call BIS_fnc_selectRandom;
     _hostage = _grp  createUnit [_unitName, _posToSpawn,[],0,"CAN_COLLIDE"];
     _hostage setCaptive true;
 	removeAllWeapons _hostage;
@@ -85,7 +85,7 @@ for "_j" from 1 to _nb do {
         [_hostage,"Acts_AidlPsitMstpSsurWnonDnon_out"] remoteExec ["switchMove"] ;
         _hostage setUnitPos "UP";	
         _hostage setBehaviour "CARELESS";
-        _hostage enableAI "Move";
+        _hostage enableAI "all";
         _hostage allowFleeing 1;
         _hostage setCaptive false;
         _hostage setVariable["JP_TaskNotCompleted",true];

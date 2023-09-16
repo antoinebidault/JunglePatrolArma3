@@ -43,6 +43,7 @@ if (DEBUG)then{
 };
 
 _unit setVariable["JP_Type","civ"];
+_unit setVariable ["JP_avatar",if (headgear _unit == "vn_c_conehat_01" || headgear _unit == "vn_c_conehat_02") then { "civil-hat"} else {"civil"}];
 _unit setDir random 360;
 
 if (_handleFireEvent)then{

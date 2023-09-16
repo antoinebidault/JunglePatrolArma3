@@ -21,126 +21,130 @@ if (!isServer) exitWith{false};
 _units = [];
 
 //SLEEP (_this select 0);
-
+params["_initial"];
 _nbVeh = 3;
 _nbTrucks = _nbVeh - 1;
 _roadRadius = 40;
 
- _worldSize = (getMarkerSize GAME_ZONE) select 0;
-_worldCenter = getMarkerPos GAME_ZONE;
 
-_initPos = [_worldCenter,0,_worldSize, 4, 0, 20, 0, MARKER_WHITE_LIST,[]] call BIS_fnc_findSafePos;
-if (_initPos isEqualTo []) exitWith{ hint "unable to spawn the convoy"; };
-_road = [_initPos,500,MARKER_WHITE_LIST] call BIS_fnc_nearestRoad;
+_ambush = (missionNamespace getVariable["convoy_ambush",""]);
+_start = (missionNamespace getVariable["convoy_start",""]);
+_end = (missionNamespace getVariable["convoy_stop",""]);
+_startPos = getPos(_start);
+_endPos = getPos(_end);
+_ambushPos = getPos(_ambush);
+
+_road = [_startPos,500,MARKER_WHITE_LIST] call BIS_fnc_nearestRoad;
 _roadPos = getPos _road;
 
 _grp = createGroup SIDE_ENEMY;
 _car = objNull;
-CAR_DESTROYED = 0;
+CONVOY = [];
+  _roadConnectedTo = roadsConnectedTo _road;
+  _connectedRoad = _roadConnectedTo select 0;
+  _roadDirection = [_road, _connectedRoad] call BIS_fnc_dirTo;
+  _car = [_roadPos, _roadDirection, ENEMY_CONVOY_CAR_CLASS, _grp] call BIS_fnc_spawnVehicle select 0;
+  _ambush setVariable["JP_Type","convoy", true];
+  _ambush setVariable["JP_TaskNotCompleted",true, true];
+  _ambush setVariable["JP_IsIntelRevealed",true, false];
+  if (_initial) then {
+	  [_ambush,_initial] call JP_fnc_createTask;
+    [HQ,"There is an enemy convoy moving not far from your position. Go next to the road between the start and end marker position",true] call JP_fnc_talk;
+  };
+  //(driver _car) enableSimulationGlobal false;
+  
+  _car addMPEventHandler ["MPKilled",{
+      [GROUP_PLAYERS,5] remoteExec ["JP_fnc_updateScore",2];   
+  }];
 
-if (isOnRoad(_roadPos) && _roadPos distance (leader GROUP_PLAYERS) > 300 )then{
-    [HQ,"There is an enemy convoy moving not far from your position. You can destroy them to earn some points.",true] call JP_fnc_talk;
-    _roadConnectedTo = roadsConnectedTo _road;
-    _connectedRoad = _roadConnectedTo select 0;
-    _roadDirection = [_road, _connectedRoad] call BIS_fnc_dirTo;
-    _car = [_roadPos, _roadDirection, ENEMY__units_CAR_CLASS, _grp] call BIS_fnc_spawnVehicle select 0;
-    (driver _car) enableSimulationGlobal false;
-    
-    _car addMPEventHandler ["MPKilled",{
-        [GROUP_PLAYERS,100] remoteExec ["JP_fnc_updateScore",2];   
-        CAR_DESTROYED = CAR_DESTROYED + 1;
-    }];
+_grp selectLeader  (driver _car)  ;
 
-    _units pushback _car;
-    _units = _units + (crew _car);
-   
-    _nbUnit = (count (fullCrew [_car,"cargo",true])) min 10;
-    
-    //Civilian team spawn.
-    //If we killed them, it's over.
-    for "_xc" from 1 to _nbUnit  do {
-        _unit =[_grp,_initPos,true] call JP_fnc_spawnEnemy;
-        _unit enableSimulationGlobal false;
-        _unit moveInCargo _car;
-        _units pushback _unit;
-    };
 
-    //Trucks
-    for "_xc" from 1 to _nbTrucks  do {
-        _grpTruck = createGroup SIDE_ENEMY;
-        _truck = [_car modelToWorld [0,-(_xc*15),0], _roadDirection, ENEMY__units_TRUCK_CLASS call BIS_fnc_selectRandom, _grp] call BIS_fnc_spawnVehicle select 0;
-        _nbUnit = (count (fullCrew [_truck,"cargo",true]));
-        for "_yc" from 1 to _nbUnit  do {
-            _unit = [_grpTruck,_initPos,true] call JP_fnc_spawnEnemy;
-            _unit enableSimulationGlobal false;
-            _unit moveInCargo _truck;
-            _units pushback _unit;
-        };
-         _units pushback _truck;
-         _units = _units + (crew _truck);
+  _units pushback _car;
+  CONVOY pushback _car;
+  _units = _units + (crew _car);
+  
+  _nbUnit = (count (fullCrew [_car,"cargo",true])) min 10;
+  
+  //Civilian team spawn.
+  //If we killed them, it's over.
+  for "_xc" from 1 to _nbUnit  do {
+      _unit =[_grp,_startPos,true] call JP_fnc_spawnEnemy;
+      _unit moveInCargo _car;
+      _units pushback _unit;
+  };
 
-         if (isNil '_truck') then{
-             CAR_DESTROYED = CAR_DESTROYED + 1;
-         };
+  //Trucks
+  for "_xc" from 1 to _nbTrucks  do {
+      _truck = [_car modelToWorld [0,-(_xc*15),0], _roadDirection, ENEMY_CONVOY_TRUCK_CLASS call BIS_fnc_selectRandom, _grp] call BIS_fnc_spawnVehicle select 0;
+      _nbUnit = (count (fullCrew [_truck,"cargo",true]));
+      for "_yc" from 1 to _nbUnit  do {
+          _unit = [_grp,_startPos,true] call JP_fnc_spawnEnemy;
+          _unit moveInCargo _truck;
+          _units pushback _unit;
+      };
+      _units pushback _truck;
+      _units = _units + (crew _truck);
 
-         _truck addMPEventHandler ["MPKilled",{
-            [GROUP_PLAYERS,100] remoteExec ["JP_fnc_updateScore",2];   
-            CAR_DESTROYED = CAR_DESTROYED + 1;
-         }];
-    };
 
-    _grp setBehaviour "SAFE";
-    _grp setSpeedMode "NORMAL";
-    _grp setFormation "COLUMN";
+      _truck addMPEventHandler ["MPKilled",{
+        [GROUP_PLAYERS,5] remoteExec ["JP_fnc_updateScore",2];   
+      }];
+      CONVOY pushback _truck;
+  };
 
-}else{
- hint "Error ! Not enough road to spawn objective... Restarting...";
- sleep 10;
- [30] call JP_fnc_spawnConvoy;
-};
+  _grp setBehaviour "SAFE";
+  _grp setSpeedMode "NORMAL";
+  _grp setFormation "COLUMN";
+
+deleteMarker "convoy-ambush-marker";
+private _wpt = createMarker ["convoy-ambush-marker",_ambushPos];
+_wpt setMarkerShape "ICON";
+_wpt setMarkerColor "ColorRed";
+_wpt setMarkerType "mil_ambush";
+_wpt setMarkerText "Ambush the convoy";
 
 deleteMarker "convoy-start-marker";
-private _wpt = createMarker ["convoy-start-marker",_roadPos];
+private _wpt = createMarker ["convoy-start-marker",_startPos];
 _wpt setMarkerShape "ICON";
 _wpt setMarkerColor "ColorRed";
 _wpt setMarkerType "mil_start";
 _wpt setMarkerText "convoy start";
 
 deleteMarker "convoy-end-marker";
-_wpt = createMarker ["convoy-end-marker",[0,0,0]];
+_wpt = createMarker ["convoy-end-marker",_endPos];
 _wpt setMarkerShape "ICON";
 _wpt setMarkerColor "ColorRed";
 _wpt setMarkerType "hd_ambush";
 _wpt setMarkerText "convoy destination";
 
+_wpt = _grp addWaypoint [_endPos, 10];
+_wpt setWaypointType "MOVE";
+_wpt setWaypointBehaviour "SAFE";
+_wpt setWaypointSpeed "LIMITED";
+_wpt setWaypointFormation "COLUMN";
+leader _grp moveTo _endPos;
+driver _car moveTo _endPos;
 
+waitUntil {sleep 5;  {alive _x} count CONVOY == 0 || (leader _grp) distance _end < 10 };
 
-//FIRST STEP => Moving to a random compound enemy
-_nextPos = getMarkerPos (([getPos ((units GROUP_PLAYERS) call BIS_fnc_selectRandom), true, "bastion"] call JP_fnc_findNearestMarker) select 0);
-_nextPos = getPosASL([_nextPos,1000,MARKER_WHITE_LIST] call BIS_fnc_nearestRoad);
-(leader _grp) move _nextPos;
-_wpt setMarkerPos _nextPos;
+deleteMarker "convoy-ambush-marker";
+deleteMarker "convoy-start-marker";
+deleteMarker "convoy-end-marker";
 
-waitUntil {sleep 5;  CAR_DESTROYED == _nbVeh || (leader _grp) distance _nextPos < 10 };
-sleep 100 + random 400;
-
-//SECOND STEP Move back to the position
-_nextPos = _initPos;
-(leader _grp)  move _nextPos;
-
-waitUntil {sleep 5; CAR_DESTROYED == _nbVeh || (leader _grp)  distance _nextPos < 10 };
-
-if (CAR_DESTROYED == _nbVeh) exitWith {
-    [HQ,"You successfully ambushed the convoy ! Well done !",true] remoteExec ["JP_fnc_talk"];
-    [300] spawn JP_fnc_spawnConvoy;
+if ((leader _grp) distance _end < 10) then {
+    sleep 40;
+    [HQ,"You missed the convoy ! Wait for the next one !",true] call JP_fnc_talk;
+    {_units = _units - [_x]; _x call JP_fnc_deleteMarker; deleteVehicle _x; } forEach _units;
+    sleep 60;
+    [false] call JP_fnc_spawnConvoy;
 };
 
-sleep 100;
+if ({alive _x} count CONVOY == 0) exitWith {
+    [HQ,"You successfully ambushed the convoy ! Well done !",true] remoteExec ["JP_fnc_talk"];
+     _ambush remoteExec ["JP_fnc_success",2, false];
+};
 
-//Unspawn unit
-waitUntil {sleep 12; CAR_DESTROYED == _nbVeh || {_x distance (leader _grp) > 700} count ([] call JP_fnc_allPlayers) == count ([] call JP_fnc_allPlayers)};
-{_units = _units - [_x]; _x call JP_fnc_deleteMarker; deleteVehicle _x; } forEach _units;
+sleep 5;
 
-[HQ,"You missed the convoy ! Out !",true] remoteExec ["JP_fnc_talk"];
-[300] spawn JP_fnc_spawnConvoy;
-false;
+[_ambush];

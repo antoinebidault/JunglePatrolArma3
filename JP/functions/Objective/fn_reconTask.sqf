@@ -26,6 +26,7 @@ _mkr2 setMarkerText "Recon area";
 
 _position = [0,0,0];
 _units = [];
+_noMarker = false;
 
 switch (_objective) do {
 	case "hostage": {
@@ -37,6 +38,10 @@ switch (_objective) do {
 	case "officer": {
 		_position = getPos(OFFICER_POSITIONS call BIS_fnc_selectRandom);
 		_units = [_position] call JP_fnc_spawnOfficer;
+	 };
+	  case "convoy": {
+		_noMarker = true;
+		_units = [true] call JP_fnc_spawnConvoy;
 	 };
 	 case "cache": {
 		_cache_pos =  CACHE_POSITIONS call BIS_fnc_selectRandom;
@@ -61,7 +66,9 @@ hint "The recon area is represented with the large red marker. If you interrogat
 CURRENT_OBJECTIVE = [_objective,_position, 400,"", _units select 0];
 publicVariable "CURRENT_OBJECTIVE";
 
-[] call JP_fnc_updateMarker;
+if (!_noMarker) then {
+	[] call JP_fnc_updateMarker;
+};
 
 waitUntil { sleep 3; (CURRENT_OBJECTIVE select 3) != "" && (((CURRENT_OBJECTIVE select 3) call BIS_fnc_taskState) == "SUCCEEDED") };
 

@@ -104,6 +104,7 @@ if (didJIP) then {
 if (leader GROUP_PLAYERS == player) then {
 	// Execute mission setup on server
 	[] remoteExec ["JP_fnc_missionSetup", 2];
+	(leader GROUP_PLAYERS) setVariable ["JP_avatar","leader"];
 };
 
 waitUntil {JP_STARTED};

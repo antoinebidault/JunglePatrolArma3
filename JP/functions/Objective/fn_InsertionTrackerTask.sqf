@@ -41,8 +41,8 @@ _wp1 setWaypointStatements ["true", "[leader GROUP_PLAYERS,true] spawn JP_fnc_sp
 waitUntil { ({ alive _x || captive _x } count units _grp == 0 && !("JP_primary_insertion3" call BIS_fnc_taskCompleted)) ||  ("JP_primary_insertion3" call BIS_fnc_taskCompleted)};
 
 
-[leader GROUP_PLAYERS, "Good job ! The watchers have been neutralized !"] spawn JP_fnc_talk;
 if (!("JP_primary_insertion3" call BIS_fnc_taskCompleted)) then {
+	[leader GROUP_PLAYERS, "Good job ! The watchers have been neutralized !"] spawn JP_fnc_talk;
 	["JP_primary_insertion3","SUCCEEDED",true] remoteExec ["BIS_fnc_taskSetState",GROUP_PLAYERS,true];
 } else{
 	["JP_primary_insertion3","FAILED",true] remoteExec ["BIS_fnc_taskSetState",GROUP_PLAYERS,true];

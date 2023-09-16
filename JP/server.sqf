@@ -86,11 +86,17 @@ OFFICERS = [];
 IN_MARKERS_LOOP = false;
 
 // Create a fake HQ unit
+/*
 "B_RangeMaster_F" createUnit [[-1000,-1000], createGroup SIDE_FRIENDLY, "this allowDamage false; HQ = this; ", 0.6, "colonel"];
 []spawn{
 	sleep 1;
 	HQ setName "HQ";
 };
+*/
+
+HQ = missionNamespace getVariable ["colonel", objNull];
+HQ setName "Colonel Russel";
+HQ setVariable ["JP_avatar","colonel"];
 
 STAT_POP_START = 0;
 publicVariable "STAT_POP_START";

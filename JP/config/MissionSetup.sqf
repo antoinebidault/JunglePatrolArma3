@@ -60,10 +60,10 @@ _removedClasses = [];
 ENEMY_LIST_CARS = ENEMY_LIST_CARS - _removedClasses;
 
 ENEMY_CHOPPERS =  [ENEMY_CHOPPERS,[FACTION_ENEMY,["Helicopter"],[]] call JP_fnc_factiongetunits] call JP_fnc_fillSupportParam;
-ENEMY_LIST_TANKS = [ENEMY_LIST_TANKS,[FACTION_ENEMY,["Tank"],[]] call JP_fnc_factiongetunits] call JP_fnc_fillSupportParam;
+// ENEMY_LIST_TANKS = [ENEMY_LIST_TANKS,[FACTION_ENEMY,["Apc"],[]] call JP_fnc_factiongetunits] call JP_fnc_fillSupportParam;
 ENEMY_SNIPER_UNITS =  [ENEMY_SNIPER_UNITS,[FACTION_ENEMY,["Man"], ["sniper"]] call JP_fnc_factiongetunits] call JP_fnc_fillSupportParam;
-ENEMY_CONVOY_CAR_CLASS = ENEMY_LIST_CARS select 0;
-ENEMY_CONVOY_TRUCK_CLASS = [ENEMY_CONVOY_TRUCK_CLASS,[FACTION_ENEMY,["Truck_F"],[]] call JP_fnc_factiongetunits] call JP_fnc_fillSupportParam;
+//ENEMY_CONVOY_CAR_CLASS = ENEMY_LIST_CARS select 0;
+//ENEMY_CONVOY_TRUCK_CLASS = [ENEMY_CONVOY_TRUCK_CLASS,[FACTION_ENEMY,["Truck_F"],[]] call JP_fnc_factiongetunits] call JP_fnc_fillSupportParam;
 ENEMY_COMMANDER_CLASS = ENEMY_LIST_UNITS select 0; 
 // ENEMY_OFFICER_LIST_CARS = ENEMY_CONVOY_TRUCK_CLASS; 
 

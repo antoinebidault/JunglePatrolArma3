@@ -32,7 +32,7 @@ _taskId = format["JP_patrol_%1",str (random 999)];
 
 
 _grp = createGroup SIDE_ENEMY;
-_spawnPos = [_pos, 200,230, 1, 0, .3, 0] call BIS_fnc_findSafePos;
+_spawnPos = [_pos, 180,200, 1, 0, .3, 0] call BIS_fnc_findSafePos;
 _nbUnits =  4 + floor(random 4); 
 
 for "_xc" from 1 to _nbUnits  do {

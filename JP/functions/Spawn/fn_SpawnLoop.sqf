@@ -229,7 +229,7 @@ while { true } do {
 							publicVariable "CHASER_TRIGGERED";
 							
 							CHASER_TIMEOUT = time + 5 * 60;
-							publicVariable "CHASER_TRIGGERED";
+							publicVariable "CHASER_TIMEOUT";
 
 							[_player,true] call JP_fnc_spawnChaser;
 							
@@ -272,7 +272,14 @@ while { true } do {
 		} foreach UNITS_SPAWNED_CLOSE;
 		
 		if (CHASER_TRIGGERED && time > CHASER_TIMEOUT) then {
+			CHASER_TIMEOUT = 0;
 			CHASER_TRIGGERED = false;
+			{
+				_unit = _x;
+				{
+				   _unit forgetTarget _x; 
+				} forEach [] call JP_fnc_allPlayers;
+			} forEach UNITS_SPAWNED_CLOSE;
 			publicVariable "CHASER_TRIGGERED";
 			[leader GROUP_PLAYERS,"I think they're no longer after us"] remoteExec["JP_fnc_talk", GROUP_PLAYERS];
 			if (DEBUG) then  {

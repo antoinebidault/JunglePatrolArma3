@@ -93,7 +93,7 @@ if (getMarkerColor "marker_base" == "") then {
 	_markerBase setMarkerColor "ColorGreen";
 };
 
-OBJECTIVES = ["hostage","tank","officer","wreck","cache"];
+OBJECTIVES = ["convoy","hostage","tank","officer","wreck","cache"];
 publicVariable "OBJECTIVES";
 
 CURRENT_OBJECTIVE = ["",[0,0,0],1500,"",objNull];

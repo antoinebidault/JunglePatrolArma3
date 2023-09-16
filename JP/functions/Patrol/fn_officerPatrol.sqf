@@ -13,6 +13,8 @@ _truck = _this select 0;
 _unit = _this select 1;
 
 _grp = group _unit;
+_grp setBehaviour "SAFE";
+_grp setSpeedMode "LIMITED";
 _driver = driver _truck;    
     
 
@@ -44,8 +46,8 @@ while {sleep 5;  alive _unit && alive _truck && alive _driver}do{
 
     _newPos = getMarkerPos(_compound select 0);
 
-    _road = ([_newPos,500,MARKER_WHITE_LIST] call BIS_fnc_nearestRoad);
-    if (isNull _road) exitWith { };
+    _road = ([_newPos,1500,MARKER_WHITE_LIST] call BIS_fnc_nearestRoad);
+    if (isNull _road) exitWith { hint "error with officer" };
     
     _newPos = getPosASL _road; 
     

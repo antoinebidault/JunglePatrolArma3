@@ -28,6 +28,7 @@ _officer = _grp createUnit [ENEMY_COMMANDER_CLASS, _initPos,[],AI_SKILLS,"NONE"]
 _officer setVariable ["JP_IsIntelRevealed",false];
 _officer setVariable ["JP_TaskNotCompleted",true];
 _officer setVariable ["JP_type","officer"];
+[_officer,"ColorRed"] call JP_fnc_addmarker;
 
 // _grp call JP_fnc_sendToHC;
 
@@ -46,6 +47,7 @@ _nbUnit = (count (fullCrew [_truck,"cargo",true])) - 1 min 8;
 _unit = objNull;
 for "_yc" from 1 to _nbUnit  do {
     _unit = [_grp, _initPos, true] call JP_fnc_spawnEnemy;
+     [_unit,"ColorRed"] call JP_fnc_addmarker;
     _unit setVariable ["JP_type","officerguard"];
     _unit enableDynamicSimulation false;
     _unit moveInAny _truck;    
@@ -126,6 +128,7 @@ _officer addEventHandler ["HandleDamage", {
             
             [_unit,localize "STR_JP_voices_officer_iKnowSomeThing"] remoteExec ["JP_fnc_talk",_player];
 			_unit remoteExec ["JP_fnc_success", 2, false];
+             (_unit getVariable["marker",""]) setMarkerAlpha 0;
         },{
         [(_this select 1), "medicStop"] remoteExec ["playActionNow"];
         },[],3,nil,true,false] remoteExec ["BIS_fnc_holdActionAdd"];

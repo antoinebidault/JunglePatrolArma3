@@ -124,10 +124,16 @@ ENEMY_LIST_CARS = ["vn_o_car_03_01",
 ENEMY_CHOPPERS = ["O_Heli_Attack_02_dynamicLoadout_F"];
 ENEMY_ATTACHEDLIGHT_CLASS = "acc_flashlight"; // "rhs_acc_2dpZenit"; 
 ENEMY_MORTAR_CLASS = "vn_b_sf_static_mortar_m2"; //Mortar class
-ENEMY_LIST_TANKS = ["O_MBT_04_cannon_F","O_MBT_02_cannon_F"]; //Tanks
+ENEMY_LIST_TANKS = ["vn_o_armor_pt76b_01","vn_o_armor_type63_01","vn_o_armor_btr50pk_02"]; //Tanks
 ENEMY_COMMANDER_CLASS = "O_Soldier_SL_F"; //commander
-ENEMY_CONVOY_CAR_CLASS = "O_MRAP_02_hmg_F"; //commander
-ENEMY_CONVOY_TRUCK_CLASS = ["O_Truck_03_transport_F"]; //commander
+ENEMY_CONVOY_CAR_CLASS = "vn_o_wheeled_btr40_01_vcmf"; //commander
+
+ENEMY_CONVOY_TRUCK_CLASS = ["vn_o_wheeled_z157_ammo_vcmf",
+"vn_o_wheeled_z157_fuel_vcmf",
+"vn_o_wheeled_z157_02_vcmf",
+"vn_o_wheeled_z157_01_vcmf",
+"vn_o_wheeled_z157_03_vcmf",
+"vn_o_wheeled_z157_repair_vcmf"]; //commander
 ENEMY_OFFICER_LIST_CARS =  ["vn_o_car_03_01",
 "vn_o_wheeled_z157_02_vcmf",
 "vn_o_wheeled_z157_01_vcmf",

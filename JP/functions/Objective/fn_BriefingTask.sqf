@@ -7,6 +7,8 @@ _mg = missionNamespace getVariable ["mg", objNull];
 _doc = missionNamespace getVariable ["doc", objNull];
 _rto = missionNamespace getVariable ["rto", objNull];
 
+_doc setVariable ["JP_avatar","doc"];
+
 player kbAddTopic ["team", "JP\voices\Team\CfgSentences.bikb"];
 _doc kbAddTopic ["team", "JP\voices\Team\CfgSentences.bikb"];
 _rto kbAddTopic ["team", "JP\voices\Team\CfgSentences.bikb"];

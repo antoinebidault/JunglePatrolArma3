@@ -35,11 +35,16 @@ if (!isNull player) then {
     titleCut ["", "BLACK IN", 6];
 
     [] spawn {
+
+      _xPos = safeZoneX; //+ (0.5 * safeZoneW ) ;
+       // _y = safeZoneY + (0.75 * safeZoneH);
+      // _h = safeZoneH;
+
         _pic = "images\jungle-patrol.paa"; 
         [ 
-          '<img align=''left'' size=''7.1'' shadow=''0'' image='+(str(_pic))+' />', 
-          safeZoneX+.7, 
-          safeZoneY+safeZoneH-1.2, 
+          '<t size=''20'' ><img align=''center'' size="7" shadow=''0'' image='+(str(_pic))+' /></t>', 
+          -1, 
+          safeZoneY + safeZoneH - 1.2, 
           6, 
           0, 
           0, 
