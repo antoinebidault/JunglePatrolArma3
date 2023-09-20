@@ -33,7 +33,7 @@ _marker setMarkerText "Last direction of the Commander !";
 _marker setMarkerType "hd_arrow";
 _marker setMarkerDir _dir;
 
-[_unit,"HQ, this is bravo team, we've found the presumed camp where the commander rested at night. We'll keep you in touch", true] remoteExec ["JP_fnc_talk",GROUP_PLAYERS];
+[_unit,"HQ, this is Columbia, we've found the presumed camp where the commander rested at night. We'll keep you in touch", true] remoteExec ["JP_fnc_talk",GROUP_PLAYERS];
 
 sleep 10;
 

@@ -23,20 +23,8 @@ _nbGroups = ceil(random 2);
 _taskId = format["JP_defend_%1",str (random 999)];
 
 [HQ,format[localize "STR_JP_voices_HQ_enemyGroups",_nbGroups]] remoteExec ["JP_fnc_talk"];
-{
-	[_taskId, _x, [localize "STR_JP_spawnDefendTask_taskDesc",localize "STR_JP_spawnDefendTask_taskName",localize "STR_JP_spawnDefendTask_taskName"],_pos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, false];
-} foreach units GROUP_PLAYERS;     
-// STAT_INTEL_FOUND = STAT_INTEL_FOUND + 1;
 
-/*
-_unitsInCompound = _compound select 5;
-{
-	if (side _x == SIDE_CIV) then {
-		[_x] joinSilent (createGroup SIDE_FRIENDLY);
-	};
-}
-foreach _unitsInCompound;
-*/
+[_taskId, GROUP_PLAYERS, [localize "STR_JP_spawnDefendTask_taskDesc", localize "STR_JP_spawnDefendTask_taskName",localize "STR_JP_spawnDefendTask_taskName"],_pos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",GROUP_PLAYERS, false];
 
 for "_j" from 1 to _nbGroups do {
 
@@ -98,19 +86,15 @@ DEFEND_TASK = false;
 // If eliminated
 if ({(alive _x) && !(captive _x)} count _units <= 2) then {
 
-	{
-		[HQ, localize "STR_JP_voices_HQ_taskDefendSuccess"] remoteExec ["JP_fnc_talk",_x,false];
-		[_taskId,"SUCCEEDED",true] remoteExec ["BIS_fnc_taskSetState",_x,false];
-	} foreach ([] call JP_fnc_allPlayers);    
+	[HQ, localize "STR_JP_voices_HQ_taskDefendSuccess"] remoteExec ["JP_fnc_talk"];
+	[_taskId,"SUCCEEDED",true] remoteExec ["BIS_fnc_taskSetState",GROUP_PLAYERS,false];
 	OBJECTIVE_DONE = true;
 	publicVariable "OBJECTIVE_DONE";
 
 } else {
 	// Player too far from position
-	{
-		[HQ, localize "STR_JP_voices_HQ_taskDefendSuccess"] remoteExec ["JP_fnc_talk",_x,false];
-		[_taskId,"FAILED",true] remoteExec ["BIS_fnc_taskSetState",_x,false];
-	} foreach ([] call JP_fnc_allPlayers);       
+	[HQ, localize "STR_JP_voices_HQ_taskDefendSuccess"] remoteExec ["JP_fnc_talk"];
+	[_taskId,"FAILED",true] remoteExec ["BIS_fnc_taskSetState",GROUP_PLAYERS,false];  
 
 	"LOSER" call BIS_fnc_endMission;
 };

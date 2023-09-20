@@ -14,8 +14,8 @@ _cam camCommit 30;
 // Move IA to position
 {
 	if (!isPlayer _x) then{
-		_x setPos player modelToWorld [1,1,0];
-	}
+		_x setPos (player modelToWorld [1,1,0]);
+	};
 } forEach units GROUP_PLAYERS;
 
 _date = date;

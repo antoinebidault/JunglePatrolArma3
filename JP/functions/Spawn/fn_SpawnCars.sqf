@@ -55,7 +55,7 @@ private _roadConnectedTo = objNull;
       };
     };
 
-    _car setVariable ["JP_Type","car"];
+    _car setVariable ["JP_Type","car", true];
     //_car setVehicleLock "LOCKED";
     _roadConnectedTo = roadsConnectedTo _x;
     ROAD = _roadConnectedTo;

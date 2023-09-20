@@ -4,6 +4,33 @@ if (rating _this < 0) then {
 	_this addRating ((-(rating _this)) + 1000);
 };
 
+ resetCamShake;
+
+// Remove units around the player
+{ if (_this distance _x < 120 && side _x == SIDE_ENEMY) then {_x setDamage 1;} } foreach allUnits;
+
+
+// Set the group leader as a human if he is an AI
+if (!isPlayer (leader GROUP_PLAYERS)) then {
+	GROUP_PLAYERS selectLeader _this;
+};
+
+// Create a basic hidden marker on player's position (Used for blacklisting purposes)
+_pm = createMarker [format["player-marker-%1",name _this], getPos _this];
+_pm setMarkerShape "ELLIPSE";
+_pm setMarkerColor "ColorGreen";
+_pm setMarkerAlpha 0;
+_pm setMarkerSize [170,170];
+if (DEBUG) then {
+	_pm setMarkerAlpha .3;
+};
+
+_this setVariable["marker", _pm, true];
+PLAYER_MARKER_LIST pushBackUnique _pm;
+publicVariable "PLAYER_MARKER_LIST";
+
+[] call JP_fnc_displayscore;
+
 // _this remoteExec ["RemoveAllActions"];
 detach _this;
 _this setDamage 0;

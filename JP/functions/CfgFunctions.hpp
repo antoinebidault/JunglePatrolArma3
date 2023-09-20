@@ -74,8 +74,8 @@ class CfgFunctions
 		class Spawn
 		{	
 			file = "JP\functions\spawn";
-			class respawn {};
-			class respawnDialog {};
+			//class respawn {};
+			//class respawnDialog {};
 			class spawnOfficer{};
 			class spawnUnits {};
 			class spawnAsEnemy {};

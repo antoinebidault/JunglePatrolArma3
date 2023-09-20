@@ -91,7 +91,7 @@ JP_fnc_spawnOfficerSimple = {
             };
 
             [leader GROUP_PLAYERS,localize "STR_JP_voices_teamLeader_targetDown", true] remoteExec ["JP_fnc_talk", GROUP_PLAYERS,false];
-            [format["JP_secondary_%1", name _unit],_x, ["Talk to the wounded officer","Interrogate the officer","Talk to the wounded officer"],getPos _unit,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",leader GROUP_PLAYERS, true];
+            [format["JP_secondary_%1", name _unit],GROUP_PLAYERS, ["Talk to the wounded officer","Interrogate the officer","Talk to the wounded officer"],getPos _unit,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",GROUP_PLAYERS, true];
             _unit getVariable["marker",""] setMarkerAlpha 1;
             _unit getVariable["marker",""] setMarkerPos (getPos _unit);
             
@@ -114,9 +114,7 @@ JP_fnc_spawnOfficerSimple = {
             },{
                 params["_unit","_player"];
                 [_player, "medicStop"] remoteExec ["playActionNow"];
-                {
-                    [format["JP_secondary_%1", name _unit],"SUCCEEDED",true] remoteExec ["BIS_fnc_taskSetState",_x,true];
-                } foreach ([] call JP_fnc_allPlayers);
+                [format["JP_secondary_%1", name _unit],"SUCCEEDED",true] remoteExec ["BIS_fnc_taskSetState",GROUP_PLAYERS,true];
                 OFFICERS = OFFICERS - [_unit];
                 _unit setVariable["JP_interrogated",true];
                 _unit removeAllMPEventHandlers "MPKilled";
@@ -179,16 +177,15 @@ while {sleep 20; count OFFICERS  > 0 } do {
     _marker = _officer getVariable["marker",""];
 
     _loc =  nearestLocations [getPosWorld _officer, ["NameVillage","NameCity","NameCityCapital"],10000] select 0;
-    {
-        private _officerPos = getPos _officer;
-        private _officerName = name _officer;
 
-        // Task creation
-        [format["JP_secondary_%1", _officerName],_x, [format["Our drones give us some informations about an insurgent's officer location. Move to his location and try to gather informations about the commander. His name is %1",_officerName],"Interrogate the officer","Interrogate the officer"],_officerPos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, true];
-        
-        // HQ message
-        [HQ,format[localize "STR_JP_voices_HQ_secondaryBriefing" ,_officerName,round(((getPos _loc) distance2D (_x))/100)/100,text _loc], true] remoteExec ["JP_fnc_talk",_x,false];
-    } foreach ([] call JP_fnc_allPlayers);
+    private _officerPos = getPos _officer;
+    private _officerName = name _officer;
+
+    // Task creation
+    [format["JP_secondary_%1", _officerName],GROUP_PLAYERS, [format["Our drones give us some informations about an insurgent's officer location. Move to his location and try to gather informations about the commander. His name is %1",_officerName],"Interrogate the officer","Interrogate the officer"],_officerPos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",GROUP_PLAYERS, true];
+    
+    // HQ message
+    [HQ,format[localize "STR_JP_voices_HQ_secondaryBriefing" ,_officerName,round(((getPos _loc) distance2D (_x))/100)/100,text _loc], true] remoteExec ["JP_fnc_talk"];
 
     _marker setMarkerAlpha 1;
     _marker setMarkerPos (getPos _officer);

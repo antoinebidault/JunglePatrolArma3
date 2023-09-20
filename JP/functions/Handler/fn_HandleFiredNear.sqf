@@ -18,7 +18,7 @@
 
 
 
-_this select 0 addEventHandler["FiredNear",
+[_this ,["FiredNear",
 {
 	_civ=_this select 0;	
 	_distance = _this select 2;	
@@ -28,7 +28,7 @@ _this select 0 addEventHandler["FiredNear",
 	if ( { _civ distance _x > 30 && _civ distance _x < 400 } count ([] call JP_fnc_allPlayers) == count ([] call JP_fnc_allPlayers) && (_civ getVariable["JP_Suspect", true] || (random 100) < PERCENTAGE_INSURGENTS))then{
 		
 		//Remove the eventHandler to prevent spamming
-		_civ removeAllEventHandlers "FiredNear";
+		[_civ , "FiredNear"] remoteExec ["removeAllEventHandlers", 0, true];
 		[_civ,_gunner] spawn JP_fnc_spawnAsEnemy;
 	}else{
 		group _civ setspeedmode "FULL";
@@ -62,10 +62,10 @@ _this select 0 addEventHandler["FiredNear",
 			[_civ] call JP_fnc_shout;
 		};
 		
-		_civ setVariable["civ_affraid",true];
+		_civ setVariable["civ_affraid",true, true];
 
 		//Remove the eventHandler to prevent spamming
-		_civ removeAllEventHandlers "FiredNear";
+		[_civ, "FiredNear"] remoteExec ["removeAllEventHandlers", 0, true];
 
 		//Action to make him calm down !
 		[_civ,[localize "STR_JP_handleKill_calm",{
@@ -76,7 +76,7 @@ _this select 0 addEventHandler["FiredNear",
 			};
 			[_asker,localize "STR_JP_handleKill_calmFriend"] call JP_fnc_talk;
 			_unit stop true;
-			_unit  setVariable["civ_affraid",false];
+			_unit  setVariable["civ_affraid",false, true];
 			sleep .3;
 			[_unit,""] remoteExec ["switchMove",0];
 			sleep .3;
@@ -84,7 +84,7 @@ _this select 0 addEventHandler["FiredNear",
 			[_unit,2] remoteExec ["JP_fnc_updateRep",2];
 			sleep 15;
 			_unit stop false;
-			[_unit]  remoteExec ["JP_fnc_handleFiredNear",0];
+			_unit call "JP_fnc_handleFiredNear";
 		},nil,1.5,false,true,"","true",2,false,""]] remoteExec ["addAction"];
 
 		if (isPlayer _gunner )then {
@@ -94,4 +94,5 @@ _this select 0 addEventHandler["FiredNear",
 		};
 	};
 
-}];
+}]
+] remoteExec ["addEventHandler", 0,true];

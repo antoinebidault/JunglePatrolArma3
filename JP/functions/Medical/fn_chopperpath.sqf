@@ -30,6 +30,7 @@ private _startPos = position TRANSPORTHELO;
  private _wp0 = _grp addWaypoint [_landPos, 10];
  _wp0 setwaypointtype "MOVE";
 
+/*
 TRANSPORTHELO addEventHandler ["handleDamage", {
 	params [
 		"_unit",			
@@ -45,7 +46,7 @@ TRANSPORTHELO addEventHandler ["handleDamage", {
 		MEDEVAC_State = "aborted";
 	}
 }];
-
+*/
 
 waitUntil {MEDEVAC_State == "aborted" || TRANSPORTHELO distance2D _landPos < 200};
 if (MEDEVAC_State == "aborted") exitWith { false };
@@ -56,23 +57,28 @@ if (MEDEVAC_State == "aborted") exitWith { false };
 // Silently add a red smoke to group leader
 {
 	if (isPlayer _x) then {
-		_x addItem  "SmokeShellRed";
+		_x addItem  "SmokeShellPurple";
 	};
 } forEach units GROUP_PLAYERS;
 
 MEDEVAC_SmokeShell = objNull;
 {
-	_x addEventHandler ["Fired", {
+	[_x, ["Fired", {
 		if ((_this select 4) isKindOf "SmokeShell") then 
 		{
 			MEDEVAC_SmokeShell = _this select 6;
+			publicVariable "MEDEVAC_SmokeShell";
 		};
-	}];
+	}]] remoteExec["addEventHandler", 0, true];
 } foreach (units GROUP_PLAYERS);
 
 _startTime = time;
 waitUntil {!isNull MEDEVAC_SmokeShell  };// || time > (_startTime + 500 )
-// if (time > (_startTime + 500)) exitWith { MEDEVAC_State = "aborted"; "EveryoneLost" call BIS_fnc_endMission; };
+
+// Remove Event handlers on all clients
+{
+	[_x, "Fired"] remoteExec["removeAllEventHandlers", 0, true];
+} foreach (units GROUP_PLAYERS);
 
 sleep 5;
 
@@ -149,7 +155,7 @@ _wp2 setWaypointBehaviour "CARELESS";
 _wp2 setWaypointSpeed "FULL"; 
 _wp2 setWaypointStatements ["true","{_x assignAsCargo TRANSPORTHELO;}  forEach units group this; units (group this) orderGetIn true;"];  
 
-waitUntil {sleep2; MEDEVAC_state == "aborted" || ({_x in TRANSPORTHELO} count (units  interventionGroup) == count (units  interventionGroup))};
+waitUntil {sleep 2; MEDEVAC_state == "aborted" || ({_x in TRANSPORTHELO} count (units  interventionGroup) == count (units  interventionGroup))};
 
 // Go back home
 TRANSPORTHELO move _startPos;

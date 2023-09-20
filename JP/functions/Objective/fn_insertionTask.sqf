@@ -12,16 +12,16 @@ _start = getPos _chopper;
 LZ = [];
 INSERTION_DONE = false;
 
-{
- ["JP_primary_insertion",_x, ["Board the chopper","Board the chopper","Board the chopper"],getPos _chopper,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, true];
-} foreach ([] call JP_fnc_allPlayers);
+
+ ["JP_primary_insertion",GROUP_PLAYERS, ["Board the chopper","Board the chopper","Board the chopper"],getPos _chopper,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",GROUP_PLAYERS, true];
+
 
 _units = units GROUP_PLAYERS;
 waitUntil { {vehicle _x == _chopper} count _units == count _units };
 
-{
+
  ["JP_primary_insertion","SUCCEEDED",true] remoteExec ["BIS_fnc_taskSetState",GROUP_PLAYERS,true]; 
-} foreach ([] call JP_fnc_allPlayers);
+
 
 
 sleep 2;
@@ -63,14 +63,14 @@ _chopper flyInHeight 60;
 
 	sleep 10;
 	
-	_mg = missionNamespace getVariable ["mg", objNull];
+	_rto = missionNamespace getVariable ["rto", objNull];
 	_doc = missionNamespace getVariable ["doc", objNull];
 
 	sleep 1;
 
-	[player, localize "STR_JP_voices_player_helo"] call JP_fnc_talk;
-	[_doc, localize "STR_JP_voices_doc_helo"] call JP_fnc_talk;
-	[_mg, localize "STR_JP_voices_mg_helo"] call JP_fnc_talk;
+	[leader GROUP_PLAYERS, localize "STR_JP_voices_player_helo"]  remoteExec ["JP_fnc_talk"];
+	[_doc, localize "STR_JP_voices_doc_helo"]  remoteExec ["JP_fnc_talk"];
+	[_rto, localize "STR_JP_voices_mg_helo"] remoteExec ["JP_fnc_talk"];
 
 	sleep 5; 
 
@@ -78,9 +78,9 @@ _chopper flyInHeight 60;
 };
 
 
-{
- ["JP_primary_insertion2",_x, ["Insert to the LZ","Insert to the LZ","Insert to the LZ"], _lzPos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, true];
-} foreach ([] call JP_fnc_allPlayers);
+
+ ["JP_primary_insertion2",GROUP_PLAYERS, ["Insert to the LZ","Insert to the LZ","Insert to the LZ"], _lzPos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",GROUP_PLAYERS, true];
+
 
 _chopper flyInHeight 40;
 

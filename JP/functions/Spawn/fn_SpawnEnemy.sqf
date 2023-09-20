@@ -30,7 +30,7 @@ if (DEBUG)then{
 
 // [_unit] call JP_fnc_addTorch;
 [_unit] call JP_fnc_handlekill;
-[_unit] call JP_fnc_handleAttacked;
+[_unit] remoteExec ["JP_fnc_handleAttacked"];
 
 if (!_excludedFromSpawnedUnit)then{
     UNITS_SPAWNED_CLOSE pushback _unit;

@@ -60,8 +60,7 @@ while {_i > 0} do {
 	_iedJunk=createVehicle[_junk,getPosATL _ied,[],0,"NONE"];
 	_iedJunk setPosATL(getPosATL _iedJunk select 2+1);
 	_iedJunk enableSimulationGlobal false;
-	_iedJunk setVariable ["JP_Type","ied"];
-	//_iedJunk setVariable ["JP_TaskNotCompleted",true];
+	_iedJunk setVariable ["JP_Type","ied", true];
 	_iedJunk allowDamage false;
 	[_iedJunk,"ColorBlue"] call JP_fnc_addMarker;
 

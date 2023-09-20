@@ -1,6 +1,8 @@
 
 params["_chopper","_lz"];
 
+[HQ,"Columbia, this is Covey, you did a great job ! Go to the LZ for extraction !"] remoteExec ["JP_fnc_talk"];
+
 3 fadeMusic 1;
 playMusic "vn_hell_on_earth";
 
@@ -17,13 +19,12 @@ _lzPos = getMarkerPos _lz;
 [leader GROUP_PLAYERS, _lzPos ,16] spawn JP_fnc_spawnAvalanche;
 _helipad_obj = "Land_HelipadEmpty_F" createVehicle getMarkerPos _lz;
 
-{
- ["JP_primary_extraction",_x, ["Extraction","Extraction","Extraction"],_lzPos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, true];
-} foreach ([] call JP_fnc_allPlayers);
+ ["JP_primary_extraction",GROUP_PLAYERS, ["Extraction","Extraction","Extraction"],_lzPos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",GROUP_PLAYERS, true];
 
 if (_lz == "rescue_lz") then {
 	waitUntil {sleep 3; (leader GROUP_PLAYERS) distance2D _lzPos < 300};
-	[] spawn JP_fnc_capturedTask;
+	[] spawn JP_fnc_capturedTask; 
+	false;
 };
 
 waitUntil {sleep 3; (leader GROUP_PLAYERS) distance2D _lzPos < 100};
@@ -39,9 +40,7 @@ waitUntil { sleep 1; {vehicle _x == _chopper} count _units == count _units };
 
 ENABLE_AVALANCHE = false;
 
-{
- ["JP_primary_extraction","SUCCEEDED",true] remoteExec ["BIS_fnc_taskSetState",GROUP_PLAYERS,true]; 
-} foreach ([] call JP_fnc_allPlayers);
+["JP_primary_extraction","SUCCEEDED",true] remoteExec ["BIS_fnc_taskSetState",GROUP_PLAYERS,true]; 
 
 sleep 1;
 
@@ -55,11 +54,11 @@ _chopper setDamage 0;
 _chopper setFuel 1;
 
 waitUntil {sleep 3; EXTRACTION_DONE};
-{
- ["JP_primary_extraction",_x, ["Grab a beer","Grab a beer","Grab a beer"],_lzPos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, true];
-} foreach ([] call JP_fnc_allPlayers);
+
+["JP_primary_extraction",GROUP_PLAYERS, ["Grab a beer","Grab a beer","Grab a beer"],_lzPos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",GROUP_PLAYERS, true];
 
 END_MISSION = false;
+publicVariable "END_MISSION";
 private _wp2 = GROUP_PLAYERS addwaypoint [getMarkerPos "endmission", 2];
 _wp2 setWaypointStatements ["true", " END_MISSION = true;"];
 waitUntil {END_MISSION};

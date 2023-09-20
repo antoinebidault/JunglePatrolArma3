@@ -76,9 +76,9 @@ function getDirectory (dir) {
 const pbo = require('gulp-armapbo');
 
 gulp.task('mission', () => {
-    return gulp.src('JunglePatrol.Malden/**/*')
+    return gulp.src('JunglePatrol.Cam_Lao_Nam/**/*')
         .pipe(pbo.pack({
-            fileName: 'JunglePatrol.Malden.pbo',
+            fileName: 'JunglePatrol.Cam_Lao_Nam.pbo',
             extensions: [{
                 name: 'Bidass',
                 value: 'AntoineBidault'

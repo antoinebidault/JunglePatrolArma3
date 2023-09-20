@@ -57,9 +57,7 @@ _taskId = "maintask";
 [[_unit,_taskid,_pos],{
   params ["_unit","_taskid","_pos"];
   [_unit,"I marked you on the map where I think he is.",true] call JP_fnc_talk;
-  {
-    [_taskId, _x, [ "Investigate the sector where the enemy\n commander is possibly located","Investigate the sector","Investigate the sector"], _pos, "ASSIGNED", 1, true, true,""] remoteExec ["BIS_fnc_setTask" ,_x , true];
-  } foreach ([] call JP_fnc_allPlayers);
+  [_taskId, GROUP_PLAYERS, [ "Investigate the sector where the enemy\n commander is possibly located","Investigate the sector","Investigate the sector"], _pos, "ASSIGNED", 1, true, true,""] remoteExec ["BIS_fnc_setTask" ,GROUP_PLAYERS , true];
   [(leader GROUP_PLAYERS),"Thank you, we'll investigate this place.",true] call JP_fnc_talk;
   [(leader GROUP_PLAYERS),"HQ, we've caught informations about the possible enemy commander last position."] call JP_fnc_talk;
   [HQ,"Copy ! We'll send you extra credits in order to accomplish your task. Good luck ! Out."] call JP_fnc_talk;

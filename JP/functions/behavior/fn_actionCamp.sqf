@@ -61,9 +61,8 @@
     titleCut ["", "BLACK FADED", 9999];
     [parseText format ["<t font='PuristaBold' size='1.6'>1 %1</t><br/>%2",localize "STR_JP_actionCamp_hourLater", daytime call BIS_fnc_timeToString], true, nil, 12, 0.7, 0] spawn BIS_fnc_textTiles;
 
-    if (!isMultiplayer) then {
-        skipTime 1;
-    };
+     skipTime .5;
+
     CAMP_OBJS = [getPos _unit,getDir _unit, compo_camp ] call BIS_fnc_objectsMapper;
     sleep 3;
     titleCut ["", "BLACK IN", 3];

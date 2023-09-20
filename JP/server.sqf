@@ -85,19 +85,6 @@ GEAR_AND_STUFF = [];
 OFFICERS = [];
 IN_MARKERS_LOOP = false;
 
-// Create a fake HQ unit
-/*
-"B_RangeMaster_F" createUnit [[-1000,-1000], createGroup SIDE_FRIENDLY, "this allowDamage false; HQ = this; ", 0.6, "colonel"];
-[]spawn{
-	sleep 1;
-	HQ setName "HQ";
-};
-*/
-
-HQ = missionNamespace getVariable ["colonel", objNull];
-HQ setName "Colonel Russel";
-HQ setVariable ["JP_avatar","colonel"];
-
 STAT_POP_START = 0;
 publicVariable "STAT_POP_START";
 STAT_POP_CURRENT = 0;
@@ -166,7 +153,7 @@ CIVILIAN_KILLED = {
 //On enemy killed => 2 points
 ENEMY_KILLED = {
 	params["_type","_unit"]; 
-	[GROUP_PLAYERS, 2,true] remoteExec ["JP_fnc_updateScore",2];
+	[GROUP_PLAYERS,1,true] remoteExec ["JP_fnc_updateScore",2];
  };
 
 

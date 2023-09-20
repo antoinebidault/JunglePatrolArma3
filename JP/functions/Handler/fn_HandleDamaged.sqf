@@ -16,8 +16,8 @@
 */
 
 
-_this addEventHandler["HandleDamage",{
-	params [
+_this addMPEventHandler["MPHit",{
+	/*params [
 		"_unit",			// Object the event handler is assigned to.
 		"_hitSelection",	// Name of the selection where the unit was damaged. "" for over-all structural damage, "?" for unknown selections.
 		"_damage",			// Resulting level of damage for the selection.
@@ -26,7 +26,8 @@ _this addEventHandler["HandleDamage",{
 		"_hitPartIndex",	// Hit part index of the hit point, -1 otherwise.
 		"_instigator",		// Person who pulled the trigger. (Object)
 		"_hitPoint"			// hit point Cfg name (String)
-	];
+	];*/
+	params ["_unit", "_source", "_damage", "_instigator"];
 	
 	if !(local _unit) exitWith {false};
 	if (_damage == 0) exitWith {false};
@@ -46,12 +47,13 @@ _this addEventHandler["HandleDamage",{
 			_marker setMarkerType "mil_dot";
 			_marker setMarkerColor "ColorOrange";
 			_marker setMarkerText localize "STR_JP_handleKill_injuredCivil";
-			_unit setVariable ["marker", _marker];
+			_unit setVariable ["marker", _marker, true];
 		};
 
 		// Score penalty
 		if (side _unit == SIDE_CIV && group _source == GROUP_PLAYERS && isPlayer _source) then {
 			[GROUP_PLAYERS,-5,false,_source] remoteExec ["JP_fnc_updateScore",2];   
+			[leader GROUP_PLAYERS, "Damn ! There is a civilian ! Cease Fire !"];
 			_unit call JP_fnc_addActionHeal;
 		};
 		

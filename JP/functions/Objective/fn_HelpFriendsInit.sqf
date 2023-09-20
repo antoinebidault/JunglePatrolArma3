@@ -21,5 +21,6 @@ _teamLeader setCaptive true;
 
 {
   _x disableAI "MOVE";
+  _x setCaptive true;
 }foreach units group _teamLeader;
 

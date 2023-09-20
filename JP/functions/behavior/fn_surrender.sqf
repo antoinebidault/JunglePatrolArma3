@@ -17,7 +17,7 @@
 
 params["_unit","_gunner"];
 
-_unit removeAllEventHandlers "FiredNear";
+[_unit, "FiredNear"] remoteExec ["removeAllEventHandlers", 0, true];
 _unit setCaptive true;
 _unit action ["Surrender", _unit]; 
 removeHeadgear _unit;
@@ -34,7 +34,7 @@ _weaponHolder setVelocity [_speed * sin(_dir), _speed * cos(_dir),4];
 
 sleep 2; 
 if (!isNull _gunner && group _gunner == GROUP_PLAYERS && alive _unit) then {
-  [_gunner,localize (["STR_JP_surrender_1","STR_JP_surrender_2","STR_JP_surrender_3", "STR_JP_surrender_4"] call BIS_fnc_selectRandom)] spawn JP_fnc_talk;
+  [_gunner,localize (["STR_JP_surrender_1","STR_JP_surrender_2","STR_JP_surrender_3", "STR_JP_surrender_4"] call BIS_fnc_selectRandom)] remoteExec ["JP_fnc_talk",0];
   _unit call JP_fnc_addActionLiberate;
   _unit call JP_fnc_addActionLookInventory;
   _unit call JP_fnc_addActionGetIntel;

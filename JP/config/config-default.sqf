@@ -100,7 +100,7 @@ PERCENTAGE_SUSPECT = 33;
 SIDE_ENEMY = EAST; //Enemy side 
 PATROL_SIZE = [1,2]; //Size of patrol => [minimum,random additionnals units]
 MAX_SPAWNED_UNITS = getMissionConfigValue ["JP_max_spawned_units",60] ; //Max units to spawn
-MAX_CHASERS = 8; //Max hunters who are looking for you !
+MAX_CHASERS = 7; //Max hunters who are looking for you !
 MAX_RANDOM_PATROL = getMissionConfigValue ["JP_max_random_patrol",25]; //Number of units patroling around the player at the same time
 MAX_RANDOM_CAR = getMissionConfigValue ["JP_max_random_car",1]; //Max car spawned.
 NUMBER_CHOPPERS = getMissionConfigValue ["JP_number_choppers",0]; // Number of choppers

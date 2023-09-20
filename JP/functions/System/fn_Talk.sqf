@@ -14,8 +14,8 @@
   Returns:
     BOOL - true 
 */
+if (!hasInterface) exitWith{};
 
- if (isNull player) exitWith{};
  params["_talker","_say","_sound","_topic"];
 _layer = round (random 99999);
 _this pushBack _layer;
@@ -33,7 +33,7 @@ if (_side == CIVILIAN) then {
 		_color = '#549c66';
 	}else{
 		if (_side == WEST) then {
-			_color = '#1a657b';
+			_color = '#E5B52E';
 		}else{
 			if (_side == EAST) then {
 				_color = '#d22b2f';
@@ -54,19 +54,6 @@ waitUntil {_display = uiNamespace getVariable "BIS_dynamicText"; !(isNull _displ
 _ctrl = _display displayCtrl 9999;
 uiNamespace setVariable ["BIS_dynamicText", displayNull];
 _ctrlBackground = _display ctrlCreate ["RscText",9999];
-
-
-/*
-SPACEBAR_HIT = false;
-_ehId = (findDisplay 46) displayAddEventHandler ["KeyDown", {
-	switch (_this select 1) do {
-		case 57: {
-			SPACEBAR_HIT = true;
-			true;
-		};
-	};
-	false;
-}];*/ 
 
 // Position control
  _w = 0.7 * safeZoneW;

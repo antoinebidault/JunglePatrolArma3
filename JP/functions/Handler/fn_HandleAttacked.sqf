@@ -18,7 +18,7 @@
 */
 
  params["_unit"];
-_unit addEventHandler["FiredNear",
+[_unit, ["FiredNear",
 	{
 		_unit=_this select 0;	
 		_distance = _this select 2;	
@@ -28,6 +28,6 @@ _unit addEventHandler["FiredNear",
 			[_unit,_gunner] remoteExec["JP_fnc_surrender"];
 		};
 	}
-];
+]] remoteExec ["addEventHandler", 0, true];
 
 true;

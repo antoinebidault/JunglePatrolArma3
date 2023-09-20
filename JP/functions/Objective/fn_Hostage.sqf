@@ -92,8 +92,8 @@ for "_j" from 1 to _nb do {
         _pos = [getPosASL _hostage, 1000, 1200, 3, 0, 20, 0] call BIS_fnc_findSafePos;
         _hostage move _pos;
         
-        [_hostage,"Thank you !"] call JP_fnc_talk;
-        [(_this select 1),"HQ, this is bravo team, we've liberated a hostage held down in a compound.", true] remoteExec ["JP_fnc_talk",0,false];
+        [_hostage,"Thank you for saving me !"] call JP_fnc_talk;
+        [(_this select 1),"Covey, this is Columbia, we've liberated a hostage held down in a compound.", true] remoteExec ["JP_fnc_talk",0,false];
 
         //Task success
         _hostage remoteExec ["JP_fnc_success",2, false];

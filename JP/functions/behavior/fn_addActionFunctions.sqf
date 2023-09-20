@@ -84,8 +84,8 @@ JP_fnc_addActionJoinAsAdvisor = {
 JP_fnc_addActionHandCuff =  {
     _this addaction ["<t color='#cd8700'>Capture him</t>",{
         _unit  = (_this select 0);
-        _unit removeAllEventHandlers "FiredNear";
-        _unit  setVariable["civ_affraid",false];
+        [_unit, "FiredNear"] remoteExec ["removeAllEventHandlers", 0, true];
+        _unit setVariable["civ_affraid",false, true];
 
         sleep .2;
         [_unit,""] remoteExec ["switchMove"];
@@ -114,7 +114,7 @@ JP_fnc_addActionHandCuff =  {
         _unit disableai "ANIM"; 
         _unit disableAI "MOVE"; 
 
-        _unit remoteExec ["RemoveAllActions",0];
+        _unit remoteExec ["RemoveAllActions", 0, true];
 
         _unit call JP_fnc_addActionLiberate;
         _unit call JP_fnc_addActionLookInventory;
@@ -137,12 +137,12 @@ JP_fnc_addActionInstructor = {
      _this addaction [format["<t color='#cd8700'>%1</t>",localize "STR_JP_addActionFunctions_briefing"],{
         params["_unit"];
         if (!(_this call JP_fnc_startTalking)) exitWith {};
-        [_unit, localize "STR_JP_voices_instructor_briefing1"] call JP_fnc_talk;
-        [_unit, localize "STR_JP_voices_instructor_briefing2"] call JP_fnc_talk;
-        [_unit, localize "STR_JP_voices_instructor_briefing3"] call JP_fnc_talk;
-        [_unit, localize "STR_JP_voices_instructor_briefing4"] call JP_fnc_talk;
-        [_unit, localize "STR_JP_voices_instructor_briefing5"] call JP_fnc_talk;
-        [_unit, localize "STR_JP_voices_instructor_briefing6"] call JP_fnc_talk;
+        [_unit, localize "STR_JP_voices_instructor_briefing1"] remoteExec ["JP_fnc_talk"];
+        [_unit, localize "STR_JP_voices_instructor_briefing2"] remoteExec ["JP_fnc_talk"];
+        [_unit, localize "STR_JP_voices_instructor_briefing3"] remoteExec ["JP_fnc_talk"];
+        [_unit, localize "STR_JP_voices_instructor_briefing4"] remoteExec ["JP_fnc_talk"];
+        [_unit, localize "STR_JP_voices_instructor_briefing5"] remoteExec ["JP_fnc_talk"];
+        [_unit, localize "STR_JP_voices_instructor_briefing6"] remoteExec ["JP_fnc_talk"];
         _this call JP_fnc_endTalking;
     },nil,1,true,true,"","true",3,false,""];
 };
@@ -168,7 +168,7 @@ JP_fnc_addActionGiveUsAHand =  {
 
                  {
                     [_x,_action] remoteExec ["removeAction",2];
-                    _x setVariable ["JP_follow_player",false];
+                    _x setVariable ["JP_follow_player",false,true];
                     _x setVariable ["JP_disable_patrol",false,true];
                     [_x] remoteExec ["JP_fnc_addActionGiveUsAHand"];
                 } foreach units group _unit;
@@ -206,13 +206,13 @@ JP_fnc_addActionLiberate =  {
         if(side _unit != SIDE_CIV) then {
 		    [_unit] joinSilent (createGroup SIDE_CIV);
         };
-        _unit remoteExec ["removeAllActions",0];
+        _unit remoteExec ["removeAllActions"];
         [_talker,"PutDown"] remoteExec ["playActionNow"];
 
         _this call JP_fnc_endTalking;
         _unit SetBehaviour "AWARE";
         _unit setCaptive false;
-        [_unit,""] remoteExec ["switchMove",0]; 
+        [_unit,""] remoteExec ["switchMove"]; 
         [_unit,"ANIM"] remoteExec ["switchMove",owner _unit]; 
         [_unit,"MOVE"] remoteExec ["switchMove",owner _unit]; 
         if (side _unit == SIDE_CIV) then {
@@ -238,7 +238,7 @@ JP_fnc_addActionLookInventory = {
             [_human,localize "STR_JP_voices_teamLeader_holyShit"] remoteExec ["JP_fnc_talk"];
             [_unit,1] remoteExec ["JP_fnc_updateRep",2];   
             [GROUP_PLAYERS,25,false,_human] remoteExec ["JP_fnc_updateScore",2];   
-            _unit remoteExec ["RemoveAllActions",0];
+            _unit remoteExec ["RemoveAllActions"];
 
         }else{
             [_unit,-1] remoteExec ["JP_fnc_updateRep",-2];   

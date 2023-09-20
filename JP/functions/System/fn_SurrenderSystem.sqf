@@ -35,16 +35,18 @@ while { true } do {
 		_timer = time;
 		if (_actionId == -1) then {
 			playMusic "vn_death_scene";
+			/*
 			_actionId = player addAction [localize "STR_JP_captured_surrender",{
 				params ["_target", "_caller", "_actionId", "_arguments"];
 				_caller removeAction _actionId;
 				[_caller] spawn JP_fnc_captured;
 			},nil,1,true,true];
+			*/
 		};
 	} else {
 		if (time > _timer + 60) then {
 			if (_actionId != -1) then {
-				player removeAction _actionId;
+				// player removeAction _actionId;
 			};
 			_actionId = -1;
 		};

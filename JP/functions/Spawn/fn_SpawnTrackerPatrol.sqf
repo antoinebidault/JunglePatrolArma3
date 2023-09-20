@@ -25,9 +25,8 @@ _nbGroups = 2 max ceil(random 3);
 _taskId = format["JP_patrol_%1",str (random 999)];
 
 [leader GROUP_PLAYERS,"Damn, I hear some noise !"] remoteExec ["JP_fnc_talk"];
-{
-	[_taskId, _x, ["Avoid Charlie Patrol","Avoid Charlie Patrol","Hide or eliminate the group of enemy soldiers getting close to your campement"],_pos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, false];
-} foreach units GROUP_PLAYERS;     
+[_taskId, GROUP_PLAYERS, ["Avoid Charlie Patrol","Avoid Charlie Patrol","Hide or eliminate the group of enemy soldiers getting close to your campement"],_pos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",GROUP_PLAYERS, true];
+   
 // STAT_INTEL_FOUND = STAT_INTEL_FOUND + 1;
 
 
@@ -74,10 +73,7 @@ waitUntil {sleep 3; (ENEMY_REACH_POINT && {_x inArea _sectorToDefend} count _uni
 
 OBJECTIVE_DONE = true;
 
-
-{
-	[_taskId,"SUCCEEDED",true] remoteExec ["BIS_fnc_taskSetState",_x,false];
-} foreach units GROUP_PLAYERS;   
+[_taskId,"SUCCEEDED",true] remoteExec ["BIS_fnc_taskSetState",GROUP_PLAYERS,true];
 
 [leader GROUP_PLAYERS,"We are not more in danger !"] remoteExec ["JP_fnc_talk"];
 

@@ -2,20 +2,14 @@ class Header
 {
 	gameType =  Coop;	// Game type
 	minPlayers =  1;	// minimum number of players the mission supports
-	maxPlayers = 10;	// maximum number of players the mission supports
+	maxPlayers = 6;	// maximum number of players the mission supports
 };  
 
-// disabledAI= 1;
 enableDebugConsole[] = {"76561197974435552"}; 
 allowFunctionsLog = 1;
 author = "Bidass"; 
 briefing = 0;
-briefingName = "Jungle Patrol Khe Sanh"; 
-onLoadMission = $STR_JP_description_onLoadMission;
-loadScreen = "images\loadscreen.paa";  
-overviewPicture = "images\loadscreen.paa";  
-overviewText = $STR_JP_description_onLoadMission;
-overviewTextLocked = $STR_JP_description_onLoadMission;
+
 wreckManagerMode = 2; 
 wreckRemovalMinTime = 12;   
 wreckRemovalMaxTime = 13;  

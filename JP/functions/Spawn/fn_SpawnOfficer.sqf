@@ -25,9 +25,9 @@ _roadDirection = [_road, _connectedRoad] call BIS_fnc_DirTo;
 _grp = createGroup SIDE_ENEMY;
 _officer = _grp createUnit [ENEMY_COMMANDER_CLASS, _initPos,[],AI_SKILLS,"NONE"];
 [_officer] joinSilent _grp;
-_officer setVariable ["JP_IsIntelRevealed",false];
-_officer setVariable ["JP_TaskNotCompleted",true];
-_officer setVariable ["JP_type","officer"];
+_officer setVariable ["JP_IsIntelRevealed",false, true];
+_officer setVariable ["JP_TaskNotCompleted",true, true];
+_officer setVariable ["JP_type","officer", true];
 [_officer,"ColorRed"] call JP_fnc_addmarker;
 
 // _grp call JP_fnc_sendToHC;
@@ -48,7 +48,7 @@ _unit = objNull;
 for "_yc" from 1 to _nbUnit  do {
     _unit = [_grp, _initPos, true] call JP_fnc_spawnEnemy;
      [_unit,"ColorRed"] call JP_fnc_addmarker;
-    _unit setVariable ["JP_type","officerguard"];
+    _unit setVariable ["JP_type","officerguard", true];
     _unit enableDynamicSimulation false;
     _unit moveInAny _truck;    
 };
@@ -63,24 +63,20 @@ _officer addMPEventHandler ["MPKilled",{
     OFFICERS = OFFICERS - [_unit];
 }];
 
-_officer removeAllEventHandlers "HandleDamage";
-_officer addEventHandler ["HandleDamage", {
+_officer removeAllMPEventHandlers "MPHit";
+_officer addMPEventHandler ["MPHit", {
     
     params [
         "_unit",			// Object the event handler is assigned to.
-        "_hitSelection",	// Name of the selection where the unit was damaged. "" for over-all structural damage, "?" for unknown selections.
-        "_damage",			// Resulting level of damage for the selection.
         "_source",			// The source unit (shooter) that caused the damage.
-        "_projectile",		// Classname of the projectile that caused inflicted the damage. ("" for unknown, such as falling damage.) (String)
-        "_hitPartIndex",	// Hit part index of the hit point, -1 otherwise.
-        "_instigator",		// Person who pulled the trigger. (Object)
-        "_hitPoint"			// hit point Cfg name (String)
+        "_damage",			// Resulting level of damage for the selection.
+        "_instigator"		// Person who pulled the trigger. (Object)
     ];
     
     if (_damage == 0) exitWith {false};
     
     if (_damage > .9 && !(_unit getVariable["JP_isUnconscious",false])) then {
-        _unit setVariable["JP_isUnconscious",true];
+        _unit setVariable["JP_isUnconscious",true,true];
         [_unit] remoteExec ["JP_fnc_shout", 0];	
         _unit remoteExec ["removeAllActions",0];
         _unit setDamage .9;
@@ -91,7 +87,7 @@ _officer addEventHandler ["HandleDamage", {
         };
 
         [leader GROUP_PLAYERS,localize "STR_JP_voices_teamLeader_targetDown", true] remoteExec ["JP_fnc_talk", GROUP_PLAYERS,false];
-        [format["JP_secondary_%1", name _unit],_x, ["Talk to the wounded officer","Interrogate the officer","Talk to the wounded officer"],getPos _unit,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",leader GROUP_PLAYERS, true];
+        [format["JP_secondary_%1", name _unit],GROUP_PLAYERS, ["Talk to the wounded officer","Interrogate the officer","Talk to the wounded officer"],getPos _unit,"CREATED",1, true] remoteExec ["BIS_fnc_setTask", GROUP_PLAYERS, true];
         _unit getVariable["marker",""] setMarkerAlpha 1;
         _unit getVariable["marker",""] setMarkerPos (getPos _unit);
         
@@ -117,7 +113,7 @@ _officer addEventHandler ["HandleDamage", {
             params["_unit","_player"];
             [_player, "medicStop"] remoteExec ["playActionNow"];
             OFFICERS = OFFICERS - [_unit];
-            _unit setVariable["JP_interrogated",true];
+            _unit setVariable["JP_interrogated",true, true];
             _unit removeAllMPEventHandlers "MPKilled";
             
             [_unit] spawn {

@@ -1,6 +1,6 @@
 
 // Wait until the players > 0 and they disembark
-waitUntil {count ([] call JP_fnc_allPlayers) > 0 && !IN_INTRO_CUTSCENE};
+waitUntil {count ([] call JP_fnc_allPlayers) > 0 };
 
 // Initial timer for the hunters
 _timerChaser = time - 360;
@@ -215,7 +215,7 @@ while { true } do {
 					[_unit,_x] spawn {
 						params["_unit","_player"];
 						CHASER_VIEWED = true;
-						sleep (7 + random 5);
+						sleep (20 + random 5);
 						CHASER_VIEWED = false;
 						// [] remoteExec ["JP_fnc_displayScore",_player, false];
 						// || _unit knowsAbout player > 2

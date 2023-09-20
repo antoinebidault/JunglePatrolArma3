@@ -12,7 +12,8 @@
 
 // Default configuration is called here
 titleCut ["", "BLACK FADED", 9999];
-missionNamespace setVariable["JP_SCORE", 10];
+missionNamespace setVariable["JP_SCORE", 0];
+
 
 // Total blackout on startup
 if (!isNull player) then {
@@ -36,21 +37,44 @@ if (!isNull player) then {
 
     [] spawn {
 
-      _xPos = safeZoneX; //+ (0.5 * safeZoneW ) ;
-       // _y = safeZoneY + (0.75 * safeZoneH);
-      // _h = safeZoneH;
+     // Position control
+      _w = 0.7 * safeZoneW;
+      _xPos = safeZoneX + (0.15 * safeZoneW );
+      _y = safeZoneY + (0.35 * safeZoneH);
+      _h = safeZoneH;
 
-        _pic = "images\jungle-patrol.paa"; 
+      _layer = round (random 99999);
+      disableSerialization;
+      _layer cutrsc ["rscDynamicText","plain"];
+      _display = displayNull;
+      waitUntil {_display = uiNamespace getVariable "BIS_dynamicText"; !(isNull _display)};
+      _ctrl = _display displayCtrl 9999;
+      _pic = "images\jungle-patrol.paa"; 
+      _text = parseText format ["<t align='center' shadow='2' size='.8' ><img  size='6' shadow='0' image='%1' /></t>",_pic];
+      _ctrl ctrlSetStructuredText _text;
+
+      _ctrl ctrlSetPosition [_xPos,.95*_y,_w,_h];
+      _ctrl ctrlCommit 0;
+      _ctrl ctrlSetPosition [_xPos,_y,_w,_h];
+
+      // Hide control
+      _ctrl ctrlSetFade 0;
+      _ctrl ctrlCommit .3;
+      sleep 7;
+      _ctrl ctrlSetFade 1;
+      _ctrl ctrlCommit 4;
+   };
+      /*
         [ 
-          '<t size=''20'' ><img align=''center'' size="7" shadow=''0'' image='+(str(_pic))+' /></t>', 
-          -1, 
-          safeZoneY + safeZoneH - 1.2, 
-          6, 
-          0, 
+          '', 
+          _xPos, 
+          _y, 
+          _w, 
+          _h, 
           0, 
           12345
-        ] spawn bis_fnc_dynamicText;
-      };
+        ] spawn BIS_fnc_dynamicText;
+      };*/
 
     
       _cam camSetPos  (player modelToWorld [20,-19.2,15]);
@@ -85,6 +109,7 @@ if (!isNull player) then {
   };
 
 }; 
+
 
 // Global simulation system enabled
 enableDynamicSimulationSystem true;
@@ -139,7 +164,39 @@ waitUntil {count ([] call JP_fnc_allPlayers) > 0 && time > 0 };
 // Public variables
 call (compileFinal preprocessFileLineNumbers "JP\variables.sqf"); 
 
-player call JP_fnc_resetState;
+
+JP_fnc_initCharacters = {
+  _leader = (leader GROUP_PLAYERS);
+  _leader setVariable ["JP_avatar","group-leader", true];
+  _leader setName "One-Zero";
+
+
+  _rto =missionNamespace getVariable ["rto", objNull];
+  _rto setName "One-One";
+  _rto setVariable ["JP_avatar","rto",true];
+
+  _doc =missionNamespace getVariable ["doc", objNull];
+  _doc setName "One-Two";
+  _doc setVariable ["JP_avatar","doc",true];
+
+  _mg =missionNamespace getVariable ["mg", objNull];
+  _mg setName "Machine Gunner";
+
+  HQ = missionNamespace getVariable ["colonel", objNull];
+  HQ setName "Colonel Russel";
+  HQ setVariable ["JP_avatar","colonel",true];
+  publicVariable "HQ";
+
+  HQ kbAddTopic ["briefing", "JP\voices\Briefing\CfgSentences.bikb"];
+  _leader kbAddTopic ["briefing", "JP\voices\Briefing\CfgSentences.bikb"];
+
+  _leader kbAddTopic ["team", "JP\voices\Team\CfgSentences.bikb"];
+  _doc kbAddTopic ["team", "JP\voices\Team\CfgSentences.bikb"];
+  _rto kbAddTopic ["team", "JP\voices\Team\CfgSentences.bikb"];
+  _mg kbAddTopic ["team", "JP\voices\Team\CfgSentences.bikb"];
+};
+
+[] remoteExec ["JP_fnc_initCharacters", 0, true];
 
 [] execVM "JP\server.sqf";
 [] execVM "JP\client.sqf";

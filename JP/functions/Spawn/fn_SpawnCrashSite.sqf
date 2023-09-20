@@ -59,9 +59,9 @@ private _tempMarkers = MARKER_WHITE_LIST;
     _marker setMarkerType "b_air";
     _chopper setVariable["marker",_marker];
 */
-    _chopper setVariable ["JP_Type","wreck"];
-    _chopper setVariable ["JP_TaskNotCompleted",true];
-    _chopper setVariable ["JP_IsIntelRevealed",false];
+    _chopper setVariable ["JP_Type","wreck", true];
+    _chopper setVariable ["JP_TaskNotCompleted",true, true];
+    _chopper setVariable ["JP_IsIntelRevealed",false, true];
     
      //Search intel;
      [_chopper,"Secure and put the charge on...","\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\destroy_ca.paa","\a3\ui_f_oldman\data\IGUI\Cfg\holdactions\destroy_ca.paa","_this distance _target < 6","true",
@@ -71,13 +71,13 @@ private _tempMarkers = MARKER_WHITE_LIST;
           [_this select 0, _this select 1] spawn {
                params["_chopper","_player"];
               
-               [_player,"30 seconds before detonation"] spawn JP_fnc_talk;
+               [_player,"30 seconds before detonation"] remoteExec ["JP_fnc_talk"];
                sleep 24;
-               [_player,"5..."] call JP_fnc_talk;
-               [_player,"...4..."] call JP_fnc_talk;
-               [_player,"...3..."] call JP_fnc_talk;
-               [_player,"...2..."]  call JP_fnc_talk;
-               [_player,"...1"]  call JP_fnc_talk;
+               [_player,"5..."] remoteExec ["JP_fnc_talk"];
+               [_player,"...4..."] remoteExec ["JP_fnc_talk"];
+               [_player,"...3..."] remoteExec ["JP_fnc_talk"];
+               [_player,"...2..."] remoteExec ["JP_fnc_talk"];
+               [_player,"...1"]  remoteExec ["JP_fnc_talk"];
 
                _chopper remoteExec ["JP_fnc_success",2, false];
 

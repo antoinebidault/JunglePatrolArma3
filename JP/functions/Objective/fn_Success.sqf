@@ -48,13 +48,13 @@ if (_task == "") then {
 //Custom callback
 [_objWithTask,_objWithTask getVariable["JP_Reputation",0]] remoteExec ["JP_fnc_updateRep",2];
 if (_objWithTask getVariable["JP_Bonus",0] > 0) then{
-    [GROUP_PLAYERS,_objWithTask getVariable["JP_Bonus",0],false,leader GROUP_PLAYERS]  remoteExec ["JP_fnc_updateScore",2];
+    [GROUP_PLAYERS,_objWithTask getVariable["JP_Bonus",0],false,leader GROUP_PLAYERS]  remoteExec ["JP_fnc_updateScore",0];
 };
 
 //Delete the task after success.
 _objWithTask getVariable["JP_MarkerIntel",""] setMarkerColor "ColorGreen";
 _objWithTask setVariable["JP_Task","", true];
-_objWithTask setVariable["JP_Type",""];
+_objWithTask setVariable["JP_Type","",true];
 _objWithTask setVariable["JP_TaskNotCompleted",false, true];
 _objWithTask setVariable["JP_IsIntelRevealed",false, true];
 

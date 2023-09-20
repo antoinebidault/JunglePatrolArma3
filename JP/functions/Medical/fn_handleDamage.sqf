@@ -17,9 +17,8 @@
 
 params [
 	"_unit",			// Object the event handler is assigned to.
-	"_hitSelection",	// Name of the selection where the unit was damaged. "" for over-all structural damage, "?" for unknown selections.
-	"_damage",			// Resulting level of damage for the selection.
-	"_source",			// The source unit (shooter) that caused the damage.
+	"_source",			// Resulting level of damage for the selection.
+	"_damage",			// The source unit (shooter) that caused the damage.
 	"_projectile",		// Classname of the projectile that caused inflicted the damage. ("" for unknown, such as falling damage.) (String)
 	"_hitPartIndex",	// Hit part index of the hit point, -1 otherwise.
 	"_instigator",		// Person who pulled the trigger. (Object)

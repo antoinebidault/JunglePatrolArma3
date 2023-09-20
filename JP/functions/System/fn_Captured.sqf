@@ -23,7 +23,7 @@ params["_player"];
 COMPO_OBJS = [];
 
 _player action [localize "STR_JP_captured_surrender", _player]; 
-_player setVariable ["JP_surrender_action", true, false]; 
+_player setVariable ["JP_surrender_action", true, true]; 
 _player setCaptive true;
 _wasTheLeader = (leader GROUP_PLAYERS == _player);
 
@@ -214,7 +214,7 @@ hintSilent localize "STR_JP_captured_beenWatched2";
 
 waitUntil { sleep .3; (lifestate _player == "INCAPACITATED")  || { side _x == SIDE_FRIENDLY && (_player distance _x) < 10} count allUnits > 1 };
 
-_player setVariable ["JP_surrender_action", false];
+_player setVariable ["JP_surrender_action", false, true];
 
 _wasKIA = (lifestate _player == "INCAPACITATED");
 

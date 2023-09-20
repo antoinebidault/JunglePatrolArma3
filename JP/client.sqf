@@ -16,7 +16,10 @@ if (!hasInterface) exitWith{};
 TALK_QUEUE = [];
 MESS_SHOWN = false;
 MESS_HEIGHT = 0;
-IN_INTRO_CUTSCENE = false;
+
+
+player call JP_fnc_resetState;
+
 
 player createDiaryRecord ["Diary",["Keep a good reputation",
 "The civilian in the sector would be very sensitive to the way you talk to them. Some of them are definitly hostiles to our intervention. You are free to take them in custody, that's a good point to track the potential insurgents in the region. You must avoid any mistakes, because it could have heavy consequences on the reputation of our troops in the sector. More you hurt them, more they might join the insurgents. If you are facing some difficulties, it is possible to convince some of them to join your team (it would costs you some credits...). Keep in mind the rules of engagements and it would be alright."]];
@@ -35,7 +38,7 @@ In this singleplayer scenario, you have one major objective : perform a huge rec
 
 // If unit JIP
 if (didJIP) then {
-	 player setPos START_POSITION;
+	 player setPos ((leader GROUP_PLAYERS) modelToWorld [5,5,0]);
 };
 
 // If is admin
@@ -104,7 +107,6 @@ if (didJIP) then {
 if (leader GROUP_PLAYERS == player) then {
 	// Execute mission setup on server
 	[] remoteExec ["JP_fnc_missionSetup", 2];
-	(leader GROUP_PLAYERS) setVariable ["JP_avatar","leader"];
 };
 
 waitUntil {JP_STARTED};
@@ -113,7 +115,7 @@ waitUntil {JP_STARTED};
 [] call JP_fnc_displayscore;
 
 // init user respawn loop
-[player] spawn JP_fnc_respawn; //Respawn loop
+// [player] spawn JP_fnc_respawn; //Respawn loop
 
 //Loop to check mines
 iedBlasts=["Bo_Mk82","Rocket_03_HE_F","M_Mo_82mm_AT_LG","Bo_GBU12_LGB","Bo_GBU12_LGB_MI10","HelicopterExploSmall"];

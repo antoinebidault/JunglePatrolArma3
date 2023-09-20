@@ -1,3 +1,4 @@
+if (!isServer) exitWith { false };
 
 sleep 2;
 
@@ -5,8 +6,6 @@ sleep 2;
 
 _objective = OBJECTIVES call BIS_fnc_selectRandom;
 OBJECTIVES = OBJECTIVES - [_objective];
-
-
 
 _mkr = createMarker ["recon_zone",[0,0,0]];
 _mkr setMarkerShape "Ellipse";
@@ -19,9 +18,7 @@ _mkr2 setMarkerType "mil_dot";
 _mkr2 setMarkerColor "ColorRed";
 _mkr2 setMarkerText "Recon area";
 
-{
-    ["JP_primary_recon",_x, ["Recon","Recon","Perform a reconnaissance in enemy territory (red marker)."],nil,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",owner _x, true];
-} foreach ([] call JP_fnc_allPlayers);
+["JP_primary_recon",GROUP_PLAYERS, ["Recon","Recon","Perform a reconnaissance in enemy territory (red marker)."],nil,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",GROUP_PLAYERS, true];
 // _mkr setMarkerBrush "SolidBorder";
 
 _position = [0,0,0];

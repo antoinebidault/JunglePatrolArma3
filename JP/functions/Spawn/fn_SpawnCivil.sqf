@@ -42,12 +42,12 @@ if (DEBUG)then{
     [_unit, if (_unit getVariable["JP_Suspect", false])then{"ColorOrange"}else{"ColorBlue"}] call JP_fnc_addmarker;
 };
 
-_unit setVariable["JP_Type","civ"];
-_unit setVariable ["JP_avatar",if (headgear _unit == "vn_c_conehat_01" || headgear _unit == "vn_c_conehat_02") then { "civil-hat"} else {"civil"}];
+_unit setVariable["JP_Type","civ", true];
+_unit setVariable ["JP_avatar",if (headgear _unit == "vn_c_conehat_01" || headgear _unit == "vn_c_conehat_02") then { "civil-hat"} else {"civil"}, true];
 _unit setDir random 360;
 
 if (_handleFireEvent)then{
-    [_unit] spawn JP_fnc_handleFiredNear;
+    _unit spawn JP_fnc_handleFiredNear;
     [_unit] remoteexec ["JP_fnc_addCivilianAction",0];
 };
 

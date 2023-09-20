@@ -49,7 +49,7 @@ CONVOY = [];
   _ambush setVariable["JP_IsIntelRevealed",true, false];
   if (_initial) then {
 	  [_ambush,_initial] call JP_fnc_createTask;
-    [HQ,"There is an enemy convoy moving not far from your position. Go next to the road between the start and end marker position",true] call JP_fnc_talk;
+    [HQ,"There is an enemy convoy moving not far from your position. Go next to the road between the start and end marker position",true] remoteExec ["JP_fnc_talk"];
   };
   //(driver _car) enableSimulationGlobal false;
   
@@ -134,7 +134,7 @@ deleteMarker "convoy-end-marker";
 
 if ((leader _grp) distance _end < 10) then {
     sleep 40;
-    [HQ,"You missed the convoy ! Wait for the next one !",true] call JP_fnc_talk;
+    [HQ,"You missed the convoy ! Wait for the next one !",true]  remoteExec ["JP_fnc_talk"];
     {_units = _units - [_x]; _x call JP_fnc_deleteMarker; deleteVehicle _x; } forEach _units;
     sleep 60;
     [false] call JP_fnc_spawnConvoy;
@@ -143,8 +143,7 @@ if ((leader _grp) distance _end < 10) then {
 if ({alive _x} count CONVOY == 0) exitWith {
     [HQ,"You successfully ambushed the convoy ! Well done !",true] remoteExec ["JP_fnc_talk"];
      _ambush remoteExec ["JP_fnc_success",2, false];
+    [_ambush];
 };
-
-sleep 5;
 
 [_ambush];

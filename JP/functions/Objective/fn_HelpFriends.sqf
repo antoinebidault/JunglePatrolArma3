@@ -24,18 +24,18 @@ _pos = getPos _teamLeader;
 
 	sleep 1;
 
-  [_teamLeader, localize "STR_JP_voices_helpFriends_lostleader_1"] call JP_fnc_talk;
-	[_rto, localize "STR_JP_voices_helpFriends_rto_1"] call JP_fnc_talk;
+  [_teamLeader, localize "STR_JP_voices_helpFriends_lostleader_1"] remoteExec ["JP_fnc_talk"];
+	[_rto, localize "STR_JP_voices_helpFriends_rto_1"] remoteExec ["JP_fnc_talk"];
   
-{
- ["JP_charlie_rescue_coyote", _x, ["Rescue COYOTE-01 team","Reach the team in danger","Reach the team in danger and rescue them"],_pos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",_x, true];
-} foreach ([] call JP_fnc_allPlayers);
 
-	[leader GROUP_PLAYERS, localize "STR_JP_voices_helpFriends_leader_1"] call JP_fnc_talk;
-	[_mg, localize "STR_JP_voices_helpFriends_mg_1"] call JP_fnc_talk;
-	[leader GROUP_PLAYERS, localize "STR_JP_voices_helpFriends_leader_2"] call JP_fnc_talk;
-	[_mg, localize "STR_JP_voices_helpFriends_mg_2"] call JP_fnc_talk;
-	[_mg, localize "STR_JP_voices_helpFriends_doc_1"] call JP_fnc_talk;
+ ["JP_charlie_rescue_coyote", GROUP_PLAYERS, ["Rescue COYOTE-01 team","Reach the team in danger","Reach the team in danger and rescue them"],_pos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",GROUP_PLAYERS, true];
+
+
+	[leader GROUP_PLAYERS, localize "STR_JP_voices_helpFriends_leader_1"] remoteExec ["JP_fnc_talk"];
+	[_mg, localize "STR_JP_voices_helpFriends_mg_1"] remoteExec ["JP_fnc_talk"];
+	[leader GROUP_PLAYERS, localize "STR_JP_voices_helpFriends_leader_2"] remoteExec ["JP_fnc_talk"];
+	[_mg, localize "STR_JP_voices_helpFriends_mg_2"] remoteExec ["JP_fnc_talk"];
+	[_mg, localize "STR_JP_voices_helpFriends_doc_1"] remoteExec ["JP_fnc_talk"];
 
 
 waitUntil { sleep 3; leader GROUP_PLAYERS distance2D _teamLeader < 150 };
@@ -51,9 +51,9 @@ _woundedUnits = [missionNamespace getVariable ["wounded_1", objNull],missionName
 waitUntil { sleep 3; leader GROUP_PLAYERS distance2D _teamLeader < 10 };
 
 
-[leader GROUP_PLAYERS, localize "STR_JP_voices_helpFriends_leader_3"] call JP_fnc_talk;
-[_teamLeader, localize "STR_JP_voices_helpFriends_lostleader_2"] call JP_fnc_talk;
-[leader GROUP_PLAYERS, localize "STR_JP_voices_helpFriends_leader_4"] call JP_fnc_talk;
+[leader GROUP_PLAYERS, localize "STR_JP_voices_helpFriends_leader_3"] remoteExec ["JP_fnc_talk"];
+[_teamLeader, localize "STR_JP_voices_helpFriends_lostleader_2"] remoteExec ["JP_fnc_talk"];
+[leader GROUP_PLAYERS, localize "STR_JP_voices_helpFriends_leader_4"] remoteExec ["JP_fnc_talk"];
 
 
 {
@@ -72,19 +72,20 @@ waitUntil { sleep 3; {lifeState _x == "INCAPACITATED" } count units (group _team
  ["JP_charlie_first_aid","SUCCEEDED"] remoteExec ["BIS_fnc_taskSetState",_x, true];
 } foreach ([] call JP_fnc_allPlayers);
 
-[leader GROUP_PLAYERS, localize "STR_JP_voices_helpFriends_leader_5"] spawn JP_fnc_talk;
-[_teamLeader, localize "STR_JP_voices_helpFriends_lostleader_3"] spawn JP_fnc_talk;
+[leader GROUP_PLAYERS, localize "STR_JP_voices_helpFriends_leader_5"] remoteExec ["JP_fnc_talk"];
+[_teamLeader, localize "STR_JP_voices_helpFriends_lostleader_3"] remoteExec ["JP_fnc_talk"];
 
-_lz = missionNamespace getVariable["lz_medevac", ""];
-_lzPos = getPos(_lz);
+// _lz = missionNamespace getVariable["lz_medevac", ""];
+_lzPos = getMarkerPos "lz_1";
 _helipad_obj = "Land_HelipadEmpty_F" createVehicle _lzPos;
 
-{
- ["JP_charlie_extract",_x, ["Extract Coyote-01","Extract Coyote-01","Extract Coyote-01"],_lzPos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",_x, true];
-} foreach ([] call JP_fnc_allPlayers);
+["JP_charlie_extract",GROUP_PLAYERS, ["Extract Coyote-01","Extract Coyote-01","Extract Coyote-01"],_lzPos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",GROUP_PLAYERS, true];
 
-
-[_teamLeader,_lzPos ,16] spawn JP_fnc_spawnAvalanche;
+CHASER_TRIGGERED = true;
+publicVariable "CHASER_TRIGGERED";
+CHASER_TIMEOUT = time + 5 * 60;
+publicVariable "CHASER_TIMEOUT";
+//[_teamLeader,_lzPos ,16] spawn JP_fnc_spawnAvalanche;
 
 {
   _x switchMove "";
@@ -104,20 +105,20 @@ while {alive _teamLeader && leader GROUP_PLAYERS distance2d _lzPos > 60} do
 _medic_chopper = [GROUP_PLAYERS] call JP_fnc_spawnHelo;
 _pilot = driver _medic_chopper;
 _pilot setCaptive true;
+_pilot allowDamage false;
+_medic_chopper allowDamage false;
 
 // Startup the chopper path
 [_lzPos,_medic_chopper,group _teamLeader] spawn JP_fnc_chopperPath;
 
-_wp0 = (group _teamLeader) addWaypoint[_lz modelToWorld[10, 5, 0],10];
+_wp0 = (group _teamLeader) addWaypoint[_lzPos,10];
 _wp0 setWaypointType "MOVE";
 
 waitUntil {{vehicle _x == _medic_chopper} count _woundedUnits == count _woundedUnits }; 
 
 [_teamLeader, localize "STR_JP_voices_helpFriends_lostleader_4"] spawn JP_fnc_talk;
 
-{
- ["JP_charlie_extract","SUCCEEDED"] remoteExec ["BIS_fnc_taskSetState",_x, true];
-} foreach ([] call JP_fnc_allPlayers);
+["JP_charlie_extract","SUCCEEDED"] remoteExec ["BIS_fnc_taskSetState",GROUP_PLAYERS, true];
 
 sleep 5;
 

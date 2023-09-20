@@ -29,8 +29,8 @@ private _posSelected = [position _unitChased, SPAWN_DISTANCE,SPAWN_DISTANCE + 10
 
     _enemy setSkill .9;
     _enemy setskill ["aimingAccuracy", .7];
-    _enemy setskill ["aimingShake", 1];
-    _enemy setskill ["aimingSpeed", 1];
+    _enemy setskill ["aimingShake", .6];
+    _enemy setskill ["aimingSpeed", .5];
     _enemy setskill ["spotDistance", 1];
     _enemy setskill ["spotTime", 1];
     _enemy setskill ["commanding", 1];

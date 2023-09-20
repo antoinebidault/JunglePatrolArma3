@@ -1286,14 +1286,14 @@
                 <French>Lieutenant ! Je capte un truc sur la fréquence ! On dirait les mecs de Coyote-01</French>
             </Key>
             <Key ID="STR_JP_voices_helpFriendsRadio_lostleader_1">
-                <Original>...HQ... HQ... This is Charl...3... Do you read me ?...Fucking radio...We've got losses here... What the hell ! They're too many ! Left flank !...</Original>
-                <English>...HQ... HQ... This is Charl...3... Do you read me ?...Fucking radio...We've got losses here... What the hell ! They're too many ! Left flank !...</English>
-                <French>...HQ... HQ...Coyote-01... Vous me recevez ?...Putain de radio...On a des pertes ici... C'est quoi ce bordel ! Sur le flanc gauche ! Il y en a partout...</French>
+                <Original>...Covey... Covey... This is Coy...1... Do you read me ?...Fucking radio...We've got losses here... What the hell ! They're too many ! Left flank !...</Original>
+                <English>...Covey... Covey... This is Coyote...1... Do you read me ?...Fucking radio...We've got losses here... What the hell ! They're too many ! Left flank !...</English>
+                <French>...Covey... Covey...Coyote-01... Vous me recevez ?...Putain de radio...On a des pertes ici... C'est quoi ce bordel ! Sur le flanc gauche ! Il y en a partout...</French>
             </Key>
             <Key ID="STR_JP_voices_helpFriendsRadio_rto_2">
-                <Original>Coyote-01, this is Hotel-6, do you copy? Over</Original>
-                <English>Coyote-01, this is Hotel-6, do you copy? Over</English>
-                <French>Coyote-01, ici Hotel-6, vous me recevez ? Terminé</French>
+                <Original>Coyote-01, this is Columbia, do you copy? Over</Original>
+                <English>Coyote-01, this is Columbia, do you copy? Over</English>
+                <French>Coyote-01, ici Columbia, vous me recevez ? Terminé</French>
             </Key>
             <Key ID="STR_JP_voices_helpFriendsRadio_rto_3">
                 <Original>Fuck! I've lost my signal!</Original>
@@ -1318,9 +1318,9 @@
         </Container>
         <Container name="helpFriends">
             <Key ID="STR_JP_voices_helpFriends_lostleader_1">
-                <Original>... Here is Coyote-01 ! Hotel-6, Do you read me ? Our exact location is at grid 882401. Please come to help us ! Heavy casualties. We've been ambushed by several vietcong.</Original>
-                <English>... Here is Coyote-01 ! Hotel-6, Do you read me ? Our exact location is at grid 882401. Please come to help us ! Heavy casualties. We've been ambushed by several vietcong.</English>
-                <French>... C'est Coyote-01 ! Hotel-6, vous me recevez ? Notre position exacte est à 882401. Venez nous aider ! Lourdes pertes. Nous avons été pris en embuscade par plusieurs vietcongs.</French>
+                <Original>... Here is Coyote-01 ! Columbia, Do you read me ? Our exact location is at grid 882401. Please come to help us ! Heavy casualties. We've been ambushed by several vietcong.</Original>
+                <English>... Here is Coyote-01 ! Columbia, Do you read me ? Our exact location is at grid 882401. Please come to help us ! Heavy casualties. We've been ambushed by several vietcong.</English>
+                <French>... C'est Coyote-01 ! Columbia, vous me recevez ? Notre position exacte est à 882401. Venez nous aider ! Lourdes pertes. Nous avons été pris en embuscade par plusieurs vietcongs.</French>
             </Key>
             <Key ID="STR_JP_voices_helpFriends_rto_1">
                 <Original>I've written the coordinates on the map</Original>
@@ -1379,9 +1379,9 @@
             </Key>
             
             <Key ID="STR_JP_voices_helpFriends_rto_2">
-                <Original>Okay ! Lieutenant, prepare a green smoke ! The chopper is on the way ! Hang in there, guys!</Original>
-                <English>Okay ! Lieutenant, prepare a green smoke ! The chopper is on the way ! Hang in there, guys!</English>
-                <French>C'est bon ! Lieutenant, préparez un fumigène vert ! L'hélico arrive ! Tenez bon, les gars !</French>
+                <Original>Okay ! Lieutenant, prepare a smoke ! The chopper is on the way ! Hang in there, guys!</Original>
+                <English>Okay ! Lieutenant, prepare a smoke ! The chopper is on the way ! Hang in there, guys!</English>
+                <French>C'est bon ! Lieutenant, préparez un fumigène ! L'hélico arrive ! Tenez bon, les gars !</French>
             </Key>
             <Key ID="STR_JP_voices_helpFriends_lostleader_4">
                 <Original>Thank you, Lieutenant! See you over a beer when you've finished your work! Good luck to you!</Original>
@@ -1588,12 +1588,12 @@
         </Container>
         <Container name="deleteMedevac">
             <Key ID="STR_JP_voices_HQ_rtb">
-                <Original>This is HQ, the MEDEVAC arrived at the base.</Original>
-                <English>This is HQ, the MEDEVAC arrived at the base.</English>
+                <Original>This is Covey, the MEDEVAC arrived at the base.</Original>
+                <English>This is Covey, the MEDEVAC arrived at the base.</English>
                 <French>Ici QG, le MEDEVAC est arrivé à la base.</French>
                 <German>Dies ist das Hauptquartier, die MEDEVAC ist an der Basis angekommen.</German>
-                <Spanish>Esto es HQ, el MEDEVAC llegó a la base.</Spanish>
-                <Italian>Questo è HQ, il MEDEVAC è arrivato alla base.</Italian>
+                <Spanish>Esto es Covey, el MEDEVAC llegó a la base.</Spanish>
+                <Italian>Questo è Covey, il MEDEVAC è arrivato alla base.</Italian>
             </Key>
         </Container>
         <Container name="handleKilled">
@@ -1774,9 +1774,9 @@
                 <Italian>Il vostro aiuto è benvenuto qui!</Italian>
             </Key>
             <Key ID="STR_JP_voices_HQ_sendingTroops">
-                <Original>This is HQ, we're sending you troops to this compound !</Original>
-                <English>This is HQ, we're sending you troops to this compound !</English>
-                <French>Ici le QG, nous vous envoyons des troupes !</French>
+                <Original>This is Covey, we're sending you troops to this compound !</Original>
+                <English>This is Covey, we're sending you troops to this compound !</English>
+                <French>Ici le Covey, nous vous envoyons des troupes !</French>
                 <German>Hier ist das Hauptquartier, wir schicken Truppen!</German>
                 <Spanish>¡Este es el cuartel general! ¡Les enviamos tropas a ustedes!</Spanish>
                 <Italian>Qui quartier generale, mandiamo truppe!</Italian>
@@ -1846,14 +1846,14 @@
                 <French>Je dois trouver un moyen de contacter le QG !</French>
             </Key>
             <Key ID="STR_JP_voices_captured_leader_4">
-                <Original>HQ, this is Hotel-6, I'm fucking lost in a vietcong village ! Please send me a chopper ! Do you read me ?</Original>
-                <English>HQ, this is Hotel-6, I'm fucking lost in a vietcong village ! Please send me a chopper ! Do you read me ?</English>
-                <French>HQ, ici Hotel-6, je suis perdu au milieu de nul part ! Envoyez moi un hélico et de l'appui aérien, vous m'entendez !?</French>
+                <Original>Covey, this is Columbia, I'm fucking lost in a vietcong village ! Please send me a chopper ! Do you read me ?</Original>
+                <English>Covey, this is Columbia, I'm fucking lost in a vietcong village ! Please send me a chopper ! Do you read me ?</English>
+                <French>Covey, ici Columbia, je suis perdu au milieu de nul part ! Envoyez moi un hélico et de l'appui aérien, vous m'entendez !?</French>
             </Key>
             <Key ID="STR_JP_voices_captured_hq_1">
-                <Original>Hotel-6 ? I can't believe you are still alive ! We are sending you a Spartan-01 to recover you close to your position. Run as fast as you can ! We can provide you aerial support if necessary !</Original>
-                <English>Hotel-6 ? I can't believe you are still alive ! We are sending you Spartan-01 to recover you close to your position. Run as fast as you can ! We can provide you aerial support if necessary !</English>
-                <French>Hotel-6 ? C'est vous les gars ? Vous êtes encore en vie ? On vous envoie tout de suite Spartan-01 dans une zone proche de votre position ! Dépéchez vous ! Vous pouvez également appeler tout le soutien aérien dont vous avez besoin !</French>
+                <Original>Columbia ? I can't believe you are still alive ! We are sending you a Spartan-01 to recover you close to your position. Run as fast as you can ! We can provide you aerial support if necessary !</Original>
+                <English>Columbia ? I can't believe you are still alive ! We are sending you Spartan-01 to recover you close to your position. Run as fast as you can ! We can provide you aerial support if necessary !</English>
+                <French>Columbia ? C'est vous les gars ? Vous êtes encore en vie ? On vous envoie tout de suite Spartan-01 dans une zone proche de votre position ! Dépéchez vous ! Vous pouvez également appeler tout le soutien aérien dont vous avez besoin !</French>
             </Key>
             <Key ID="STR_JP_voices_captured_leader_5">
                 <Original>Thanks god, now I need to run as fast as possible and get hidden in that forest before reinforcements arrive !</Original>
@@ -2031,9 +2031,9 @@
                 <Italian>Io so qualche cosa...</Italian>
             </Key>
             <Key ID="STR_JP_voices_HQ_goodJob">
-                <Original>Good job team, it seems you've stopped the propagation of the insurgency... The %1 officers have been neutralized.</Original>
-                <English>Good job team, it seems you've stopped the propagation of the insurgency... The %1 officers have been neutralized.</English>
-                <French>Beau boulot les gars ! On dirait que vous avez réussi à stopper l'insurrection dans la région. %1 officiers avez été neutralisés. Du bon travail !</French>
+                <Original>Good job Columbia, it seems you've stopped the propagation of the insurgency... The %1 officers have been neutralized.</Original>
+                <English>Good job Columbia, it seems you've stopped the propagation of the insurgency... The %1 officers have been neutralized.</English>
+                <French>Beau boulot Columbia ! On dirait que vous avez réussi à stopper l'insurrection dans la région. %1 officiers avez été neutralisés. Du bon travail !</French>
                 <German>Gute Teamkollegen, es scheint, als hätten Sie die Ausbreitung des Aufstandes gestoppt... Die %1 Offiziere wurden neutralisiert.</German>
                 <Spanish>Buenos compañeros de trabajo, parece que han detenido la propagación de la insurgencia... los oficiales %1 han sido neutralizados.</Spanish>
                 <Italian>Bravi compagni di squadra, sembra che abbiate fermato la propagazione dell'insurrezione... gli ufficiali di %1 sono stati neutralizzati.</Italian>
