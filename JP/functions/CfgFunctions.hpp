@@ -24,6 +24,7 @@ class CfgFunctions
 			class shout {};
 			class surrender {};
 			class updateRep {};
+			class shoot {};
 		};
 
 		class CutScene
@@ -41,6 +42,7 @@ class CfgFunctions
 			class factionGetUnits {};
 			class factionList {};
 			class factionGetSupportUnits {};
+			class nearestPlayer {};
 			class getConfigVehicles {};
 			class getCompoundStateLabel {};
 			class getClusters {};
@@ -139,6 +141,7 @@ class CfgFunctions
 			class cache {};
 			class hostage {};
 			class success {};
+			class revealObjective {};
 			class updateMarker {};
 			class failed {};
 			class createtask {};
@@ -192,6 +195,7 @@ class CfgFunctions
 			class SpawnHeloReplacement {};
 			class HandleDamage {};
 			class HandleKilled {};
+			class findCloseMedic{};
 			class heal {};
 			class carry {};
 			class chopperpath {};

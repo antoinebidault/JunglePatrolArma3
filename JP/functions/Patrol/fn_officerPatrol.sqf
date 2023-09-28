@@ -26,7 +26,7 @@ if (DEBUG) then {
     _marker setMarkerBrush "SolidBorder";
 };
 
-while {sleep 5;  alive _unit && alive _truck && alive _driver}do{
+while {sleep 5;  alive _unit && alive _truck && alive _driver && !captive _unit}do{
     _curPos = getPos _truck;
     _driver = driver _truck;    
     

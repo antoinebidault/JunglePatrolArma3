@@ -4,7 +4,7 @@ params["_pos"];
 _spawnPos = [_pos, 50,70, 1, 0, .3, 0] call BIS_fnc_findSafePos;
 
 
-_type = if (random 1 > 0.5) then { "Fin_random_F";} else { "Goat_random_F" };
+_type = "Fin_random_F";
 	
 _animal = createAgent [_type, _spawnPos, [], 0, "NONE"];
 _animal setVariable ["BIS_fnc_animalBehaviour_disable", true];

@@ -30,7 +30,7 @@ if(isNull(_unit findNearestEnemy _unit))then{
     _unit setBehaviour "AWARE";
 };
 
-while { alive _unit }do{
+while { alive _unit && !captive _unit }do{
     _unit = leader _grp;
     _rndMarker = ([position _unit, true, "any"] call JP_fnc_findNearestMarker) select 0;
     _rndPos = getMarkerPos _rndMarker;

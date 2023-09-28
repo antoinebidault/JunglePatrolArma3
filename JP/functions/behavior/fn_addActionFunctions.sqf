@@ -230,7 +230,7 @@ JP_fnc_addActionLiberate =  {
 
 
 JP_fnc_addActionLookInventory = {
-      _this addaction [format["<t color='#cd8700'>%1</t>",localize "STR_JP_addActionFunctions_searchInGear"],{
+      [_this, [format["<t color='#cd8700'>%1</t>",localize "STR_JP_addActionFunctions_searchInGear"],{
         params["_unit","_human","_action"];
         _unit removeAction _action;
         if (_unit getVariable["JP_Suspect",false])then{
@@ -248,7 +248,7 @@ JP_fnc_addActionLookInventory = {
             _human action ["Gear", _unit];
         };
 
-    },nil,5,false,true,"","true",3,false,""];
+    },nil,5,false,true,"","true",3,false,""]] remoteExec ["addAction",0, true];
 };
 
     JP_fnc_addActionHalt = {
@@ -277,7 +277,7 @@ JP_fnc_addActionLookInventory = {
         [_unit,_action] remoteExec ["removeAction"];
         _unit remoteExec ["JP_fnc_addActionDidYouSee"];
         _unit remoteExec ["JP_fnc_addActionFeeling"];
-        _unit remoteExec ["JP_fnc_addActionGetIntel"];
+        _unit call JP_fnc_addActionGetIntel;
         _unit remoteExec ["JP_fnc_addActionRally"];
        // _unit remoteExec ["JP_fnc_addActionSupportUs"];
         if ( _unit getVariable["JP_Chief",objNull] != objNull && alive (_unit getVariable["JP_Chief",objNull])) then {
@@ -424,18 +424,9 @@ JP_fnc_addActionFeeling = {
 
 JP_fnc_addActionGetIntel = {
     //Try to gather intel
-    _this addaction ["<t color='#cd8700'>Gather intel (15 minutes)</t>",{
+    [_this,["<t color='#cd8700'>Gather intel (15 minutes)</t>",{
        params["_unit","_talker","_action"];
         if (!(_this call JP_fnc_startTalking)) exitWith {};
-
-
-         /*if (_unit getVariable["JP_Friendliness",50] < 35 ) exitWith {
-            if (side _unit == SIDE_CIV) then {
-                [_unit,-3] remoteExec ["JP_fnc_updateRep",2];
-            };  
-           [_unit,"Don't talk to me !"] call JP_fnc_talk;
-           false;
-        };*/
 
         _unit removeAction _action;
         if (!weaponLowered _talker)then{
@@ -455,8 +446,10 @@ JP_fnc_addActionGetIntel = {
         sleep 1;
 
         //Talking with the fixed glitch
-        _anim = format["Acts_CivilTalking_%1",ceil(random 2)];
-        _unit switchMove _anim;
+        if (lifeState _unit != "INCAPACITATED") then {
+            _anim = format["Acts_CivilTalking_%1",ceil(random 2)];
+            _unit switchMove _anim;
+        };
 
         titleCut ["", "BLACK OUT", 1];
         [parseText format ["<t font='PuristaBold' size='1.6'>15 minutes later...</t><br/>%1", daytime call BIS_fnc_timeToString], true, nil, 12, 0.7, 0] spawn BIS_fnc_textTiles;
@@ -488,13 +481,13 @@ JP_fnc_addActionGetIntel = {
         // Stop
         _this call JP_fnc_endTalking;
 
-         waitUntil{animationState _unit != _anim};
-        [_unit,""] remoteExec["switchMove",owner _unit] ;
+        if (lifeState _unit != "INCAPACITATED") then {
+            waitUntil{sleep .4; isNull (animationState _unit) || animationState _unit != _anim};
+            [_unit,""] remoteExec["switchMove",owner _unit] ;
+        };
 
-        sleep 10;
 
-
-    },nil,5,false,true,"","true",3,false,""];
+    },nil,5,false,true,"","true",3,false,""]] remoteExec ["addAction",0, true];
 };
 
 

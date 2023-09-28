@@ -67,12 +67,11 @@ for "_j" from 1 to _nb do {
     _hostage setVariable["JP_TaskNotCompleted",false];
     _hostage setVariable["JP_IsIntelRevealed",false];
 
-    _hostage addMPEventHandler ["MPKilled", {
+    [_hostage, ["Killed", {
         [_this select 0, (_this select 0) getVariable["JP_Act",0]]call BIS_fnc_holdActionRemove;
         [_this select 1,"HQ, we have an hostage down here...", true] spawn JP_fnc_talk;
-        // (_this select 0)  remoteExec ["JP_fnc_failed", 2, false];
 	      "LOSER" call BIS_fnc_endMission;
-    }];
+    }]] remoteExec ["addEventHandler", 0, true];
 
     [ _hostage,"Secure Prisoner","\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_unbind_ca.paa","\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_unbind_ca.paa","_this distance _target < 2","true",{
        [(_this select 1), "medic"] remoteExec ["playActionNow"];

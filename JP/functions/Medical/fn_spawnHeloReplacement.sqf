@@ -38,9 +38,9 @@ _groupReplacement = createGroup _side;
 	_x setskill ["courage", 1];
 	_x setskill ["general", 1];
 	_x setskill ["reloadSpeed", 1];
-	_x removeAllMPEventHandlers "MPHit";
-	_soldier addMPEventHandler ["MPHit",{_this call JP_fnc_handleDamage;}];
-	_soldier addMPEventHandler ["MPKilled",{_this call JP_fnc_handleKilled;}];
+	[_x, "HandleDamage"] remoteExec ["removeAllEventHandlers", 0, true];
+	_soldier addEventHandler ["HandleDamage",{_this call JP_fnc_handleDamage;}];
+	_soldier addEventHandler ["Killed",{_this call JP_fnc_handleKilled;}];
 	
 	addSwitchableUnit _soldier;
 	_soldier moveInCargo _transportHelo; 

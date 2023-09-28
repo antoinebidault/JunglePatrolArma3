@@ -1306,8 +1306,8 @@
                 <French>Cette fois ci c'est sûr ! C'est bien Coyote-01 ! Ils ont l'air d'être dans une mauvaises passe ! Continue d'écouter sur la fréquence !</French>
             </Key>
                <Key ID="STR_JP_voices_helpFriendsRadio_mg_1">
-                <Original>It's looking good for them, Lieutenant! But don't you think we should give them a hand?</Original>
-                <English>It's looking good for them, Lieutenant! But don't you think we should give them a hand?</English>
+                <Original>It's not looking good for them, Lieutenant! Don't you think we should give them a hand?</Original>
+                <English>It's not looking good for them, Lieutenant! Don't you think we should give them a hand?</English>
                 <French>Ca a l'air de barder pour eux lieutenant ! Mais vous ne croyez pas qu'il faut aller leur filer un coup de main ?</French>
             </Key>
             <Key ID="STR_JP_voices_helpFriendsRadio_leader_2">

@@ -43,7 +43,7 @@ if (_nbSnipers > 0) then {
           _unit setUnitPos "DOWN";
           
            //Handle success of the mission
-          _unit addMPEventHandler ["MPKilled",
+          _unit addEventHandler ["Killed",
           { 
             params["_unit","_killer"];
             if (group _killer == GROUP_PLAYERS) then{

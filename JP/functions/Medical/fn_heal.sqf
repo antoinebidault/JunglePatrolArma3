@@ -23,12 +23,16 @@ params [
 
 HEALER = _healer;
 {_healer disableAI _x; true} count ["TARGET","FSM","AUTOTARGET","AUTOCOMBAT"];
+
 _healer doMove position _injured;
+
 waitUntil { sleep 3; _healer distance _injured < 4 || speed _healer == 0 };
+
 sleep 5;
 
 if (speed _healer == 0) exitWith{ [_healer,_injured] call JP_fnc_heal;};
 
+_healer allowDamage false;
 _injured setVariable ["unit_healed", _healer, true];
 
 // move the wounded out of the vehicle
@@ -63,7 +67,7 @@ _injured attachTo [_healer, _offset];
 private _duration = [_healer, _injured] call JP_fnc_calculateTimeToHeal;
 [_healer, _injured,_duration] call JP_fnc_spawnHealEquipement;
 
-_injured setVariable ["unit_stabilized", false];
+_injured setVariable ["unit_stabilized", false,true];
 
 private _startTime = diag_tickTime + _duration;
 waitUntil {
@@ -81,6 +85,7 @@ if (!alive _healer) exitWith {};
 [_healer, "medicStop"] remoteExec ["playActionNow"];
 
 _healer stop false;
+_healer allowDamage true;
 _healer setBehaviour "CARELESS";
 
 if (alive _injured) then {
@@ -102,12 +107,12 @@ if (alive _injured) then {
 
 	deleteMarker (_injured getVariable ["JP_marker_injured", ""]) ;
 	_injured removeEventHandler ["HandleDamage",0];
-	_injured addMPEventHandler ["MPKilled",{  MEDEVAC_State = "aborted";  }];
+	_injured addEventHandler ["Killed",{  MEDEVAC_State = "aborted";  }];
 	
     sleep 3;
 
 	{_injured enableAI _x; } count ["MOVE","TARGET","AUTOTARGET","ANIM"];
-	_injured setVariable ["unit_stabilized", true];
+	_injured setVariable ["unit_stabilized", true, true];
 	_marker = _injured getVariable ["JP_marker_injured", ""];
 
 };

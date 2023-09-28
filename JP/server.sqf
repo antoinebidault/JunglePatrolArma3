@@ -20,11 +20,12 @@ setDate [1969,6,18, TIME_OF_DAYS, 0];
 
 sleep 1;
 
+[] call JP_fnc_missionSetup;
+
 
 // Keep only four units in singleplayer
 if (!isMultiplayer)then{
 	{ if ((_foreachIndex + 1) > SP_GROUP_PLAYER_NB_UNITS) then { deleteVehicle _x; } } forEach units GROUP_PLAYERS;
-	
 };
 
 addMissionEventHandler ["HandleDisconnect", {
@@ -350,10 +351,11 @@ publicVariable "MARKER_WHITE_LIST";
 // Wait the process executed async is markAsFinished
 waitUntil {count CLUSTERS > 0};
 
+
 MARKERS = [CLUSTERS] call JP_fnc_fillClusters;
 
 [] call JP_fnc_camp;
-[] call JP_fnc_supportInit; // Support ui init
+// [] call JP_fnc_supportInit; // Support ui init
 
 // Random spawning function decoupled from the compounds
 // [] spawn JP_fnc_spawnCrashSite; 
@@ -372,6 +374,21 @@ MARKERS = [CLUSTERS] call JP_fnc_fillClusters;
 // Revive friendlies with chopper pick up
 if (MEDEVAC_ENABLED) then{
 	[GROUP_PLAYERS] spawn JP_fnc_medicalInit;
+};
+
+[] spawn { 
+	sleep 1;
+	_data = ["Acts_AidlPercMstpSloWWrflDnon_warmup_2_loop","Acts_AidlPercMstpSnonWnonDnon_warmup_8_loop","Acts_AidlPercMstpSnonWnonDnon_warmup_6_loop","Acts_AidlPercMstpSnonWnonDnon_warmup_3_loop","Acts_AidlPercMstpSloWWrflDnon_warmup_3_loop","Acts_AidlPercMstpSlowWrflDnon_warmup03","Acts_AidlPercMstpSloWWrflDnon_warmup_6_loop","Acts_AidlPercMstpSloWWrflDnon_warmup_1_loop"];
+	{
+		
+		if (!isPlayer _x) then {
+			_move = _data call BIS_fnc_selectRandom;
+			_x disableAI "MOVE";
+			[_x, _move] remoteExec ["switchMove",0];
+			_data = _data - [_move];
+		}
+		
+	} forEach units GROUP_PLAYERS;
 };
 
 private ["_mkr","_cacheResult","_ieds"];

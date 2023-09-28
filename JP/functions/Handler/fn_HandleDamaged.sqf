@@ -16,7 +16,7 @@
 */
 
 
-_this addMPEventHandler["MPHit",{
+[_this,["HandleDamage",{
 	/*params [
 		"_unit",			// Object the event handler is assigned to.
 		"_hitSelection",	// Name of the selection where the unit was damaged. "" for over-all structural damage, "?" for unknown selections.
@@ -27,7 +27,7 @@ _this addMPEventHandler["MPHit",{
 		"_instigator",		// Person who pulled the trigger. (Object)
 		"_hitPoint"			// hit point Cfg name (String)
 	];*/
-	params ["_unit", "_source", "_damage", "_instigator"];
+	params ["_unit","_hitSelection", "_damage", "_source"];
 	
 	if !(local _unit) exitWith {false};
 	if (_damage == 0) exitWith {false};
@@ -61,4 +61,4 @@ _this addMPEventHandler["MPHit",{
 		if (_unit getVariable["JP_unit_injured",false])then{_damage = .9;};
 	};
 	_damage;
-}];
+}]] remoteExec ["addEventHandler",0,true];

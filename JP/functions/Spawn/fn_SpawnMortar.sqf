@@ -38,14 +38,14 @@ for "_j" from 1 to _nb do {
     _mortar setVariable["JP_TaskNotCompleted",true];
     _mortar setVariable["JP_Type","mortar"];
 
-    _mortar addMPEventHandler ["MPKilled",{ 
+    [_mortar, ["Killed",{ 
         params["_mortar","_killer"];
         {
           ["JP_mortar","SUCCEEDED",true] remoteExec ["BIS_fnc_taskSetState",_x, false];
         } foreach units GROUP_PLAYERS;  
         OBJECTIVE_DONE = true;
        publicVariable "OBJECTIVE_DONE";
-    }];
+    }]] remoteExec ["addEventHandler",0,true];;
 
     _mortar setDir ([_posToSpawn,_pos] call BIS_fnc_dirTo);
     [_mortar,"ColorPink"] call JP_fnc_addMarker;

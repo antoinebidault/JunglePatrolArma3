@@ -88,12 +88,19 @@ _ctrl ctrlCommit .3;
 
 _talker setVariable["JP_speak",true];
 
+if (!isNil '_sound' && !isNil '_topic') then {
 
-if (!isNil '_sound' && !isNil '_topic' ) then {
+	if (!(_talker kbHasTopic _topic)) then {
+		_talker kbAddTopic  [_topic, "JP\voices\"+_topic+"\CfgSentences.bikb"];
+	};
+	if (_talker != player && !(player kbHasTopic _topic)) then {
+		player kbAddTopic  [_topic, "JP\voices\"+_topic+"\CfgSentences.bikb"];
+	};
+
 	_talker kbTell [player, _topic, _sound,false];
 	waitUntil { _talker kbWasSaid [player, _topic,_sound, 3]; };
 } else {
-	playSound "FD_CP_Clear_F";
+	playSound "defaultNotification";
 	_currentTime = time;
 	_talker setRandomLip true;
 	waitUntil { time >= _currentTime + ((count(_say)/13) max 1.6); };

@@ -37,7 +37,7 @@ if (!DEBUG) then {
     _marker setMarkerAlpha 0;
 };
 
-while {!isNull _leader && alive _leader &&  !isNil '_unitChased' && !isNull _unitChased && !(_leader getVariable["JP_disable_patrol",false])}do{
+while {!isNull _leader && alive _leader && !captive _leader &&  !isNil '_unitChased' && !isNull _unitChased && !(_leader getVariable["JP_disable_patrol",false])}do{
     _leader = leader _grp;
     if (_leader knowsAbout _unitChased >= .5) then {
         if (time > LAST_FLARE_TIME + 120)then{

@@ -53,9 +53,9 @@ CONVOY = [];
   };
   //(driver _car) enableSimulationGlobal false;
   
-  _car addMPEventHandler ["MPKilled",{
+  [_car,["Killed",{
       [GROUP_PLAYERS,5] remoteExec ["JP_fnc_updateScore",2];   
-  }];
+  }]] remoteExec ["addEventHandler",0,true];
 
 _grp selectLeader  (driver _car)  ;
 
@@ -87,9 +87,9 @@ _grp selectLeader  (driver _car)  ;
       _units = _units + (crew _truck);
 
 
-      _truck addMPEventHandler ["MPKilled",{
+      [_truck, ["Killed",{
         [GROUP_PLAYERS,5] remoteExec ["JP_fnc_updateScore",2];   
-      }];
+      }]] remoteExec ["addEventHandler",0,true];;
       CONVOY pushback _truck;
   };
 

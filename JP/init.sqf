@@ -115,7 +115,6 @@ if (!isNull player) then {
 enableDynamicSimulationSystem true;
 "Group" setDynamicSimulationDistance 600;
 
-
 // CONFIG
 call(compileFinal preprocessFileLineNumbers  "JP\config\config-dialog-functions.sqf");
 JP_fnc_dialog =  compileFinal preprocessFileLineNumbers "JP\config\config-dialog.sqf";
@@ -164,40 +163,12 @@ waitUntil {count ([] call JP_fnc_allPlayers) > 0 && time > 0 };
 // Public variables
 call (compileFinal preprocessFileLineNumbers "JP\variables.sqf"); 
 
+	{
+		if (!isPlayer _x) then {
+			_x disableAI "MOVE";
+		};
+	} forEach units GROUP_PLAYERS;
 
-JP_fnc_initCharacters = {
-  _leader = (leader GROUP_PLAYERS);
-  _leader setVariable ["JP_avatar","group-leader", true];
-  _leader setName "One-Zero";
-
-
-  _rto =missionNamespace getVariable ["rto", objNull];
-  _rto setName "One-One";
-  _rto setVariable ["JP_avatar","rto",true];
-
-  _doc =missionNamespace getVariable ["doc", objNull];
-  _doc setName "One-Two";
-  _doc setVariable ["JP_avatar","doc",true];
-
-  _mg =missionNamespace getVariable ["mg", objNull];
-  _mg setName "Machine Gunner";
-
-  HQ = missionNamespace getVariable ["colonel", objNull];
-  HQ setName "Colonel Russel";
-  HQ setVariable ["JP_avatar","colonel",true];
-  publicVariable "HQ";
-
-  HQ kbAddTopic ["briefing", "JP\voices\Briefing\CfgSentences.bikb"];
-  _leader kbAddTopic ["briefing", "JP\voices\Briefing\CfgSentences.bikb"];
-
-  _leader kbAddTopic ["team", "JP\voices\Team\CfgSentences.bikb"];
-  _doc kbAddTopic ["team", "JP\voices\Team\CfgSentences.bikb"];
-  _rto kbAddTopic ["team", "JP\voices\Team\CfgSentences.bikb"];
-  _mg kbAddTopic ["team", "JP\voices\Team\CfgSentences.bikb"];
-};
-
-[] remoteExec ["JP_fnc_initCharacters", 0, true];
-
-[] execVM "JP\server.sqf";
 [] execVM "JP\client.sqf";
+[] execVM "JP\server.sqf";
 [] execVM "JP\headlessClient.sqf";

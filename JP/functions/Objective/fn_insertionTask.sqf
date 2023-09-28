@@ -2,7 +2,9 @@
 _chopper = missionNamespace getVariable ["chopper_insertion", objNull];
 {
 	if (!isPlayer _x) then {
+		[_x, ""] remoteExec ["switchMove"];
 		_x moveInAny _chopper;
+		_x enableAI "MOVE";
 	};
 } forEach units GROUP_PLAYERS;
 

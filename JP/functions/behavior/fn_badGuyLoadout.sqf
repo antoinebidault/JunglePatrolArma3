@@ -30,8 +30,8 @@ if (_side == SIDE_ENEMY) then {
   sleep 1;
 };
 
-_unit removeAllMPEventHandlers "MPHit";
-[_unit , "FiredNear"] remoteExec ["removeAllEventHandlers", 0, true];
+[_unit, "HandleDamage"] remoteExec ["removeAllEventHandlers", 0, true];
+[_unit, "FiredNear"] remoteExec ["removeAllEventHandlers", 0, true];
 
 
 // Random weapon loadout

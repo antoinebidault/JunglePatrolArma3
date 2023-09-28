@@ -19,6 +19,8 @@ map_click_handler =
 		if (JP_map_teleport_enabled) then {
 			{
 				// Current result is saved in variable _x
+				_x enableAI "ALL";
+				_x switchMove "";
 				_x setPos _pos; // _pos is predefined for onMapSingleClick
 			} forEach  units group player;
 			systemChat format [localize "STR_JP_teleport_teleportToMapPosition", _pos];

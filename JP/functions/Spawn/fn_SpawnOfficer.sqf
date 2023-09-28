@@ -57,20 +57,20 @@ _grp selectLeader _officer;
 
 [_truck,_officer] spawn JP_fnc_officerPatrol;
 
-_officer addMPEventHandler ["MPKilled",{
+[_officer, ["Killed",{
     params["_unit","_killer"];
     [format["JP_secondary_%1", name _unit],"FAILED",true] remoteExec ["BIS_fnc_taskSetState",GROUP_PLAYERS,true];
     OFFICERS = OFFICERS - [_unit];
-}];
+}]] remoteExec ["addEventHandler",0,true];;
 
-_officer removeAllMPEventHandlers "MPHit";
-_officer addMPEventHandler ["MPHit", {
+[_officer, "HandleDamage"] remoteExec ["removeAllEventHandlers", 0, true];
+[_officer, ["HandleDamage", {
     
     params [
         "_unit",			// Object the event handler is assigned to.
-        "_source",			// The source unit (shooter) that caused the damage.
+        "_hitSelection",			// The source unit (shooter) that caused the damage.
         "_damage",			// Resulting level of damage for the selection.
-        "_instigator"		// Person who pulled the trigger. (Object)
+        "_source"		// Person who pulled the trigger. (Object)
     ];
     
     if (_damage == 0) exitWith {false};
@@ -114,7 +114,7 @@ _officer addMPEventHandler ["MPHit", {
             [_player, "medicStop"] remoteExec ["playActionNow"];
             OFFICERS = OFFICERS - [_unit];
             _unit setVariable["JP_interrogated",true, true];
-            _unit removeAllMPEventHandlers "MPKilled";
+            [_unit, "Killed"] remoteExec ["removeAllEventHandlers", 0, true];
             
             [_unit] spawn {
                 params["_unit"];
@@ -137,7 +137,7 @@ _officer addMPEventHandler ["MPHit", {
     };
     
     _damage;
-}];
+}]] remoteExec ["addEventHandler", 0, true];
 
 
 //Custom variable

@@ -170,6 +170,7 @@ while { true } do {
 									if (!_enemyInMarker) then {
 										_success = true;
 										[_currentCompound,"neutral"] spawn JP_fnc_setCompoundState;
+										
 										[_currentCompound,35 + (ceil random 20),0] spawn JP_fnc_setCompoundSupport;				
 
 										//Misa à jour de l'amitié

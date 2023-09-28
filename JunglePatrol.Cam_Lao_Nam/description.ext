@@ -1,7 +1,14 @@
 JP_NO_INTRO = 1;
-// JP_debug = 1;
+JP_debug = 1;
 JP_FACTION_ENEMY = "O_VC";
 JP_FACTION_CIV = "C_VIET";
 JP_FACTION_FRIENDLY ="I_ARVN";
+
+briefingName = "Jungle Patrol"; 
+onLoadMission = $STR_JP_description_onLoadMission;
+loadScreen = "images\loadscreen.paa";  
+overviewPicture = "images\loadscreen.paa";  
+overviewText = $STR_JP_description_onLoadMission;
+overviewTextLocked = $STR_JP_description_onLoadMission;
 
 #include "JP\includes.hpp"

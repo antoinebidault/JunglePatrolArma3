@@ -24,8 +24,9 @@ _className = SUPPORT_MEDEVAC_CREW_CLASS;// "rhs_vdv_flora_medic";// "rhsusf_soco
 
 for "_xc" from 0 to 1 do {
 	_unit = _interventionGroup createUnit [_className, position _transportHelo, [], 0, "FORM"];
-	_unit addMPEventHandler ["MPKilled",{
+	_unit addEventHandler ["Killed",{
 		 MEDEVAC_State = "aborted"; 
+     publicVariable "MEDEVAC_State";
 	}];
 	[_unit] joinSilent _interventionGroup;
 };

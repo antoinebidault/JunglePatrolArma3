@@ -12,14 +12,44 @@
 if (isNull player) exitWith{};
 if (!hasInterface) exitWith{};
 
+_leader = (leader GROUP_PLAYERS);
+_leader setVariable ["JP_avatar","group-leader", true];
+_leader setName "One-Zero";
+
+_rto =missionNamespace getVariable ["rto", objNull];
+_rto setName "One-One";
+_rto setVariable ["JP_avatar","rto",true];
+
+_doc =missionNamespace getVariable ["doc", objNull];
+_doc setName "One-Two";
+_doc setVariable ["JP_avatar","doc",true];
+
+_mg =missionNamespace getVariable ["mg", objNull];
+_mg setName "Machine Gunner";
+
+HQ = missionNamespace getVariable ["colonel", objNull];
+HQ setName "Colonel Russel";
+HQ setVariable ["JP_avatar","colonel",true];
+publicVariable "HQ";
+
+/*
+HQ kbAddTopic ["briefing", "JP\voices\Briefing\CfgSentences.bikb"];
+_leader kbAddTopic ["briefing", "JP\voices\Briefing\CfgSentences.bikb"];
+
+_leader kbAddTopic ["team", "JP\voices\Team\CfgSentences.bikb"];
+_doc kbAddTopic ["team", "JP\voices\Team\CfgSentences.bikb"];
+_rto kbAddTopic ["team", "JP\voices\Team\CfgSentences.bikb"];
+_mg kbAddTopic ["team", "JP\voices\Team\CfgSentences.bikb"];
+
+player kbAddTopic ["briefing", "JP\voices\Briefing\CfgSentences.bikb"];
+player kbAddTopic ["team", "JP\voices\Team\CfgSentences.bikb"];
+*/
 // Client side 
 TALK_QUEUE = [];
 MESS_SHOWN = false;
 MESS_HEIGHT = 0;
 
-
 player call JP_fnc_resetState;
-
 
 player createDiaryRecord ["Diary",["Keep a good reputation",
 "The civilian in the sector would be very sensitive to the way you talk to them. Some of them are definitly hostiles to our intervention. You are free to take them in custody, that's a good point to track the potential insurgents in the region. You must avoid any mistakes, because it could have heavy consequences on the reputation of our troops in the sector. More you hurt them, more they might join the insurgents. If you are facing some difficulties, it is possible to convince some of them to join your team (it would costs you some credits...). Keep in mind the rules of engagements and it would be alright."]];
@@ -34,7 +64,6 @@ player createDiaryRecord ["Diary",["Presentation",
 In this singleplayer scenario, you have one major objective : perform a huge reconnaissance mission for 3 days in enemy territory. Every objectives and enemy locations are randomly generated, so each mission are completely differents and can have a good replayability."]];
 
  _loc =  nearestLocations [getPosWorld player, ["NameVillage","NameCity","NameCityCapital"],10000] select 0;
-
 
 // If unit JIP
 if (didJIP) then {
@@ -104,15 +133,12 @@ if (didJIP) then {
 };*/
 
 
-if (leader GROUP_PLAYERS == player) then {
-	// Execute mission setup on server
-	[] remoteExec ["JP_fnc_missionSetup", 2];
-};
-
 waitUntil {JP_STARTED};
 
 // Initial score display
 [] call JP_fnc_displayscore;
+
+
 
 // init user respawn loop
 // [player] spawn JP_fnc_respawn; //Respawn loop

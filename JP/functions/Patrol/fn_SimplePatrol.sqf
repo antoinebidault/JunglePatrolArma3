@@ -37,7 +37,7 @@ _startPos = getPosASL _unit;
     _unit forceWalk  false;
     (group _unit) setBehaviour "AWARE";
 };
-while { alive _unit }do{
+while { alive _unit && !captive _unit }do{
 
     if ( _unit getVariable["JP_disable_patrol",false])exitWith{false};
 

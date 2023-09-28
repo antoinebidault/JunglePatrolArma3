@@ -57,11 +57,11 @@ JP_fnc_spawnOfficerSimple = {
 
     [_truck,_officer] spawn JP_fnc_officerPatrol;
 
-    _officer addMPEventHandler ["MPKilled",{
+    [_officer, ["Killed",{
         params["_unit","_killer"];
         [format["JP_secondary_%1", name _unit],"FAILED",true] remoteExec ["BIS_fnc_taskSetState",GROUP_PLAYERS,true];
         OFFICERS = OFFICERS - [_unit];
-    }];
+    }]] remoteExec ["addEventHandler", 0, true];
 
     _officer removeAllEventHandlers "HandleDamage";
     _officer addEventHandler ["HandleDamage", {
@@ -117,7 +117,9 @@ JP_fnc_spawnOfficerSimple = {
                 [format["JP_secondary_%1", name _unit],"SUCCEEDED",true] remoteExec ["BIS_fnc_taskSetState",GROUP_PLAYERS,true];
                 OFFICERS = OFFICERS - [_unit];
                 _unit setVariable["JP_interrogated",true];
-                _unit removeAllMPEventHandlers "MPKilled";
+                [_unit, "Killed"] remoteExec ["removeAllEventHandlers",0,true];
+                
+            
                 
                 [_unit]spawn{
                     params["_unit"];

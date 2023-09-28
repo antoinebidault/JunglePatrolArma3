@@ -40,8 +40,8 @@ _this setskill ["courage", 1];
 _this setskill ["general", 1];
 _this setskill ["reloadSpeed", 1];
 
-[_this,"HandleDamage"] remoteExec ["removeAllEventHandlers", owner _this];
-[_this,"MPKilled"] remoteExec ["removeAllMPEventHandlers", owner _this];
-[_this, ["HandleDamage",{_this call JP_fnc_handleDamage;}]] remoteExec ["addEventHandler", owner _this];
-_this addMPEventHandler ["MPKilled",{_this call JP_fnc_handleKilled;}];
+[_this,"HandleDamage"] remoteExec ["removeAllEventHandlers", 0, true];
+[_this,"Killed"] remoteExec ["removeAllEventHandlers", 0, true];
+[_this, ["HandleDamage",{_this call JP_fnc_handleDamage;}]] remoteExec ["addEventHandler", 0, true];
+[_this, ["Killed",{_this call JP_fnc_handleKilled;}]] remoteExec ["addEventHandler", 0, true];
 

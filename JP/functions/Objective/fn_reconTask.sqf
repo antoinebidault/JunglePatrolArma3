@@ -67,6 +67,18 @@ if (!_noMarker) then {
 	[] call JP_fnc_updateMarker;
 };
 
+[_units select 0] spawn {
+	params["_unit"];
+	_do = true;
+	while (_do) do {
+		if (leader GROUP_PLAYERS distance2D _position < 30) then {
+			_unit call JP_fnc_revealObjective;
+			_do = false;
+		};
+		sleep 4;
+	};
+};
+
 waitUntil { sleep 3; (CURRENT_OBJECTIVE select 3) != "" && (((CURRENT_OBJECTIVE select 3) call BIS_fnc_taskState) == "SUCCEEDED") };
 
 {
@@ -89,8 +101,11 @@ if (REMAINING_OBJECTIVES == 0) then {
 	if (REMAINING_OBJECTIVES == 1) then {
 		[] spawn JP_fnc_helpFriends;
 	} else {
-		if (REMAINING_OBJECTIVES == 2) then {
-			[] spawn JP_fnc_helpFriendsRadio;
+		if (REMAINING_OBJECTIVES == 2) then {	
+			[] spawn {
+				sleep 125;
+				[] remoteExec ["JP_fnc_helpFriendsRadio"];
+			};
 		};
 
 		[] spawn JP_fnc_sleepTask;

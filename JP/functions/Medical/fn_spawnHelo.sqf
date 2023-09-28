@@ -29,8 +29,9 @@ _transporthelo setVehicleLock "LOCKEDPLAYER";
 _transporthelo setCaptive true;
 
 //If the chopper is destroyed => Abort medevac
-_transporthelo addMPEventHandler ["MPKilled",{
+_transporthelo addEventHandler ["Killed",{
      MEDEVAC_State = "aborted"; 
+     publicVariable "MEDEVAC_State";
 }];
 
 _transporthelo; 

@@ -70,14 +70,16 @@ while {true} do {
 
 			for "_j" from 1 to _numberOfSheep  do {
 				_goat = createAgent [_type, _pos, [], 0, "NONE"];
+
+				/*
 				_goat addMPEventHandler ["MPKilled", {
 					_men = position(_this select 0) nearObjects ["Man", 40];
 					/*
 					if ({alive _x && side _x == SIDE_CIV} count _men > 0 && group(_this select 1) == GROUP_PLAYERS) then{
 						[_men select 0,-3] remoteExec ["JP_fnc_updateRep",2];
 						[_man select 0,"Damn ! Don't touch my sheep !"] spawn JP_fnc_talk;
-					};*/
-				}];
+					};
+				}];*/
 				if (DEBUG)then{
 					[_goat,"ColorGrey"] call JP_fnc_addmarker;
 				};

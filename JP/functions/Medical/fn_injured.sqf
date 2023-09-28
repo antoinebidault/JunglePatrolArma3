@@ -28,17 +28,11 @@ if (isPlayer _unit && _unit == player) then {
 	// Reviving loop
 	while {_unit getVariable["JP_unit_injured",false] && !JP_ai_reviving_cancelled} do {
 
-		private _foundCloseUnit = objNull;
-		private _dist = 999999;
+		
 		
 		if (!isNull JP_ai_current_medic && lifeState JP_ai_current_medic != "HEALTHY" && lifeState JP_ai_current_medic != "INJURED") exitWith {JP_ai_current_medic = objNull;};
 
-		{
-			if(alive _x && (_x distance _unit) < _dist && (lifeState _x == "HEALTHY" || lifeState _x == "INJURED")) then {
-				_foundCloseUnit = _x;
-				_dist = _x distance _unit;
-			};
-		}foreach units GROUP_PLAYERS; 
+		_foundCloseMedic = _unit call JP_fnc_findCloseMedic;
 
 		// Check the status
 		if (_dist == 999999 || isNull _foundCloseUnit) exitWith { 
@@ -73,14 +67,7 @@ if (isPlayer _unit && _unit == player) then {
 	_unit setVariable["JP_unit_injured",false,true];
 
 } else {
-	_foundCloseUnit = objNull;
-	_dist = 200;
-	{
-		if(!isPlayer _x && alive _x && (_x distance _unit) < _dist && lifeState _x != "INCAPACITATED" ) then {
-			_foundCloseUnit = _x;
-			_dist = _x distance _unit;
-		};
-	}foreach units GROUP_PLAYERS;
+	_foundCloseUnit = _unit call JP_fnc_findCloseMedic;
 
 	if (!isNull _foundCloseUnit ) then {
 		[_foundCloseUnit, [localize "STR_JP_voices_teamMember_onIt",localize "STR_JP_voices_teamMember_helpHim",localize "STR_JP_voices_teamLeader_afterHim"] call BIS_fnc_selectRandom] remoteExec ["JP_fnc_talk"];

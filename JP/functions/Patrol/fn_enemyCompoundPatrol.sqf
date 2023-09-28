@@ -53,7 +53,7 @@ if(isNull(_unit findNearestEnemy _unit))then{
 };
 
 scopeName "main";
-while { alive _unit && isNull(_unit findNearestEnemy _unit) && !(_unit getVariable ["JP_disable_patrol",false] && !(_unit getVariable ["JP_advisor",false])) }do{
+while { alive _unit && !captive _unit && isNull(_unit findNearestEnemy _unit) && !(_unit getVariable ["JP_disable_patrol",false] && !(_unit getVariable ["JP_advisor",false])) }do{
     
     _bPoss = [];
 	_i = 0;

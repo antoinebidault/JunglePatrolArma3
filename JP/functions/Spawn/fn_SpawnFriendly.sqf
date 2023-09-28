@@ -40,12 +40,12 @@ _unit remoteExec ["JP_fnc_addActionJoinAsAdvisor"];
 _unit remoteExec ["JP_fnc_addActionJoinAsTeamMember"];
 
 // Remove all action on death
-_unit addMPEventHandler ["MPKilled",
+[_unit, ["Killed",
     { 
         params["_unit","_killer"];
         _unit remoteExec ["RemoveAllActions",0];
     }
-];
+]] remoteExec ["addEventHandler",0,true];
 
 if (!_excludedFromSpawnedUnit)then{
     UNITS_SPAWNED_CLOSE pushback _unit;

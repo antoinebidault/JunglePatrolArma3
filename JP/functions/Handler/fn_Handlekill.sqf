@@ -17,7 +17,7 @@
 
  params["_unit"];
  
- _unit addMPEventHandler ["MPKilled",
+ [_unit, ["Killed",
 { 
         params["_unit","_killer"];
         _unit remoteExec ["RemoveAllActions",0];
@@ -27,7 +27,7 @@
             [_unit,-10] remoteExec ["JP_fnc_updaterep",2];
         }else{
             if (_side == SIDE_ENEMY && group _killer == GROUP_PLAYERS)then{
-
+                _unit remoteExec ["removeAllActions", 0, true];
                 [_unit, ["Disguise",{
                     params ["_enemy","_unit"];
                     [_unit,_enemy] spawn JP_fnc_undercover;
@@ -55,4 +55,5 @@
         _unit call JP_fnc_deleteMarker;
 
     }
- ];
+ ]
+ ] remoteExec ["addEventHandler",0,true];

@@ -28,32 +28,65 @@ if (isNull _healer) exitWith {false};
 _behaviour = behaviour _healer;
 if(!isNull (_injuredperson getVariable ["JP_healer", objNull])) exitWith{false};
 _injuredperson setVariable ["JP_healer", _healer, true];
+_healer setVariable ["JP_heal_injured", _injuredperson, true];
 _injuredperson setUnconscious true;
 
 sleep 4;
 
-if (!isPlayer _healer && {_healer distance _injuredperson > 6}) then {
+JP_fnc_aiMove = {
+	params["_healer", "_injured"];
 	_healer setBehaviour "AWARE";
-	_healer doMove (position _injuredperson);
+	_healer doMove (position _injured);
 	_timenow = time;
 	WaitUntil {
 		sleep 1;
-		!(_injuredperson getVariable["JP_unit_injured",false]) ||
-		_healer distance _injuredperson <= 4		 		||
-		{!alive _injuredperson}			 					||
-		{!alive _healer}				 					||
-		{_timenow + 220 < time}
+		!(_injured getVariable["JP_unit_injured",false]) ||
+		_healer distance _injured <= 4	 		     ||
+		!alive _injured		 					 ||
+		!alive _healer				 				 ||
+		lifeState _healer == "INCAPACITATED"          ||
+		speed _healer == 0                          ||
+		_timenow + 320 < time
+	};
+	
+	if (speed _healer == 0) then {
+		[_healer,_injured] call JP_fnc_aiMove;
+	};
+};
+
+if (!isPlayer _healer && {_healer distance _injuredperson > 6}) then {
+	[_healer,_injuredperson] call JP_fnc_aiMove;
+};
+
+// If healer hase been killed
+if (lifeState _healer == "INCAPACITATED") exitWith{
+	_healer setVariable ["JP_heal_injured", objNull, true];
+	_injuredperson setVariable ["JP_healer", objNull, true];
+	if (!(_injuredperson getVariable["JP_unit_injured",false])) then {
+		_foundCloseUnit = _injuredperson call JP_fnc_findCloseMedic;
+		if (!isNull _foundCloseUnit)then {
+			[_foundCloseUnit, _injuredperson, false] spawn JP_fnc_firstAid;
+		};
 	};
 };
 
 // The player has revived him before
-if (!(_injuredperson getVariable["JP_unit_injured",false]) ) exitWith{ _injuredperson setVariable ["JP_healer", objNull, true]; };
+if (!(_injuredperson getVariable["JP_unit_injured",false]) ) exitWith{ 	
+	_healer setVariable ["JP_heal_injured", objNull, true];
+	_injuredperson setVariable ["JP_healer", objNull, true]; 
+};
 
 // Another player is healing him
-if (_injuredperson getVariable ["JP_healer", objNull] != _healer ) exitWith{}; 
+if (_injuredperson getVariable ["JP_healer", objNull] != _healer ) exitWith{
+	_healer setVariable ["JP_heal_injured", objNull, true];
+}; 
 
 // The injured is dragged by another player
-if (_injuredperson getVariable ["JP_unit_dragged", false]) exitWith{}; 
+if (_injuredperson getVariable ["JP_unit_dragged", false]) exitWith{
+	_healer setVariable ["JP_heal_injured", objNull, true];
+}; 
+
+_healer allowDamage false;
 
 _healer selectWeapon primaryWeapon _healer;
 sleep 1;
@@ -116,12 +149,6 @@ if (alive _healer && alive _injuredperson && _injuredperson getVariable["JP_unit
 	_injuredperson setUnconscious false;
 	_injuredperson setVariable["JP_unit_injured",false,true];
 	deleteMarker (_injuredperson getVariable ["JP_marker_injured",  ""]);
-
-	if (isPlayer _injuredperson && (leader GROUP_PLAYERS) == _injuredperson) then {
-		//_injuredperson remoteExec ["removeAllActions"];
-		//_injuredperson call JP_fnc_actionCamp;
-		//_injuredperson call JP_fnc_addSupportUi;
-	};
 	
 	sleep 1;
 	resetCamShake;
@@ -132,7 +159,8 @@ if (alive _healer && alive _injuredperson && _injuredperson getVariable["JP_unit
 	};
 };
 
-_injuredperson setVariable ["JP_healer",ObjNull,true];
+_injuredperson setVariable ["JP_healer",objNull,true];
+_healer setVariable ["JP_heal_injured", objNull, true];
 
 if (!isPlayer _healer) then {
 	_healer stop false;
@@ -147,6 +175,7 @@ if (alive _healer) then {
 	_healer setBehaviour _behaviour;
 };
 
+_healer allowDamage true;
 
 if (!alive _injuredperson) exitWith {};
 if (!alive _healer) exitWith {};
