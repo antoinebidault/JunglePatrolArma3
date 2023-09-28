@@ -36,7 +36,7 @@ _nbUnits =  4 + floor(random 4);
 
 for "_xc" from 1 to _nbUnits  do {
 	_unit =[_grp,_spawnPos,true] call JP_fnc_spawnEnemy;
-	_unit setVariable["JP_type","nighttracker"];
+	_unit setVariable["JP_Type","nighttracker"];
 	_unit setBehaviour "SAFE";
 	_unit setSpeedMode "LIMITED";
 	_units pushback _unit;

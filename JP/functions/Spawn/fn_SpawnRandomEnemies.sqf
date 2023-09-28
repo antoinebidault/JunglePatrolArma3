@@ -32,9 +32,9 @@ while{true}do {
 		_isInFlyingVehicle = true;
 	};
 	
-	_nbUnitSpawned = { _x getVariable["JP_type",""] == "patrol" && alive _x } count UNITS_SPAWNED_CLOSE;
+	_nbUnitSpawned = { _x getVariable["JP_Type",""] == "patrol" && alive _x } count UNITS_SPAWNED_CLOSE;
 	if (_nbUnitSpawned < MAX_RANDOM_PATROL && !_isInFlyingVehicle)then{
-		_nbFriendlies = { _x getVariable["JP_type",""] == "patrol" && side _x == SIDE_FRIENDLY} count UNITS_SPAWNED_CLOSE;
+		_nbFriendlies = { _x getVariable["JP_Type",""] == "patrol" && side _x == SIDE_FRIENDLY} count UNITS_SPAWNED_CLOSE;
 		//Get random pos
 		_side = SIDE_ENEMY;
 

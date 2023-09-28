@@ -68,7 +68,7 @@ while{ true }do {
 					[_unit] call JP_fnc_handlekill;
 					// [_unit] call JP_fnc_addTorch;
 					[_unit, if(side _unit == SIDE_CIV) then { "ColorBlue" } else { "ColorRed" } ] call JP_fnc_addMarker;
-					_unit setVariable["JP_type","carpatrol"];
+					_unit setVariable["JP_Type","carpatrol"];
 					UNITS_SPAWNED_CLOSE pushBack _unit;
 				} foreach (crew _car);
 

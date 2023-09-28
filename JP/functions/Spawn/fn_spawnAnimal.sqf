@@ -15,7 +15,7 @@ _animal setBehaviour "CARELESS";
 
 [leader GROUP_PLAYERS,"I've heard something, stay quiet..."] remoteExec ["JP_fnc_talk"];
 
-["JP_investigate",["Investigate","Investigate","You've heard some noise coming from bushes..."],_pos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",GROUP_PLAYERS, false];
+["JP_investigate",GROUP_PLAYERS,["Investigate","Investigate","You've heard some noise coming from bushes..."],_pos,"CREATED",1, true] remoteExec ["BIS_fnc_setTask",GROUP_PLAYERS, true];
 
 _timer = time;
 waitUntil { sleep 1; (_animal distance _pos < 3) || ((leader GROUP_PLAYERS) distance (getPos _animal) <= 2) || time > _timer + 5*60 };

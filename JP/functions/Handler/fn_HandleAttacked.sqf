@@ -92,11 +92,12 @@
 					[_unit] join _grp;
 				};
 				_unit setUnconscious false;
-				_unit remoteExec ["removeAllActions",2, true];
+				_unit remoteExec ["removeAllActions",0, true];
+				_unit stop false;
 				removeAllWeapons _unit;
 				removeHeadgear _unit;
 				_unit allowFleeing 1;
-				_unit setBehaviour "SAFE";
+				_unit setBehaviour "CARELESS";
 				_unit moveTo (_unit modelToWorld [2000,0,0]);
 				[_unit,10] remoteExec ["JP_fnc_updateRep",2];
 			},nil,1,false,true,"","true",3,false,""];

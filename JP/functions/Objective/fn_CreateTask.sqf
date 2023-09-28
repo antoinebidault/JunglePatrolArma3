@@ -9,7 +9,7 @@
     TODO
 
   Parameters:
-    0: OBJECT - Item containing the intel. It must have a JP_type variable set up to work properly 
+    0: OBJECT - Item containing the intel. It must have a JP_Type variable set up to work properly 
     1: BOOL - True to show the task with a visible notification 
 
   Returns:

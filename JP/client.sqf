@@ -221,7 +221,7 @@ addMissionEventHandler
 							if (DEBUG) then {
 								{
 									if (_x getVariable["marker",""] == _mkr) then {
-										hint format["Type : %1",_x getVariable["JP_type","unknown"]];
+										hint format["Type : %1",_x getVariable["JP_Type","unknown"]];
 									};
 								} foreach allUnits;
 							};

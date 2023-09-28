@@ -27,7 +27,7 @@ _officer = _grp createUnit [ENEMY_COMMANDER_CLASS, _initPos,[],AI_SKILLS,"NONE"]
 [_officer] joinSilent _grp;
 _officer setVariable ["JP_IsIntelRevealed",false, true];
 _officer setVariable ["JP_TaskNotCompleted",true, true];
-_officer setVariable ["JP_type","officer", true];
+_officer setVariable ["JP_Type","officer", true];
 [_officer,"ColorRed"] call JP_fnc_addmarker;
 
 // _grp call JP_fnc_sendToHC;
@@ -48,7 +48,7 @@ _unit = objNull;
 for "_yc" from 1 to _nbUnit  do {
     _unit = [_grp, _initPos, true] call JP_fnc_spawnEnemy;
      [_unit,"ColorRed"] call JP_fnc_addmarker;
-    _unit setVariable ["JP_type","officerguard", true];
+    _unit setVariable ["JP_Type","officerguard", true];
     _unit enableDynamicSimulation false;
     _unit moveInAny _truck;    
 };

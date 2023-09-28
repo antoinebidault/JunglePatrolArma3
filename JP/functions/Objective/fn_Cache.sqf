@@ -37,21 +37,23 @@ for "_j" from 1 to _nb do {
     _posToSpawn = _posBuildings call BIS_fnc_selectRandom;
     _posBuildings = _posBuildings - [_posToSpawn];
     _unitName = _boxeClasses call BIS_fnc_selectRandom;
-    _unit = createVehicle [_unitName,_posToSpawn,[],0,"CAN_COLLIDE"]; 
-    clearmagazinecargo _unit; 
-    clearweaponcargo _unit;
+    _ammo = createVehicle [_unitName,_posToSpawn,[],0,"CAN_COLLIDE"]; 
+    clearmagazinecargo _ammo; 
+    clearweaponcargo _ammo;
+    clearBackpackCargo _ammo;
 
-    _unit setDir (random 359);
-    [_unit,"ColorBrown"] call JP_fnc_addMarker;
-    _unit setVariable["JP_Type","cache", true, true];
-    _unit setVariable["JP_TaskNotCompleted",true, true];
-    _unit setVariable["JP_IsIntelRevealed",false, false];
+    _ammo setDir (random 359);
+    [_ammo,"ColorBrown"] call JP_fnc_addMarker;
+    _ammo setVariable["JP_Type","cache", true];
+    _ammo setVariable["JP_TaskNotCompleted",true, true];
+    _ammo setVariable["JP_IsIntelRevealed",false, true];
     
-    [_unit,["Killed",{ 
+    [_ammo,["Killed",{ 
         params["_cache","_killer"];
         _cache remoteExec ["JP_fnc_success", 2, false];
     }]] remoteExec["addEventHandler",0, true];
-    _units pushBack _unit;
+   
+    _units pushBack _ammo;
     _nbGuards = 2 + round(random 4);
     _grp = createGroup SIDE_ENEMY;
     for "_i" from 1 to _nbGuards do {
@@ -59,10 +61,9 @@ for "_j" from 1 to _nb do {
          _posToSpawn = _posBuildings call BIS_fnc_selectRandom;
          _posBuildings = _posBuildings -[_posToSpawn];
         _enemy = [_grp,_posToSpawn,false] call JP_fnc_spawnEnemy;
-        _enemy setVariable["JP_type","cacheguard", true];
+        _enemy setVariable["JP_Type","cacheguard", true];
         _units pushBack _enemy;
     };
-
 };
 
 _units;

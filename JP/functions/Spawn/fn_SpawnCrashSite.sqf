@@ -78,7 +78,7 @@ private _tempMarkers = MARKER_WHITE_LIST;
                [_player,"...3..."] remoteExec ["JP_fnc_talk"];
                [_player,"...2..."] remoteExec ["JP_fnc_talk"];
                [_player,"...1"]  remoteExec ["JP_fnc_talk"];
-
+               sleep 6;
                _chopper remoteExec ["JP_fnc_success",2, false];
 
                _bomb = "HelicopterExploBig";
@@ -93,7 +93,6 @@ private _tempMarkers = MARKER_WHITE_LIST;
 
      },{},[],8,nil,true,false] remoteExec ["BIS_fnc_holdActionAdd"];
 
-    // Add to markers
 
     _enemyArea = createMarker [format["ch-bl-%1",random 10000], getPos _chopper];
     _enemyArea setMarkerSize [144,144];
@@ -104,8 +103,6 @@ private _tempMarkers = MARKER_WHITE_LIST;
     if (random 100 > 50) then { _civ = 4;} else { _en  = 4; };
     MARKERS pushback [_enemyArea,getPos _chopper,false,false,40,[],[_civ,0,_en,0,0,0,0,0,0,0],[], 0,true,false,[],"chopper", 50,"Chopper crash site",[],"none", false, [0,0,0,0,0,0,0,0,0,0]];
     CRASHSITES pushback _chopper;
-// };
 
-// publicVariable "CRASHSITES";
 
-CRASHSITES;
+[_chopper];

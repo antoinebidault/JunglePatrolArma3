@@ -23,7 +23,7 @@ private _maxRange = SPAWN_DISTANCE;
 private _firstTrigger = true; 
 
 while{true}do {
-	if ({ _x getVariable["JP_type",""] == "civpatrol" && alive _x } count UNITS_SPAWNED_CLOSE  < MAX_RANDOM_CIVILIAN)then{
+	if ({ _x getVariable["JP_Type",""] == "civpatrol" && alive _x } count UNITS_SPAWNED_CLOSE  < MAX_RANDOM_CIVILIAN)then{
 
 		//Get random pos
 		if (_firstTrigger) then {_minRange = 1; _firstTrigger = false;}else{_minRange = 450;};
@@ -36,7 +36,7 @@ while{true}do {
 
 			for "_j" from 1 to _numberOfmen do {
 				_unit = [_group,_pos] call JP_fnc_spawnCivil;
-				_unit setVariable["JP_type","civpatrol"]; // overload
+				_unit setVariable["JP_Type","civpatrol"]; // overload
 				_unit setBehaviour "SAFE";
 				sleep .4;
 			};

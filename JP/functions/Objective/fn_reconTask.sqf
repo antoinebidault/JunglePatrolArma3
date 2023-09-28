@@ -58,22 +58,28 @@ switch (_objective) do {
 	default { };
 };
 
-hint "The recon area is represented with the large red marker. If you interrogate civilian in this sector or search in Viet's dead bodies, you'll find intel (documents, indications...) that will reduce the size of the red marker and give you more informations about the good location.";
 
 CURRENT_OBJECTIVE = [_objective,_position, 400,"", _units select 0];
 publicVariable "CURRENT_OBJECTIVE";
 
 if (!_noMarker) then {
+	hint "The recon area is represented with the large red marker. If you interrogate civilian in this sector or search in Viet's dead bodies, you'll find intel (documents, indications...) that will reduce the size of the red marker and give you more informations about the good location.";
+
 	[] call JP_fnc_updateMarker;
 };
 
 [_units select 0] spawn {
 	params["_unit"];
 	_do = true;
-	while (_do) do {
-		if (leader GROUP_PLAYERS distance2D _position < 30) then {
-			_unit call JP_fnc_revealObjective;
+	while {_do} do {
+
+		if (((CURRENT_OBJECTIVE select 3) call BIS_fnc_taskState) == "SUCCEEDED") then {
 			_do = false;
+		} else {
+			if (getPos (leader GROUP_PLAYERS) distance (CURRENT_OBJECTIVE select 1) < 30) then {
+				_unit call JP_fnc_revealObjective;
+				_do = false;
+			};
 		};
 		sleep 4;
 	};

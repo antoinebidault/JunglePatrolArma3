@@ -14,7 +14,7 @@ _units = [];
 
 for "_i" from 1 to _nbGuards do {
 	_enemy = [_grp,_pos,false] call JP_fnc_spawnEnemy;
-	_enemy setVariable["JP_type","trackerInsertion"];
+	_enemy setVariable["JP_Type","trackerInsertion"];
 	_units pushBack _enemy;
 	_enemy setUnitPos (if (random 1 > 0.5) then {"MIDDLE";} else {"DOWN";});
 };
