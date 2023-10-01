@@ -221,7 +221,7 @@ while { true } do {
 						// [] remoteExec ["JP_fnc_displayScore",_player, false];
 						// || _unit knowsAbout player > 2
 						//if ( alive _unit && !CHASER_TRIGGERED &&  ([_unit,_player] call JP_fnc_getVisibility > 20) ) then {
-						if ( alive _unit && !CHASER_TRIGGERED && _unit knowsAbout _player > 2.5 ) then {
+						if ( alive _unit && !captive _unit && !CHASER_TRIGGERED && _unit knowsAbout _player > 2.5 ) then {
 							if (DEBUG) then  {
 								hint "Alarm !";
 							};

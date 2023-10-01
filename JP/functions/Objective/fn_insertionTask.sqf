@@ -74,7 +74,7 @@ _chopper flyInHeight 60;
 	[_doc, localize "STR_JP_voices_doc_helo"]  remoteExec ["JP_fnc_talk"];
 	[_rto, localize "STR_JP_voices_mg_helo"] remoteExec ["JP_fnc_talk"];
 
-	sleep 5; 
+	sleep 15; 
 
 	[] spawn JP_fnc_intro;
 };

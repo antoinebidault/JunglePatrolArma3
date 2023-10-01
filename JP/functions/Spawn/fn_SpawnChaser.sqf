@@ -44,7 +44,7 @@ private _posSelected = [position _unitChased, SPAWN_DISTANCE,SPAWN_DISTANCE + 10
  };
 
 if (_notify) then {
-  [leader GROUP_PLAYERS, "Dawn, hey've called in reinforcements, elite units are on their way! Let's find a good hideout!", true] remoteExec["JP_fnc_talk", GROUP_PLAYERS, false];
+  [leader GROUP_PLAYERS, "Damn, they've called in reinforcements, elite units are on their way! Let's find a good hideout!", true] remoteExec["JP_fnc_talk", GROUP_PLAYERS, false];
 };
 
  //Trigger chase

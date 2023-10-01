@@ -35,15 +35,21 @@ _nextPos = [_lzPos, 500, 550, 4, 0, 2, 0] call BIS_fnc_findSafePos;
 _wp1 = _grp addWaypoint [_nextPos, 4];
 _wp1 setWaypointType "MOVE";
 _wp1 setWaypointBehaviour "AWARE";
-_wp1 setWaypointStatements ["true", "[leader GROUP_PLAYERS,true] spawn JP_fnc_spawnChaser;CHASER_TRIGGERED = true; publicVariable ""CHASER_TRIGGERED"";CHASER_TIMEOUT = time + 5 * 60; publicVariable ""CHASER_TIMEOUT""; [""JP_primary_insertion3"",""FAILED"",true] remoteExec [""BIS_fnc_taskSetState"",GROUP_PLAYERS,true];"];
 
 
-waitUntil { ({ alive _x || captive _x } count units _grp == 0 && !("JP_primary_insertion3" call BIS_fnc_taskCompleted)) ||  ("JP_primary_insertion3" call BIS_fnc_taskCompleted)};
+waitUntil { sleep 1; ({ ( getPos _x) distance _nextPos < 10 } count units _grp >= 1) || 
+	({ alive _x || captive _x } count units _grp == 0)
+};
 
-
-if (!("JP_primary_insertion3" call BIS_fnc_taskCompleted)) then {
+if ({ alive _x || captive _x } count units _grp == 0) then{
 	[leader GROUP_PLAYERS, "Good job ! The watchers have been neutralized !"] spawn JP_fnc_talk;
 	["JP_primary_insertion3","SUCCEEDED",true] remoteExec ["BIS_fnc_taskSetState",GROUP_PLAYERS,true];
-} else{
+} else {
+	["JP_primary_insertion3","FAILED",true] remoteExec ["BIS_fnc_taskSetState",GROUP_PLAYERS,true];
+	[leader GROUP_PLAYERS,true] spawn JP_fnc_spawnChaser;
+	CHASER_TRIGGERED = true; 
+	publicVariable "CHASER_TRIGGERED";
+	CHASER_TIMEOUT = time + 5 * 60; 
+	publicVariable "CHASER_TIMEOUT"; 
 	["JP_primary_insertion3","FAILED",true] remoteExec ["BIS_fnc_taskSetState",GROUP_PLAYERS,true];
 };
