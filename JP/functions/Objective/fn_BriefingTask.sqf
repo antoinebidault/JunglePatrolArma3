@@ -4,6 +4,7 @@
 _colonel = missionNamespace getVariable ["colonel", objNull];
 _leader = leader GROUP_PLAYERS;
 
+
 sleep 8;
 
 [_leader,localize "STR_JP_voices_team_briefing","STR_JP_voices_team_briefing","team"] remoteExec ["JP_fnc_talk"];

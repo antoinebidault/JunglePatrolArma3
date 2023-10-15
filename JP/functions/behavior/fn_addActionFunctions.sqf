@@ -445,9 +445,9 @@ JP_fnc_addActionGetIntel = {
 
         sleep 1;
 
+        _anim = format["Acts_CivilTalking_%1",ceil(random 2)];
         //Talking with the fixed glitch
         if (lifeState _unit != "INCAPACITATED") then {
-            _anim = format["Acts_CivilTalking_%1",ceil(random 2)];
             _unit switchMove _anim;
         };
 
@@ -482,7 +482,7 @@ JP_fnc_addActionGetIntel = {
         _this call JP_fnc_endTalking;
 
         if (lifeState _unit != "INCAPACITATED") then {
-            waitUntil{sleep .4; isNull (animationState _unit) || animationState _unit != _anim};
+            waitUntil{sleep .4; !isNil (animationState _unit) && animationState _unit != _anim};
             [_unit,""] remoteExec["switchMove",owner _unit] ;
         };
 

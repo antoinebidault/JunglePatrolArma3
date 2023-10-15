@@ -31,7 +31,7 @@ if (isPlayer _unit) exitWith{false};
 // Reducing damage with a factor of 3
 //_damage = 0.9 min _damage;
 
-_damage = damage _unit +( _damage / 15);
+_damage = damage _unit + ( _damage / 12);
 
 if (_damage >= .9  && !(_unit getVariable["JP_unit_injured",false])) then {
 

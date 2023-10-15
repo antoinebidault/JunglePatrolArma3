@@ -24,7 +24,7 @@
 		_distance = _this select 2;	
 		_muzzle = _this select 4;	
 		_gunner = _this select 7;	
-		if (!captive _unit && side _gunner == SIDE_FRIENDLY  && count (units (group _unit)) <= 2 && damage _unit > .1 && morale _unit < -.65 && _unit distance _gunner < 120) then {
+		if (!captive _unit && side _gunner == SIDE_FRIENDLY && lifeState _unit != "INCAPACITATED" && count (units (group _unit)) <= 2 && damage _unit > .1 && morale _unit < -.65 && _unit distance _gunner < 120) then {
 			[_unit,_gunner] remoteExec["JP_fnc_surrender"];
 		};
 	}
