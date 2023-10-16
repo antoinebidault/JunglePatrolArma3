@@ -128,14 +128,20 @@ switch (_type) do {
     default { };
 };
 
-//Unique ID added to the task id;
-_taskId = format["%1_%2",_taskId,random 200];
-[GROUP_PLAYERS,  _taskId, [_desc,_title,_title],(getPos _intel),"CREATED",1,_withNotif,""] remoteExec ["BIS_fnc_taskCreate",GROUP_PLAYERS];
-_intel setVariable["JP_Bonus",_bonus, true];
-_intel setVariable["JP_Reputation",_reputation, true];
-_intel setVariable["JP_Task",_taskId, true];
 
-CURRENT_OBJECTIVE set [3, _taskId];
+// If task already attached to object
+if (_intel getVariable["JP_Task",""] != "") then {
+   _taskId =_intel getVariable["JP_Task",""];
+   [_taskId,getPos _intel] call BIS_fnc_taskSetDestination;
+} else {
+   //Unique ID added to the task id;
+   _taskId = format["%1_%2",_taskId,random 200];
+   [GROUP_PLAYERS,  _taskId, [_desc,_title,_title],(getPos _intel),"CREATED",1,_withNotif,""] remoteExec ["BIS_fnc_taskCreate",GROUP_PLAYERS];
+   _intel setVariable["JP_Bonus",_bonus, true];
+   _intel setVariable["JP_Reputation",_reputation, true];
+   _intel setVariable["JP_Task",_taskId, true];
+   CURRENT_OBJECTIVE set [3, _taskId];
+};
 
 [_taskId,_message,_messageSuccess,_bonus,_title];
 

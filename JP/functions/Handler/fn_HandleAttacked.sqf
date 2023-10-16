@@ -63,14 +63,16 @@
 				*/
 
 				if (random 100 > 60 && alive _this)then{
-					waitUntil{sleep 1; {_x distance _this < 2} count ([] call JP_fnc_allPlayers) > 0  };
-					_this say3D (["vn_sam_vcwound_003","vn_sam_vcwound_005","vn_sam_vcwound_006"] call BIS_fnc_selectRandom);
+					waitUntil{sleep 1; {_x distance _this < 2} count ([] call JP_fnc_allPlayers) > 0 || !alive _this };
+					if (!alive _this) exitWith{ false; };
 					_nearestFriendly = [getPos _this] call JP_fnc_nearestPlayer;
 					_grenade =  createVehicle ["GrenadeHand", (_this modelToWorld [.3,.3,0]), [], 0, "NONE"];
 					hint "Grenade thrown by the wounded !";
 					[_nearestFriendly, "He has a grenade ! Take cover !"] remoteExec ["JP_fnc_talk", 0, true];
 					[_this, "Aaaargh !"] remoteExec ["JP_fnc_talk", 0, true];
-					sleep 6;
+					sleep 2;
+					_this say3D (["vn_sam_vcwound_003","vn_sam_vcwound_005","vn_sam_vcwound_006"] call BIS_fnc_selectRandom);
+					sleep 4;
 					if (lifeState _nearestFriendly != 'INCAPACITATED') then{
 						[_nearestFriendly, "That was close !"] remoteExec ["JP_fnc_talk", 0, true];
 					};

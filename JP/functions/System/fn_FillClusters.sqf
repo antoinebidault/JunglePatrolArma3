@@ -207,14 +207,14 @@ _supportScore = 0;
 
 		STAT_COMPOUND_TOTAL = STAT_COMPOUND_TOTAL + 1;
 
-		
-			/*if (DEBUG) then {
+			/*
+			if (DEBUG) then {
 				_marker = createMarker [format["%1-debug", _m], _pos];
-			_marker setMarkerShape "ICON";
-			_marker setMarkerType "mil_dot";
-			_marker setMarkerAlpha 0.3;
-			_marker setMarkerColor "ColorBlack";
-			_icon setMarkerText  format["support:%1|%2", _supportScore,_nameLocation];
+				_marker setMarkerShape "ICON";
+				_marker setMarkerType "mil_dot";
+				_marker setMarkerAlpha 0.3;
+				_marker setMarkerColor "ColorBlack";
+				_icon setMarkerText  format["support:%1|%2", _supportScore,_nameLocation];
 			//_marker setMarkerText  format["civ:%1/en:%2/Car:%3/bld:%4/ca:%5/mr:%6",_nbCivilian,_nbEnemies,_nbCars,_nbBuildings,_nbCaches,_nbMortars];
 			};*/
 

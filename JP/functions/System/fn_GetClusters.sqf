@@ -101,7 +101,7 @@ for "_xc" from 0 to _worldNbBlocks do {
 				private _radius = _res select 0;
 				
 				_nbHouses = _res select 1;
-				if (_nbHouses > 0)then {
+				if (_nbHouses > 1)then {
 					_name = localize "STR_JP_getclusters_compound";
 					if (_nbHouses < 2) then {
 						_name = localize "STR_JP_getclusters_landHouse";

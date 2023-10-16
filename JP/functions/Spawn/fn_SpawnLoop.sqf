@@ -163,7 +163,7 @@ while { true } do {
 							if (_triggered && !_success && _compoundState == "bastion") then {
 								if ([_playerPos, _marker] call JP_fnc_isInMarker) then {
 									_enemyInMarker = true;
-									if ({side _x == SIDE_ENEMY && !(captive _x) && alive _x && [getPos _x, _marker] call JP_fnc_isInMarker  } count allUnits <= floor (0.2 * (_peopleToSpawn select 2))) then {
+									if ({side _x == SIDE_ENEMY && !(captive _x) && lifeState _x != "INCAPACITATED" && alive _x && [getPos _x, _marker] call JP_fnc_isInMarker  } count allUnits == 0) then {
 										_enemyInMarker = false;
 									};
 									//Cleared success

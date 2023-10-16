@@ -89,7 +89,9 @@ JP_fnc_cutsceneOut = {
 sleep 5;
 skipTime 5*24;
 _date = date;
-_date set [3,22];
+_date set [3,24]; 
+_date set [2,21]; 
+_date set [1,1]; 
 setDate _date;
 sleep 10;
 

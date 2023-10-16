@@ -87,7 +87,7 @@ _grp selectLeader _officer;
         };
 
         [leader GROUP_PLAYERS,localize "STR_JP_voices_teamLeader_targetDown", true] remoteExec ["JP_fnc_talk", GROUP_PLAYERS,false];
-        [format["JP_secondary_%1", name _unit],GROUP_PLAYERS, ["Talk to the wounded officer","Interrogate the officer","Talk to the wounded officer"],getPos _unit,"CREATED",1, true] remoteExec ["BIS_fnc_setTask", GROUP_PLAYERS, true];
+        [format["JP_secondary_%1", name _unit],GROUP_PLAYERS, ["Talk to the wounded officer","Talk to the officer","Talk to the wounded officer"],getPos _unit,"CREATED",1, true] remoteExec ["BIS_fnc_setTask", GROUP_PLAYERS, true];
         _unit getVariable["marker",""] setMarkerAlpha 1;
         _unit getVariable["marker",""] setMarkerPos (getPos _unit);
         
@@ -123,6 +123,7 @@ _grp selectLeader _officer;
             };
             
             [_unit,localize "STR_JP_voices_officer_iKnowSomeThing"] remoteExec ["JP_fnc_talk",_player];
+            [format["JP_secondary_%1", name _unit],"SUCCEEDED",true] remoteExec ["BIS_fnc_taskSetState",GROUP_PLAYERS,true];
 			_unit remoteExec ["JP_fnc_success", 2, false];
              (_unit getVariable["marker",""]) setMarkerAlpha 0;
         },{

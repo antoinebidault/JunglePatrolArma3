@@ -85,6 +85,7 @@ CHASER_TRIGGERED = true;
 publicVariable "CHASER_TRIGGERED";
 CHASER_TIMEOUT = time + 5 * 60;
 publicVariable "CHASER_TIMEOUT";
+
 //[_teamLeader,_lzPos ,16] spawn JP_fnc_spawnAvalanche;
 
 {
@@ -95,11 +96,19 @@ publicVariable "CHASER_TIMEOUT";
   _x enableAI "MOVE";
 } forEach units _teamLeader;
 
+/*
 while {alive _teamLeader && leader GROUP_PLAYERS distance2d _lzPos > 60} do
 {
   _teamLeader move (position (leader GROUP_PLAYERS));
   sleep 3;
-};
+};*/
+_destPos =_helipad_obj modelToWorld [30,30,0];
+_wp0 = (group _teamLeader) addWaypoint[_destPos,10];
+_wp0 setWaypointType "MOVE";
+_wp0 setWaypointSpeed "FULL";
+_wp0 setWaypointBehaviour "AWARE";
+
+waitUntil {sleep 1; alive _teamLeader && _teamLeader distance2d _lzPos < 60};
 
 [_teamLeader, localize "STR_JP_voices_helpFriends_rto_2"] spawn JP_fnc_talk;
 _medic_chopper = [GROUP_PLAYERS] call JP_fnc_spawnHelo;
@@ -110,9 +119,6 @@ _medic_chopper allowDamage false;
 
 // Startup the chopper path
 [_lzPos,_medic_chopper,group _teamLeader] spawn JP_fnc_chopperPath;
-
-_wp0 = (group _teamLeader) addWaypoint[_lzPos,10];
-_wp0 setWaypointType "MOVE";
 
 waitUntil {{vehicle _x == _medic_chopper} count _woundedUnits == count _woundedUnits }; 
 

@@ -211,7 +211,7 @@ JP_fnc_addActionLiberate =  {
 
         _this call JP_fnc_endTalking;
         _unit SetBehaviour "AWARE";
-        _unit setCaptive false;
+        _unit setCaptive true;
         [_unit,""] remoteExec ["switchMove"]; 
         [_unit,"ANIM"] remoteExec ["switchMove",owner _unit]; 
         [_unit,"MOVE"] remoteExec ["switchMove",owner _unit]; 

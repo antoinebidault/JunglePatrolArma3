@@ -19,13 +19,13 @@ SP_GROUP_PLAYER_NB_UNITS = getMissionConfigValue ["JP_SP_group_player_nb_units",
 NO_INTRO = getMissionConfigValue ["JP_NO_INTRO", 0] == 1; 
 RESPAWN_ENABLED = true;
 MEDEVAC_ENABLED = true; // Reviving
-SHOW_SECTOR = false;
+SHOW_SECTOR = true;
 NUMBER_RESPAWN = 0;
 ENABLE_FILTER = true;
 TIME_OF_DAYS = 17;
 WEATHER = .2;
 ENABLE_DIALOG = false;
-POPULATION_INTENSITY = .4;
+POPULATION_INTENSITY = 1;
 PERCENTAGE_OF_ENEMY_COMPOUND = 100; 
 NUMBER_OFFICERS = 3;
 
@@ -39,7 +39,7 @@ FACTION_FRIENDLY =  getMissionConfigValue ["JP_FACTION_FRIENDLY", "IND_G_F"];
 CONFIG_VEHICLES = [] call JP_fnc_getConfigVehicles;
 
 //SPAWNING CONFIG
-SIZE_BLOCK =  getMissionConfigValue ["JP_size_block",400]; // Size of blocks
+SIZE_BLOCK =  getMissionConfigValue ["JP_size_block",100]; // Size of blocks
 MAX_CLUSTER_SIZE =  getMissionConfigValue ["JP_max_cluster_size",200];
 SPAWN_DISTANCE = getMissionConfigValue ["JP_spawn_distance",450]; //Distance units in compounds spawned
 MIN_SPAWN_DISTANCE =  400; //Units can't spawn before this distance
@@ -86,7 +86,7 @@ HUMANITAR_LIST_CARS = ["C_IDAP_Offroad_02_unarmed_F","C_IDAP_Offroad_01_F","C_ID
 HUMANITAR_LIST_UNITS = ["C_IDAP_Man_AidWorker_06_F","C_IDAP_Man_AidWorker_05_F","C_IDAP_Man_AidWorker_01_F","C_IDAP_Man_AidWorker_08_F","C_IDAP_Man_UAV_06_medical_F","C_IDAP_Man_EOD_01_F","C_IDAP_Man_AidWorker_03_F"];
 MAX_RANDOM_CIVILIAN =  getMissionConfigValue ["JP_max_random_civilian",4];
 MAX_SHEEP_HERD =  getMissionConfigValue ["JP_max_sheep_herd",2]; //Number of sheep herd
-RATIO_POPULATION =  getMissionConfigValue ["JP_ratio_population",1.3]; //Number of unit per building. 0.4 default
+RATIO_POPULATION =  getMissionConfigValue ["JP_ratio_population",1.1]; //Number of unit per building. 0.4 default
 MAX_POPULATION = getMissionConfigValue ["JP_max_population",25];
 RATIO_CARS =  getMissionConfigValue ["JP_ratio_cars",.06]; //Number of empty cars spawned in a city by buidling
 PERCENTAGE_FRIENDLIES = 25; //Percentage friendly spawn in patrol

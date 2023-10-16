@@ -18,7 +18,6 @@
 //Stand by during a long period
 if (!isServer) exitWith{false};
 
-_units = [];
 
 //SLEEP (_this select 0);
 params["_initial"];
@@ -29,6 +28,7 @@ publicVariable "CONVOY_LIST";
 while { true } do {
    if (count CONVOY_LIST <= MAX_RANDOM_CONVOY && !STOP_SPAWN_CONVOY) then {
     [] spawn {
+      _units = [];
       _nbTrucks = ceil(random 2) min 1;
       _roadRadius = 40;
 
@@ -57,6 +57,7 @@ while { true } do {
             for "_yc" from 1 to _nbUnit  do {
                 _unit = [_grp,_startPos,true] call JP_fnc_spawnEnemy;
                 _unit moveInCargo _truck;
+                _units pushBack _unit;
             };
 
              [_truck,"ColorPink"] call JP_fnc_addMarker;
@@ -68,6 +69,7 @@ while { true } do {
             }]] remoteExec ["addEventHandler",0,true];;
             CONVOY_LIST pushback _truck;
             publicVariable "CONVOY_LIST";
+            _units pushBack _truck;
             _trucks pushback _truck;
         };
 
@@ -88,7 +90,8 @@ while { true } do {
         if ((leader _grp) distance _end < 10) then {
             sleep 40;
             {
-              _units = _units - [_x]; _x call JP_fnc_deleteMarker; deleteVehicle _x; 
+              _units = _units - [_x]; 
+              _x call JP_fnc_deleteMarker; deleteVehicle _x; 
               CONVOY_LIST = CONVOY_LIST - [_x];
             } forEach _units;
         };
