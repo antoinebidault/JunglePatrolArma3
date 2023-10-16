@@ -82,6 +82,7 @@ class CfgFunctions
 			class spawnUnits {};
 			class spawnAsEnemy {};
 			class spawnchaser {};
+			class spawnRandomConvoy {};
 			class spawnoutpost {};
 			class spawnMeetingPoint {};
 			class spawnCivil {};

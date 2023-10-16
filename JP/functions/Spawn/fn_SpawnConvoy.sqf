@@ -26,6 +26,9 @@ _nbVeh = 3;
 _nbTrucks = _nbVeh - 1;
 _roadRadius = 40;
 
+STOP_SPAWN_CONVOY = true;
+publicVariable "STOP_SPAWN_CONVOY";
+
 
 _ambush = (missionNamespace getVariable["convoy_ambush",""]);
 _start = (missionNamespace getVariable["convoy_start",""]);
@@ -34,7 +37,7 @@ _startPos = getPos(_start);
 _endPos = getPos(_end);
 _ambushPos = getPos(_ambush);
 
-_road = [_startPos,500,MARKER_WHITE_LIST] call BIS_fnc_nearestRoad;
+_road = [_startPos,500,[]] call BIS_fnc_nearestRoad;
 _roadPos = getPos _road;
 
 _grp = createGroup SIDE_ENEMY;
@@ -94,7 +97,7 @@ _grp selectLeader  (driver _car)  ;
   };
 
   _grp setBehaviour "SAFE";
-  _grp setSpeedMode "NORMAL";
+ // _grp setSpeedMode "NORMAL";
   _grp setFormation "COLUMN";
 
 deleteMarker "convoy-ambush-marker";
@@ -121,7 +124,7 @@ _wpt setMarkerText "convoy destination";
 _wpt = _grp addWaypoint [_endPos, 10];
 _wpt setWaypointType "MOVE";
 _wpt setWaypointBehaviour "SAFE";
-_wpt setWaypointSpeed "LIMITED";
+// _wpt setWaypointSpeed "LIMITED";
 _wpt setWaypointFormation "COLUMN";
 leader _grp moveTo _endPos;
 driver _car moveTo _endPos;
@@ -145,5 +148,8 @@ if ({alive _x} count CONVOY == 0) exitWith {
      _ambush remoteExec ["JP_fnc_success",2, false];
     [_ambush];
 };
+
+STOP_SPAWN_CONVOY = false;
+publicVariable "STOP_SPAWN_CONVOY";
 
 [_ambush];

@@ -25,7 +25,14 @@ sleep 1;
 
 // Keep only four units in singleplayer
 if (!isMultiplayer)then{
-	{ if ((_foreachIndex + 1) > SP_GROUP_PLAYER_NB_UNITS) then { deleteVehicle _x; } } forEach units GROUP_PLAYERS;
+	{
+		if ((_foreachIndex + 1) > SP_GROUP_PLAYER_NB_UNITS) then { 
+			deleteVehicle _x;
+		};
+		if (!isPlayer _x) then {
+			removeSwitchableUnit _x;
+		}; 
+	} forEach units GROUP_PLAYERS;
 };
 
 addMissionEventHandler ["HandleDisconnect", {
@@ -366,10 +373,7 @@ MARKERS = [CLUSTERS] call JP_fnc_fillClusters;
 [] spawn JP_fnc_spawnRandomEnemies;
 [] spawn JP_fnc_spawnRandomCar;
 [] spawn JP_fnc_spawnRandomCivilian;
-// [] spawn JP_fnc_spawnChopper;
-// [] spawn JP_fnc_spawnTank;
-// [] spawn JP_fnc_spawnAircraft;
-// [] call JP_fnc_airBridge;
+[] spawn JP_fnc_spawnRandomConvoy;
  
 // Revive friendlies with chopper pick up
 if (MEDEVAC_ENABLED) then{
@@ -405,7 +409,7 @@ private ["_mkr","_cacheResult","_ieds"];
 						_x call JP_fnc_deleteMarker;
 					}
 				};
-			} foreach allUnits ; //UNITS_SPAWNED_CLOSE + ESCORT + CONVOY + UNITS_SPAWNED_DISTANT;
+			} foreach allUnits + CONVOY_LIST ; //UNITS_SPAWNED_CLOSE + ESCORT + CONVOY + UNITS_SPAWNED_DISTANT;
 		};
 
 		_tmp = [];

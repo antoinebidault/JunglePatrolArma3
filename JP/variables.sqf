@@ -54,6 +54,13 @@ publicVariable "CHASER_TIMEOUT";
 CHASER_VIEWED = false;
 publicVariable "CHASER_VIEWED";
 
+// Stop the defaut spawning of convoy on the main road
+STOP_SPAWN_CONVOY = false;
+publicVariable "STOP_SPAWN_CONVOY";
+
+CONVOY_LIST = [];
+publicVariable "CONVOY_LIST";
+
 // Score store
 JP_SCORE = 0;
 publicVariable "JP_SCORE";

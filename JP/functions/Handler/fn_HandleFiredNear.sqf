@@ -84,7 +84,7 @@
 			[_unit,2] remoteExec ["JP_fnc_updateRep",2];
 			sleep 15;
 			_unit stop false;
-			_unit call "JP_fnc_handleFiredNear";
+			_unit spawn JP_fnc_handleFiredNear;
 		},nil,1.5,false,true,"","true",2,false,""]] remoteExec ["addAction"];
 
 		if (isPlayer _gunner )then {
